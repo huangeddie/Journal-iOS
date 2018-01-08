@@ -21,6 +21,8 @@ class NewEntryViewController: UIViewController {
         // Setup the entry
         entry = Entry(context: PersistentService.context)
         entry.date = Date()
+        entry.text = ""
+        entry.title = ""
 
         // Do any additional setup after loading the view.
         alertChangeTitle()
