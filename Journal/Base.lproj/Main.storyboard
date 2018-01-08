@@ -39,7 +39,7 @@
                                         <rect key="frame" x="0.0" y="38" width="375" height="550"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="lGG-ab-pNb" detailTextLabel="khX-eT-VPh" style="IBUITableViewCellStyleValue1" id="GOA-E4-mxL">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="entry_cell" textLabel="lGG-ab-pNb" detailTextLabel="khX-eT-VPh" style="IBUITableViewCellStyleValue1" id="GOA-E4-mxL">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GOA-E4-mxL" id="9r2-6y-025">
@@ -67,6 +67,7 @@
                                     </tableView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="FHV-26-bFA" firstAttribute="width" secondItem="ucV-Cw-bjs" secondAttribute="width" id="pqs-zn-PUz"/>
                                     <constraint firstItem="d3s-gt-K7N" firstAttribute="width" secondItem="ucV-Cw-bjs" secondAttribute="width" multiplier="0.8" id="v7X-xu-32a"/>
                                 </constraints>
                             </stackView>
@@ -83,6 +84,7 @@
                     <tabBarItem key="tabBarItem" title="View Past Entries" image="black square" id="QqU-rP-AZx"/>
                     <connections>
                         <outlet property="tableView" destination="FHV-26-bFA" id="yfj-Lz-AFL"/>
+                        <outlet property="timeFrameSegmentControl" destination="d3s-gt-K7N" id="uiT-tw-fbp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gTb-hO-Gi1" userLabel="First Responder" sceneMemberID="firstResponder"/>

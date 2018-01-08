@@ -11,7 +11,9 @@ import UIKit
 class ViewEntriesViewController: UIViewController {
 
     // MARK: Properties
+    @IBOutlet weak var timeFrameSegmentControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    var entryHistorian: EntryHistorian = EntryHistorian(timeFrame: .week)
     
     // MARK: UIViewController
     override func viewDidLoad() {
@@ -20,6 +22,7 @@ class ViewEntriesViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        timeFrameSegmentControl.addTarget(self, action: #selector(segmentControlValueDidChange), for: .valueChanged)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,14 +40,57 @@ class ViewEntriesViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    // MARK: Segment Control
+    @objc
+    private func segmentControlValueDidChange() {
+        let rawValue = timeFrameSegmentControl.selectedSegmentIndex
+        guard let newTimeFrame = TimeFrame(rawValue: rawValue) else {
+            fatalError("Could not get time frame")
+        }
+        
+        entryHistorian.timeFrame = newTimeFrame
+    }
 }
 
 extension ViewEntriesViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    private static let cellIdentifier = "entry_cell"
+    
     // MARK: Delegate
     
     
     
     // MARK: Data Source
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        
+        let entry = entryHistorian.getEntry(for: row)
+        guard let date = entry.date else {
+            fatalError("Could not get date from entry")
+        }
+        guard let title = entry.title else {
+            fatalError("Could not get title from entry")
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: ViewEntriesViewController.cellIdentifier, for: indexPath)
+        
+        // Format cell
+        cell.textLabel?.text = title
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.setLocalizedDateFormatFromTemplate("dd/MM/yy")
+        let dateString = dateFormatter.string(from: date)
+        cell.detailTextLabel?.text = dateString
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return entryHistorian.numberOfEntries()
+        }
+        return 0
+    }
     
 }
