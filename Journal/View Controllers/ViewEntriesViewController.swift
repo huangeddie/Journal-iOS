@@ -50,6 +50,8 @@ class ViewEntriesViewController: UIViewController {
         }
         
         entryHistorian.timeFrame = newTimeFrame
+        
+        tableView.reloadData()
     }
 }
 

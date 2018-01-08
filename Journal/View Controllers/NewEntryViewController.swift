@@ -37,7 +37,10 @@ class NewEntryViewController: UIViewController {
         entry = Entry(context: PersistentService.context)
         entry.date = Date()
         entry.text = ""
-        entry.title = ""
+        guard let title = navigationItem.title else {
+            fatalError("Could not get navigation title")
+        }
+        entry.title = title
 
         // Do any additional setup after loading the view.
         alertChangeTitle()
@@ -99,6 +102,11 @@ class NewEntryViewController: UIViewController {
     private func resignKeyboard() {
         let result = textField.resignFirstResponder()
         assert(result)
+        
+        guard let text = textField.text else {
+            fatalError("Could not get text from text field")
+        }
+        entry.text = text
     }
     
     /// Show an alert to change the title
@@ -121,7 +129,8 @@ class NewEntryViewController: UIViewController {
         alertChangeTitle.addAction(doneAction)
         
         alertChangeTitle.addTextField { (textField) in
-            // something?
+            // Auto capitalize words because it is a title
+            textField.autocapitalizationType = UITextAutocapitalizationType.words
         }
         
         present(alertChangeTitle, animated: true, completion: nil)
