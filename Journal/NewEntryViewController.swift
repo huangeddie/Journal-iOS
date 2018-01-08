@@ -23,13 +23,15 @@ class NewEntryViewController: UIViewController {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
-        let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil)
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
-        toolBar.setItems([cancelItem], animated: true)
+        let doneItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(resignKeyboard))
+        
+        
+        toolBar.setItems([flexibleSpace, doneItem], animated: true)
         
         textField.inputAccessoryView = toolBar
         
-
         
         // Setup the entry
         entry = Entry(context: PersistentService.context)
@@ -71,6 +73,7 @@ class NewEntryViewController: UIViewController {
         assert(!context.hasChanges)
         
         // Dismiss
+        textField.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     
@@ -80,6 +83,7 @@ class NewEntryViewController: UIViewController {
         PersistentService.saveContext()
         
         // Dismiss
+        textField.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     
@@ -90,6 +94,12 @@ class NewEntryViewController: UIViewController {
     }
     
     // MARK: Private Functions
+    
+    @objc
+    private func resignKeyboard() {
+        let result = textField.resignFirstResponder()
+        assert(result)
+    }
     
     /// Show an alert to change the title
     private func alertChangeTitle() {

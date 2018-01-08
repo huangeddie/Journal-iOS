@@ -17,7 +17,41 @@
                     <view key="view" contentMode="scaleToFill" id="nxi-cJ-vkZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ucV-Cw-bjs">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFc-tT-Imn">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d3s-gt-K7N">
+                                                <rect key="frame" x="0.0" y="40" width="375" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <segments>
+                                                    <segment title="Week"/>
+                                                    <segment title="Month"/>
+                                                    <segment title="3 Months"/>
+                                                    <segment title="Year"/>
+                                                    <segment title="All"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FHV-26-bFA">
+                                        <rect key="frame" x="0.0" y="109.5" width="375" height="488.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8nF-zm-yTH" firstAttribute="trailing" secondItem="ucV-Cw-bjs" secondAttribute="trailing" id="7sQ-U6-t5f"/>
+                            <constraint firstItem="ucV-Cw-bjs" firstAttribute="top" secondItem="8nF-zm-yTH" secondAttribute="top" id="lyk-hy-nxu"/>
+                            <constraint firstItem="8nF-zm-yTH" firstAttribute="bottom" secondItem="ucV-Cw-bjs" secondAttribute="bottom" id="qvU-a5-3E9"/>
+                            <constraint firstItem="ucV-Cw-bjs" firstAttribute="leading" secondItem="8nF-zm-yTH" secondAttribute="leading" id="zzb-F7-F2f"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8nF-zm-yTH"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="View Past Entries" id="QqU-rP-AZx"/>
