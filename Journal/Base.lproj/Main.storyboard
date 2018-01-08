@@ -122,6 +122,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="textField" destination="kDz-GC-8IA" id="VbP-wZ-hvR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nmp-1a-gXW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

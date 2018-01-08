@@ -14,9 +14,22 @@ class NewEntryViewController: UIViewController {
     
     var entry: Entry!
     
+    @IBOutlet weak var textField: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil)
+        
+        toolBar.setItems([cancelItem], animated: true)
+        
+        textField.inputAccessoryView = toolBar
+        
+
         
         // Setup the entry
         entry = Entry(context: PersistentService.context)
