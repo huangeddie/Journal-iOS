@@ -14,6 +14,7 @@ class NewEntryViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        alertChangeTitle()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,8 +39,12 @@ class NewEntryViewController: UIViewController {
     
     @IBAction func changeTitlePressed(_ sender: Any) {
         
-        // Show an alert to change the title
+        alertChangeTitle()
         
+    }
+    
+    /// Show an alert to change the title
+    private func alertChangeTitle() {
         let alertChangeTitle = UIAlertController(title: "Set Title", message: nil, preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
@@ -61,6 +66,5 @@ class NewEntryViewController: UIViewController {
         }
         
         present(alertChangeTitle, animated: true, completion: nil)
-        
     }
 }
