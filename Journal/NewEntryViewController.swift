@@ -10,6 +10,8 @@ import UIKit
 
 class NewEntryViewController: UIViewController {
     
+    // MARK: Properties
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +35,8 @@ class NewEntryViewController: UIViewController {
     }
     */
     
+    // MARK: IBActions
+    
     @IBAction func cancelPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -42,6 +46,8 @@ class NewEntryViewController: UIViewController {
         alertChangeTitle()
         
     }
+    
+    // MARK: Private Functions
     
     /// Show an alert to change the title
     private func alertChangeTitle() {
