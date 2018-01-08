@@ -35,10 +35,32 @@ class NewEntryViewController: UIViewController {
     @IBAction func cancelPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
- 
-    @IBAction func titleChanged(_ sender: UITextField) {
-        navigationItem.title = sender.text
+    
+    @IBAction func changeTitlePressed(_ sender: Any) {
+        
+        // Show an alert to change the title
+        
+        let alertChangeTitle = UIAlertController(title: "Set Title", message: nil, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            // something?
+        }
+        
+        let doneAction = UIAlertAction(title: "Set", style: .default) { (action) in
+            // something?
+            if let newTitle = alertChangeTitle.textFields?.first?.text {
+                self.navigationItem.title = newTitle
+            }
+        }
+        
+        alertChangeTitle.addAction(cancelAction)
+        alertChangeTitle.addAction(doneAction)
+        
+        alertChangeTitle.addTextField { (textField) in
+            // something?
+        }
+        
+        present(alertChangeTitle, animated: true, completion: nil)
+        
     }
-    
-    
 }

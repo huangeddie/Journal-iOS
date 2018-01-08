@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -76,25 +75,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GTc-OL-XuU">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tVE-qs-yQ8">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A58-pY-f1P">
                                                 <rect key="frame" x="0.0" y="0.0" width="187.5" height="80"/>
-                                                <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Change Title" borderStyle="roundedRect" placeholder="Change Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oj5-cZ-kgy">
-                                                        <rect key="frame" x="19.5" y="25" width="150" height="30"/>
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                        <connections>
-                                                            <action selector="titleChanged:" destination="yJF-ql-skw" eventType="editingChanged" id="DgX-za-VUi"/>
-                                                        </connections>
-                                                    </textField>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="Oj5-cZ-kgy" firstAttribute="centerX" secondItem="tVE-qs-yQ8" secondAttribute="centerX" id="CHU-eI-eHT"/>
-                                                    <constraint firstItem="Oj5-cZ-kgy" firstAttribute="centerY" secondItem="tVE-qs-yQ8" secondAttribute="centerY" id="GLT-cq-1TF"/>
-                                                    <constraint firstItem="Oj5-cZ-kgy" firstAttribute="width" secondItem="tVE-qs-yQ8" secondAttribute="width" multiplier="0.8" id="uR3-JY-ntt"/>
-                                                </constraints>
-                                            </view>
+                                                <state key="normal" title="Change Title"/>
+                                                <connections>
+                                                    <action selector="changeTitlePressed:" destination="yJF-ql-skw" eventType="touchUpInside" id="BK1-ZZ-Phd"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOH-4F-nLr">
                                                 <rect key="frame" x="187.5" y="0.0" width="187.5" height="80"/>
                                                 <state key="normal" title="New Paragraph"/>
