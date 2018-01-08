@@ -101,10 +101,8 @@
 			children = (
 				2C7FB7F32003147F00554B70 /* AppDelegate.swift */,
 				2C7FB81A2003F47100554B70 /* PersistentService.swift */,
-				2C7FB816200315EE00554B70 /* NewEntryViewController.swift */,
-				2CD4838F20042C3400606D32 /* ViewEntriesViewController.swift */,
-				2CD4839120042D5300606D32 /* EntryHistorian.swift */,
-				2CD4839320042E1900606D32 /* TimeFrame.swift */,
+				2CD4839520042EA700606D32 /* View Controllers */,
+				2CD4839620042EBF00606D32 /* Models */,
 				2C7FB7F72003147F00554B70 /* Main.storyboard */,
 				2C7FB7FD2003147F00554B70 /* Assets.xcassets */,
 				2C7FB7FF2003147F00554B70 /* LaunchScreen.storyboard */,
@@ -121,6 +119,24 @@
 				2C7FB80D2003147F00554B70 /* Info.plist */,
 			);
 			path = JournalTests;
+			sourceTree = "<group>";
+		};
+		2CD4839520042EA700606D32 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2C7FB816200315EE00554B70 /* NewEntryViewController.swift */,
+				2CD4838F20042C3400606D32 /* ViewEntriesViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		2CD4839620042EBF00606D32 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2CD4839120042D5300606D32 /* EntryHistorian.swift */,
+				2CD4839320042E1900606D32 /* TimeFrame.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		5F13D7608694ED04418EC2CA /* Frameworks */ = {
