@@ -65,10 +65,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7Gr-md-eGC">
-                                <rect key="frame" x="0.0" y="64" width="375" height="523"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jpe-w0-7ci">
                                 <rect key="frame" x="0.0" y="587" width="375" height="80"/>
                                 <subviews>
@@ -76,15 +72,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A58-pY-f1P">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="80"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                                 <state key="normal" title="Change Title"/>
                                                 <connections>
                                                     <action selector="changeTitlePressed:" destination="yJF-ql-skw" eventType="touchUpInside" id="BK1-ZZ-Phd"/>
                                                 </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOH-4F-nLr">
-                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="80"/>
-                                                <state key="normal" title="New Paragraph"/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -98,16 +90,22 @@
                                     <constraint firstItem="GTc-OL-XuU" firstAttribute="leading" secondItem="Jpe-w0-7ci" secondAttribute="leading" id="uo8-Re-reu"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Text" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kDz-GC-8IA">
+                                <rect key="frame" x="0.0" y="64" width="375" height="523"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qrD-hH-FFg" firstAttribute="bottom" secondItem="Jpe-w0-7ci" secondAttribute="bottom" id="Hb6-4M-yYr"/>
-                            <constraint firstItem="7Gr-md-eGC" firstAttribute="top" secondItem="qrD-hH-FFg" secondAttribute="top" id="NOY-sm-f4L"/>
+                            <constraint firstItem="qrD-hH-FFg" firstAttribute="trailing" secondItem="kDz-GC-8IA" secondAttribute="trailing" id="HzI-Yf-Sau"/>
                             <constraint firstItem="Jpe-w0-7ci" firstAttribute="leading" secondItem="qrD-hH-FFg" secondAttribute="leading" id="Nxa-y8-OdC"/>
-                            <constraint firstItem="Jpe-w0-7ci" firstAttribute="top" secondItem="7Gr-md-eGC" secondAttribute="bottom" id="OAW-Fr-G8R"/>
+                            <constraint firstItem="kDz-GC-8IA" firstAttribute="leading" secondItem="qrD-hH-FFg" secondAttribute="leading" id="OgN-89-7Gd"/>
                             <constraint firstItem="qrD-hH-FFg" firstAttribute="trailing" secondItem="Jpe-w0-7ci" secondAttribute="trailing" id="Rbi-N4-tWd"/>
-                            <constraint firstItem="qrD-hH-FFg" firstAttribute="trailing" secondItem="7Gr-md-eGC" secondAttribute="trailing" id="Ui2-ml-ucs"/>
-                            <constraint firstItem="7Gr-md-eGC" firstAttribute="leading" secondItem="qrD-hH-FFg" secondAttribute="leading" id="dyG-yA-fON"/>
+                            <constraint firstItem="Jpe-w0-7ci" firstAttribute="top" secondItem="kDz-GC-8IA" secondAttribute="bottom" id="adv-RQ-nLc"/>
+                            <constraint firstItem="kDz-GC-8IA" firstAttribute="top" secondItem="qrD-hH-FFg" secondAttribute="top" id="fRZ-26-99f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qrD-hH-FFg"/>
                     </view>

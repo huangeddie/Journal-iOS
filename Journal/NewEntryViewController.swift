@@ -12,8 +12,15 @@ class NewEntryViewController: UIViewController {
     
     // MARK: Properties
     
+    var entry: Entry!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setup the entry
+        entry = Entry(context: PersistentService.context)
+        entry.date = Date()
 
         // Do any additional setup after loading the view.
         alertChangeTitle()
@@ -61,6 +68,7 @@ class NewEntryViewController: UIViewController {
             // something?
             if let newTitle = alertChangeTitle.textFields?.first?.text {
                 self.navigationItem.title = newTitle
+                self.entry.title = newTitle
             }
         }
         
