@@ -93,9 +93,9 @@
 		2C7FB7F22003147F00554B70 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
-				2C7FB816200315EE00554B70 /* NewEntryViewController.swift */,
 				2C7FB7F32003147F00554B70 /* AppDelegate.swift */,
 				2C7FB81A2003F47100554B70 /* PersistentService.swift */,
+				2C7FB816200315EE00554B70 /* NewEntryViewController.swift */,
 				2C7FB7F72003147F00554B70 /* Main.storyboard */,
 				2C7FB7FD2003147F00554B70 /* Assets.xcassets */,
 				2C7FB7FF2003147F00554B70 /* LaunchScreen.storyboard */,

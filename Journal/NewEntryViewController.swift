@@ -45,6 +45,26 @@ class NewEntryViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func cancelPressed(_ sender: Any) {
+        
+        // Reset the context
+        let context = PersistentService.context
+        
+        assert(context.hasChanges)
+        
+        context.reset()
+        
+        assert(!context.hasChanges)
+        
+        // Dismiss
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func savePressed(_ sender: Any) {
+        
+        // Save the context
+        PersistentService.saveContext()
+        
+        // Dismiss
         dismiss(animated: true, completion: nil)
     }
     
