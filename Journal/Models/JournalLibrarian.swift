@@ -14,7 +14,12 @@ class JournalLibrarian {
     // MARK: Properties
     static let userDefaultKeyName = "journal"
     
-    private static var allJournals: [Journal] = []
+    private var allJournals: [Journal] = []
+    
+    // MARK: Initialization
+    init() {
+        updateJournals()
+    }
     
     // MARK: Public Functions
     static func getCurrentJournal() -> Journal {
@@ -52,11 +57,11 @@ class JournalLibrarian {
         fatalError("Could not get journal with id: \(id)")
     }
     
-    static func numberOfJournals() -> Int {
+    func numberOfJournals() -> Int {
         return allJournals.count
     }
     
-    static func getJournal(for index: Int) -> Journal {
+    func getJournal(for index: Int) -> Journal {
         guard index < allJournals.count else {
             fatalError("Out of bounds for allJournals")
         }
@@ -65,7 +70,7 @@ class JournalLibrarian {
     }
     
     // MARK: Private Functions
-    private static func updateJournals() {
+    private func updateJournals() {
         let context = PersistentService.context
         
         let fetchRequest = NSFetchRequest<Journal>(entityName: Journal.description())
@@ -77,6 +82,5 @@ class JournalLibrarian {
         } catch {
             print("Error: \(error)")
         }
-        fatalError("Could not get journals")
     }
 }

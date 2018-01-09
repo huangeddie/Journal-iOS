@@ -11,6 +11,7 @@ import UIKit
 class JournalTableViewController: UIViewController {
 
     // MARK: Properties
+    let journalLibrarian = JournalLibrarian()
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: UIViewController
@@ -57,7 +58,7 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
     // MARK: Data Source
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let journal = JournalLibrarian.getJournal(for: row)
+        let journal = journalLibrarian.getJournal(for: row)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: JournalTableViewController.cellIdentifier, for: indexPath)
         
@@ -68,7 +69,7 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return JournalLibrarian.numberOfJournals()
+            return journalLibrarian.numberOfJournals()
         }
         return 0
     }
