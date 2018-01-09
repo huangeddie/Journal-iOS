@@ -10,6 +10,8 @@ import Foundation
 import CoreData
 class PersistentService {
     
+    static let contextChangedNotificationName = Notification.Name(rawValue: "context_changed")
+    
     static var context: NSManagedObjectContext {
         return PersistentService.persistentContainer.viewContext
     }
@@ -50,6 +52,8 @@ class PersistentService {
         if context.hasChanges {
             do {
                 try context.save()
+                let notification = Notification(name: contextChangedNotificationName)
+                NotificationCenter.default.post(notification)
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

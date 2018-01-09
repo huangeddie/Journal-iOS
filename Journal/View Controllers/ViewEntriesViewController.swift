@@ -23,6 +23,8 @@ class ViewEntriesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         timeFrameSegmentControl.addTarget(self, action: #selector(segmentControlValueDidChange), for: .valueChanged)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangeNotification), name: PersistentService.contextChangedNotificationName, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +42,13 @@ class ViewEntriesViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: Private functions
+    @objc
+    private func receivedContextChangeNotification() {
+        entryHistorian.update()
+        tableView.reloadData()
+    }
     
     // MARK: Segment Control
     @objc

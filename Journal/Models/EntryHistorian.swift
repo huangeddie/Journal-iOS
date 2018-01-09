@@ -38,10 +38,13 @@ class EntryHistorian {
     func numberOfEntries() -> Int {
         return entries.count
     }
+    
+    func update() {
+        updateEntries()
+    }
 
     // MARK: Private functions
     private func updateEntries() {
-        // TODO: update the entries
         
         let context = PersistentService.context
         
@@ -54,7 +57,7 @@ class EntryHistorian {
                 guard let date1 = a1.date, let date2 = a2.date else {
                     fatalError("Could not get dates from entries")
                 }
-                return date1 < date2
+                return date1 > date2
             })
             entries = searchResults
         }
