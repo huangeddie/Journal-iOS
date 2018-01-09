@@ -28,6 +28,10 @@ class JournalTableViewController: UIViewController {
         // Setup the table view
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // Watch for any changes to the journals
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangeNotification), name: PersistentService.contextChangedNotificationName, object: nil)
+        journalLibrarian.update()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +49,46 @@ class JournalTableViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    // MARK: IBActions
+    
+    @IBAction func addJournalPressed(_ sender: Any) {
+        let alertVC = UIAlertController(title: "New Journal", message: nil, preferredStyle: .alert)
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "Name"
+            textField.autocapitalizationType = .words
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            alertVC.dismiss(animated: true, completion: nil)
+        }
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in
+            
+            guard let textField = alertVC.textFields?.first else {
+                fatalError("Could not get text field")
+            }
+            guard let text = textField.text else {
+                fatalError("Could not get text")
+            }
+            
+            self.journalLibrarian.addJournal(name: text)
+            
+            alertVC.dismiss(animated: true, completion: nil)
+        }
+        
+        alertVC.addAction(cancelAction)
+        alertVC.addAction(saveAction)
+        
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    // MARK: Private Functions
+    @objc
+    private func receivedContextChangeNotification() {
+        journalLibrarian.update()
+        tableView.reloadData()
+    }
 }
 
 extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource {

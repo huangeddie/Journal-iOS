@@ -341,7 +341,11 @@
                         <viewLayoutGuide key="safeArea" id="X4P-hU-sJE"/>
                     </view>
                     <navigationItem key="navigationItem" id="Bjw-tj-837">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="SU7-cM-ZKt"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="SU7-cM-ZKt">
+                            <connections>
+                                <action selector="addJournalPressed:" destination="AeE-4B-TmU" id="MnW-le-Jze"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="LMV-Tp-BEy" id="ddm-SL-eeh"/>
