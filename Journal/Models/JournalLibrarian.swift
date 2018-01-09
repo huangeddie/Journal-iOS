@@ -1,5 +1,5 @@
 //
-//  JournalLibrary.swift
+//  JournalLibrarian.swift
 //  Journal
 //
 //  Created by Edward Huang on 1/8/18.
@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class JournalLibrary {
+class JournalLibrarian {
     
     // MARK: Properties
     static let userDefaultKeyName = "journal"

@@ -29,7 +29,7 @@ class EntryTableViewController: UIViewController {
         entryHistorian.update()
         
         // Set title to current journal
-        let currentJournal = JournalLibrary.getCurrentJournal()
+        let currentJournal = JournalLibrarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
     }
 

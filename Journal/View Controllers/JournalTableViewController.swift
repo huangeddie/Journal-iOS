@@ -20,7 +20,7 @@ class JournalTableViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // Set the title
-        let currentJournal = JournalLibrary.getCurrentJournal()
+        let currentJournal = JournalLibrarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
         
         
@@ -57,7 +57,7 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
     // MARK: Data Source
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let journal = JournalLibrary.getJournal(for: row)
+        let journal = JournalLibrarian.getJournal(for: row)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: JournalTableViewController.cellIdentifier, for: indexPath)
         
@@ -68,7 +68,7 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return JournalLibrary.numberOfJournals()
+            return JournalLibrarian.numberOfJournals()
         }
         return 0
     }
