@@ -14,7 +14,8 @@ class NewEntryViewController: UIViewController {
     
     var entry: Entry!
     
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textView: UITextView!
+    
     
     
     override func viewDidLoad() {
@@ -30,7 +31,7 @@ class NewEntryViewController: UIViewController {
         
         toolBar.setItems([flexibleSpace, doneItem], animated: true)
         
-        textField.inputAccessoryView = toolBar
+        textView.inputAccessoryView = toolBar
         
         
         // Setup the entry
@@ -76,7 +77,7 @@ class NewEntryViewController: UIViewController {
         assert(!context.hasChanges)
         
         // Dismiss
-        textField.resignFirstResponder()
+        textView.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     
@@ -86,7 +87,7 @@ class NewEntryViewController: UIViewController {
         PersistentService.saveContext()
         
         // Dismiss
-        textField.resignFirstResponder()
+        textView.resignFirstResponder()
         dismiss(animated: true, completion: nil)
     }
     
@@ -100,10 +101,10 @@ class NewEntryViewController: UIViewController {
     
     @objc
     private func resignKeyboard() {
-        let result = textField.resignFirstResponder()
+        let result = textView.resignFirstResponder()
         assert(result)
         
-        guard let text = textField.text else {
+        guard let text = textView.text else {
             fatalError("Could not get text from text field")
         }
         entry.text = text
