@@ -90,6 +90,9 @@ class JournalLibrarian {
         newJournal.id = smallestAvailableID
         
         PersistentService.saveContext()
+        
+        // We modified the data for journals so we must update
+        update()
     }
     
     func update() {

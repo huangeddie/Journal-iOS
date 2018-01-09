@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Edit Entry View Controller-->
         <scene sceneID="hGp-8m-kJw">
             <objects>
                 <viewController id="Afq-CV-Zlw" customClass="EditEntryViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
@@ -62,7 +62,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i0y-3g-R3F"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="RSf-Tn-i39">
+                    <navigationItem key="navigationItem" id="RSf-Tn-i39">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rh5-If-xZI">
                             <connections>
                                 <action selector="cancelPressed:" destination="Afq-CV-Zlw" id="9Rn-Dt-Gy1"/>
