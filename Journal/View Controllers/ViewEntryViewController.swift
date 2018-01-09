@@ -11,7 +11,8 @@ import UIKit
 class ViewEntryViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
-    var entry: Entry!
+    var entryHistorian: EntryHistorian!
+    var index: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class ViewEntryViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let entry = entryHistorian.getEntry(for: index)
         navigationItem.title = entry.title
         
         let text = entry.text
@@ -32,15 +34,27 @@ class ViewEntryViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        guard let navVC = segue.destination as? UINavigationController else {
+            fatalError("Destination is not a UINavigationController")
+        }
+        
+        guard let editEntryVC = navVC.childViewControllers.first as? EditEntryViewController else {
+            fatalError("First child is not a ViewEntryViewController")
+        }
+        
+        editEntryVC.shouldPromptChangeTitle = false
+        editEntryVC.entry = entryHistorian.getEntry(for: index)
+        editEntryVC.entryHistorian = entryHistorian
     }
-    */
+ 
 
     // MARK: IBActions
     @IBAction func donePressed(_ sender: Any) {

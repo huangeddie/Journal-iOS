@@ -24,14 +24,13 @@ class JournalTableViewController: UIViewController {
         let currentJournal = JournalLibrarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
         
+        // Watch for any changes to the journals
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangeNotification), name: PersistentService.contextChangedNotificationName, object: nil)
+        journalLibrarian.update()
         
         // Setup the table view
         tableView.delegate = self
         tableView.dataSource = self
-        
-        // Watch for any changes to the journals
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangeNotification), name: PersistentService.contextChangedNotificationName, object: nil)
-        journalLibrarian.update()
     }
 
     override func didReceiveMemoryWarning() {

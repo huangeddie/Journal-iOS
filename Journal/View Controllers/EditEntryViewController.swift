@@ -12,6 +12,7 @@ class EditEntryViewController: UIViewController {
     
     // MARK: Properties
     var shouldPromptChangeTitle = true
+    var entryHistorian: EntryHistorian?
     var entry: Entry!
     
     @IBOutlet weak var textView: UITextView!
@@ -48,6 +49,9 @@ class EditEntryViewController: UIViewController {
             entry.title = title
         }
         
+        navigationItem.title = entry.title
+        textView.text = entry.text
+        
         // Prompt the title change
         if shouldPromptChangeTitle {
             alertChangeTitle()
@@ -77,10 +81,8 @@ class EditEntryViewController: UIViewController {
         // Reset the context
         let context = PersistentService.context
         
-        assert(context.hasChanges)
-        
         context.reset()
-        
+        entryHistorian?.update()
         assert(!context.hasChanges)
         
         // Dismiss
@@ -122,11 +124,10 @@ class EditEntryViewController: UIViewController {
         let alertChangeTitle = UIAlertController(title: "Set Title", message: nil, preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-            // something?
+            // TODO: something?
         }
         
         let doneAction = UIAlertAction(title: "Set", style: .default) { (action) in
-            // something?
             if let newTitle = alertChangeTitle.textFields?.first?.text {
                 self.navigationItem.title = newTitle
                 self.entry.title = newTitle

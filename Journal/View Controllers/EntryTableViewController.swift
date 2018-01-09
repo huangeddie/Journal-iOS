@@ -60,7 +60,8 @@ class EntryTableViewController: UIViewController {
         guard let viewEntryVC = navVC.childViewControllers.first as? ViewEntryViewController else {
             fatalError("First child is not a ViewEntryViewController")
         }
-        viewEntryVC.entry = entry
+        viewEntryVC.index = row
+        viewEntryVC.entryHistorian = entryHistorian
     }
  
     
