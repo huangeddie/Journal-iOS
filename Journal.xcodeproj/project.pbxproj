@@ -15,7 +15,7 @@
 		2C7FB80C2003147F00554B70 /* JournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FB80B2003147F00554B70 /* JournalTests.swift */; };
 		2C7FB817200315EE00554B70 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FB816200315EE00554B70 /* NewEntryViewController.swift */; };
 		2C7FB81B2003F47100554B70 /* PersistentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FB81A2003F47100554B70 /* PersistentService.swift */; };
-		2CD4839020042C3400606D32 /* ViewEntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4838F20042C3400606D32 /* ViewEntriesViewController.swift */; };
+		2CD4839020042C3400606D32 /* EntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4838F20042C3400606D32 /* EntryTableViewController.swift */; };
 		2CD4839220042D5300606D32 /* EntryHistorian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839120042D5300606D32 /* EntryHistorian.swift */; };
 		2CD4839420042E1900606D32 /* TimeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839320042E1900606D32 /* TimeFrame.swift */; };
 		44646266D425FBCA080CEBC7 /* Pods_JournalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E691FACDCD5FA6CD862F261 /* Pods_JournalTests.framework */; };
@@ -46,7 +46,7 @@
 		2C7FB80D2003147F00554B70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C7FB816200315EE00554B70 /* NewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
 		2C7FB81A2003F47100554B70 /* PersistentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentService.swift; sourceTree = "<group>"; };
-		2CD4838F20042C3400606D32 /* ViewEntriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEntriesViewController.swift; sourceTree = "<group>"; };
+		2CD4838F20042C3400606D32 /* EntryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewController.swift; sourceTree = "<group>"; };
 		2CD4839120042D5300606D32 /* EntryHistorian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryHistorian.swift; sourceTree = "<group>"; };
 		2CD4839320042E1900606D32 /* TimeFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrame.swift; sourceTree = "<group>"; };
 		4F3746C0ABE2719D98BC3A84 /* Pods_Journal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Journal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				2C7FB816200315EE00554B70 /* NewEntryViewController.swift */,
-				2CD4838F20042C3400606D32 /* ViewEntriesViewController.swift */,
+				2CD4838F20042C3400606D32 /* EntryTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -380,7 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CD4839220042D5300606D32 /* EntryHistorian.swift in Sources */,
-				2CD4839020042C3400606D32 /* ViewEntriesViewController.swift in Sources */,
+				2CD4839020042C3400606D32 /* EntryTableViewController.swift in Sources */,
 				2CD4839420042E1900606D32 /* TimeFrame.swift in Sources */,
 				2C7FB81B2003F47100554B70 /* PersistentService.swift in Sources */,
 				2C7FB7FC2003147F00554B70 /* Journal.xcdatamodeld in Sources */,

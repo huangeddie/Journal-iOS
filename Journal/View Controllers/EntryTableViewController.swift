@@ -1,5 +1,5 @@
 //
-//  ViewEntriesViewController.swift
+//  EntryTableViewController.swift
 //  Journal
 //
 //  Created by Edward Huang on 1/8/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewEntriesViewController: UIViewController {
+class EntryTableViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var timeFrameSegmentControl: UISegmentedControl!
@@ -40,6 +40,13 @@ class ViewEntriesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        guard let row = tableView.indexPathForSelectedRow?.row else {
+            fatalError("An entry was not selected")
+        }
+        
+        let entry = entryHistorian.getEntry(for: row)
+        
     }
  
     
@@ -64,7 +71,7 @@ class ViewEntriesViewController: UIViewController {
     }
 }
 
-extension ViewEntriesViewController: UITableViewDelegate, UITableViewDataSource {
+extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     private static let cellIdentifier = "entry_cell"
     
@@ -84,7 +91,7 @@ extension ViewEntriesViewController: UITableViewDelegate, UITableViewDataSource 
             fatalError("Could not get title from entry")
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: ViewEntriesViewController.cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: EntryTableViewController.cellIdentifier, for: indexPath)
         
         // Format cell
         cell.textLabel?.text = title
