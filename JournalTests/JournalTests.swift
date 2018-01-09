@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreData
 @testable import Journal
 
 class JournalTests: XCTestCase {
@@ -19,15 +20,30 @@ class JournalTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        
+        // Reset the store
+        let psc = PersistentService.persistentContainer.persistentStoreCoordinator
+        let stores = psc.persistentStores
+        print("Number of stores: \(stores.count)")
+        let store = stores.first!
+        let storeURL = psc.url(for: store)
+        
+        let context = PersistentService.context
+        XCTAssert(context.persistentStoreCoordinator === psc)
+        
+        do {
+            try FileManager.default.removeItem(at: storeURL)
+            let _ = try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+        } catch {
+            print(error)
+        }
+        
     }
     
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        
-        let stores = PersistentService.persistentContainer.persistentStoreCoordinator.persistentStores
-        print("Number of stores: \(stores.count)")
     }
     
 //    func testPerformanceExample() {
