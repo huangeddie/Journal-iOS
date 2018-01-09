@@ -14,7 +14,7 @@ class NewEntryViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let journal = Journal.getCurrentJournal()
+        let journal = JournalLibrary.getCurrentJournal()
         navigationItem.title = journal.name
     }
 

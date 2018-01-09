@@ -50,7 +50,7 @@ class EntryHistorian {
         
         assert(Entry.description() == "Entry")
         let fetchRequest = NSFetchRequest<Entry>(entityName: Entry.description())
-        let currentJournal = Journal.getCurrentJournal()
+        let currentJournal = JournalLibrary.getCurrentJournal()
         let journalPredicate = NSPredicate(format: "journal.id = \(currentJournal.id)")
         fetchRequest.predicate = journalPredicate
         
