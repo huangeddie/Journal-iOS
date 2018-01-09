@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C6252272004715600D75065 /* Journal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252252004715600D75065 /* Journal+CoreDataClass.swift */; };
+		2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */; };
 		2C7FB7F42003147F00554B70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FB7F32003147F00554B70 /* AppDelegate.swift */; };
 		2C7FB7F92003147F00554B70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FB7F72003147F00554B70 /* Main.storyboard */; };
 		2C7FB7FC2003147F00554B70 /* Journal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FB7FA2003147F00554B70 /* Journal.xcdatamodeld */; };
@@ -38,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		24462FA03F935B76BB640C8F /* Pods-Journal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Journal/Pods-Journal.debug.xcconfig"; sourceTree = "<group>"; };
+		2C6252252004715600D75065 /* Journal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C7FB7F02003147F00554B70 /* Journal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7FB7F32003147F00554B70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C7FB7F82003147F00554B70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,8 +111,6 @@
 		2C7FB7F22003147F00554B70 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
-				2CD4839D200466A100606D32 /* Entry+CoreDataClass.swift */,
-				2CD4839E200466A100606D32 /* Entry+CoreDataProperties.swift */,
 				2C7FB7F32003147F00554B70 /* AppDelegate.swift */,
 				2C7FB81A2003F47100554B70 /* PersistentService.swift */,
 				2CD4839520042EA700606D32 /* View Controllers */,
@@ -118,7 +120,6 @@
 				2C7FB7FD2003147F00554B70 /* Assets.xcassets */,
 				2C7FB7FF2003147F00554B70 /* LaunchScreen.storyboard */,
 				2C7FB8022003147F00554B70 /* Info.plist */,
-				2C7FB7FA2003147F00554B70 /* Journal.xcdatamodeld */,
 			);
 			path = Journal;
 			sourceTree = "<group>";
@@ -147,6 +148,11 @@
 			children = (
 				2CD4839120042D5300606D32 /* EntryHistorian.swift */,
 				2CD4839320042E1900606D32 /* TimeFrame.swift */,
+				2C6252252004715600D75065 /* Journal+CoreDataClass.swift */,
+				2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */,
+				2CD4839D200466A100606D32 /* Entry+CoreDataClass.swift */,
+				2CD4839E200466A100606D32 /* Entry+CoreDataProperties.swift */,
+				2C7FB7FA2003147F00554B70 /* Journal.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,12 +401,14 @@
 				2CD4839220042D5300606D32 /* EntryHistorian.swift in Sources */,
 				2CD4839020042C3400606D32 /* EntryTableViewController.swift in Sources */,
 				2CD4839420042E1900606D32 /* TimeFrame.swift in Sources */,
+				2C6252272004715600D75065 /* Journal+CoreDataClass.swift in Sources */,
 				2C7FB81B2003F47100554B70 /* PersistentService.swift in Sources */,
 				2CD483A0200466A100606D32 /* Entry+CoreDataProperties.swift in Sources */,
 				2CD4839F200466A100606D32 /* Entry+CoreDataClass.swift in Sources */,
 				2CD4839820045EF700606D32 /* ViewEntryViewController.swift in Sources */,
 				2C7FB7FC2003147F00554B70 /* Journal.xcdatamodeld in Sources */,
 				2C7FB817200315EE00554B70 /* EditEntryViewController.swift in Sources */,
+				2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */,
 				2C7FB7F42003147F00554B70 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

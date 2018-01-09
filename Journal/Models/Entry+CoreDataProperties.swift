@@ -20,5 +20,6 @@ extension Entry {
     @NSManaged public var date: Date
     @NSManaged public var text: String
     @NSManaged public var title: String
+    @NSManaged public var journal: Journal
 
 }
