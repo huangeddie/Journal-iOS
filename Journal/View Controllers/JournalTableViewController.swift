@@ -25,7 +25,7 @@ class JournalTableViewController: UIViewController {
         navigationItem.title = currentJournal.name
         
         // Watch for any changes to the journals
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangeNotification), name: PersistentService.contextChangedNotificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: .journalChanged, object: nil)
         journalLibrarian.update()
         
         // Setup the table view
@@ -84,9 +84,9 @@ class JournalTableViewController: UIViewController {
     
     // MARK: Private Functions
     @objc
-    private func receivedContextChangeNotification() {
-        journalLibrarian.update()
-        tableView.reloadData()
+    private func receivedJournalChangeNotification() {
+        let currentJournal = JournalLibrarian.getCurrentJournal()
+        navigationItem.title = currentJournal.name
     }
 }
 
@@ -95,7 +95,16 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
     static let cellIdentifier = "journal_cell"
     
     // MARK: Delegate
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        
+        let selectedJournal = journalLibrarian.getJournal(for: row)
+        
+        let journalID = selectedJournal.id
+        UserDefaults.standard.set(journalID, forKey: JournalLibrarian.userDefaultKeyName)
+        
+        NotificationCenter.default.post(Notification(name: .journalChanged))
+    }
     
     // MARK: Data Source
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

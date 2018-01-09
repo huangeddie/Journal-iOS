@@ -10,8 +10,6 @@ import Foundation
 import CoreData
 class PersistentService {
     
-    static let contextChangedNotificationName = Notification.Name(rawValue: "context_changed")
-    
     static var context: NSManagedObjectContext {
         return PersistentService.persistentContainer.viewContext
     }
@@ -52,7 +50,7 @@ class PersistentService {
         if context.hasChanges {
             do {
                 try context.save()
-                let notification = Notification(name: contextChangedNotificationName)
+                let notification = Notification(name: Notification.Name.contextChanged)
                 NotificationCenter.default.post(notification)
             } catch {
                 // Replace this implementation with code to handle the error appropriately.

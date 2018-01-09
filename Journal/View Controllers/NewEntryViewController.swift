@@ -14,6 +14,10 @@ class NewEntryViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Watch for any change to the journal
+        NotificationCenter.default.addObserver(self, selector: #selector(receievedJournalChangeNotification), name: .journalChanged, object: nil)
+        
         let journal = JournalLibrarian.getCurrentJournal()
         navigationItem.title = journal.name
     }
@@ -22,7 +26,6 @@ class NewEntryViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -33,5 +36,11 @@ class NewEntryViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    // MARK: Private Functions
+    @objc
+    private func receievedJournalChangeNotification() {
+        let currentJournal = JournalLibrarian.getCurrentJournal()
+        navigationItem.title = currentJournal.name
+    }
 }

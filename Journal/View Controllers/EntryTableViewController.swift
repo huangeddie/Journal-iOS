@@ -25,7 +25,10 @@ class EntryTableViewController: UIViewController {
         timeFrameSegmentControl.addTarget(self, action: #selector(segmentControlValueDidChange), for: .valueChanged)
         
         // Watch for any changes to the entries
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangeNotification), name: PersistentService.contextChangedNotificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: Notification.Name.contextChanged, object: nil)
+        
+        // Watch for any changes to the journals
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: Notification.Name.journalChanged, object: nil)
         entryHistorian.update()
         
         // Set title to current journal
@@ -51,8 +54,6 @@ class EntryTableViewController: UIViewController {
             fatalError("An entry was not selected")
         }
         
-        let entry = entryHistorian.getEntry(for: row)
-        
         guard let navVC = segue.destination as? UINavigationController else {
             fatalError("Destination is not a UINavigationController")
         }
@@ -66,6 +67,16 @@ class EntryTableViewController: UIViewController {
  
     
     // MARK: Private functions
+    @objc
+    private func receivedJournalChangeNotification() {
+        entryHistorian.update()
+        tableView.reloadData()
+        
+        // Update title
+        let currentJournal = JournalLibrarian.getCurrentJournal()
+        navigationItem.title = currentJournal.name
+    }
+    
     @objc
     private func receivedContextChangeNotification() {
         entryHistorian.update()
