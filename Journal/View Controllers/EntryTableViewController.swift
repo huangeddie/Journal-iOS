@@ -25,6 +25,7 @@ class EntryTableViewController: UIViewController {
         timeFrameSegmentControl.addTarget(self, action: #selector(segmentControlValueDidChange), for: .valueChanged)
         
         NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangeNotification), name: PersistentService.contextChangedNotificationName, object: nil)
+        entryHistorian.update()
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,12 +93,8 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row
         
         let entry = entryHistorian.getEntry(for: row)
-        guard let date = entry.date else {
-            fatalError("Could not get date from entry")
-        }
-        guard let title = entry.title else {
-            fatalError("Could not get title from entry")
-        }
+        let date = entry.date
+        let title = entry.title
         
         let cell = tableView.dequeueReusableCell(withIdentifier: EntryTableViewController.cellIdentifier, for: indexPath)
         

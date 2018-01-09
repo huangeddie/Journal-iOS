@@ -54,9 +54,9 @@ class EntryHistorian {
         do {
             var searchResults = try context.fetch(fetchRequest)
             searchResults.sort(by: { (a1, a2) -> Bool in
-                guard let date1 = a1.date, let date2 = a2.date else {
-                    fatalError("Could not get dates from entries")
-                }
+                let date1 = a1.date
+                let date2 = a2.date
+                
                 return date1 > date2
             })
             entries = searchResults

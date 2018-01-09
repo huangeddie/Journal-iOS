@@ -22,9 +22,7 @@ class ViewEntryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = entry.title
         
-        guard let text = entry.text else {
-            fatalError("No text in entry")
-        }
+        let text = entry.text
         textView.text = text
     }
 

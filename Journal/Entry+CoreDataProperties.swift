@@ -17,8 +17,8 @@ extension Entry {
         return NSFetchRequest<Entry>(entityName: "Entry")
     }
 
-    @NSManaged public var date: Date?
-    @NSManaged public var text: String?
-    @NSManaged public var title: String?
+    @NSManaged public var date: Date
+    @NSManaged public var text: String
+    @NSManaged public var title: String
 
 }
