@@ -1,5 +1,5 @@
 //
-//  NewEntryViewController.swift
+//  EditEntryViewController.swift
 //  Journal
 //
 //  Created by Edward Huang on 1/7/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewEntryViewController: UIViewController {
+class EditEntryViewController: UIViewController {
     
     // MARK: Properties
     

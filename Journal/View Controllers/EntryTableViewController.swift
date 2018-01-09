@@ -47,6 +47,14 @@ class EntryTableViewController: UIViewController {
         
         let entry = entryHistorian.getEntry(for: row)
         
+        guard let navVC = segue.destination as? UINavigationController else {
+            fatalError("Destination is not a UINavigationController")
+        }
+        
+        guard let viewEntryVC = navVC.childViewControllers.first as? ViewEntryViewController else {
+            fatalError("First child is not a ViewEntryViewController")
+        }
+        viewEntryVC.entry = entry
     }
  
     

@@ -94,15 +94,15 @@
             </objects>
             <point key="canvasLocation" x="596" y="128"/>
         </scene>
-        <!--View Controller-->
+        <!--View Entry View Controller-->
         <scene sceneID="h5X-us-XqF">
             <objects>
-                <viewController id="zee-Q1-o1b" sceneMemberID="viewController">
+                <viewController id="zee-Q1-o1b" customClass="ViewEntryViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dcl-WW-Rxw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FW7-8z-sxn">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FW7-8z-sxn">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -120,13 +120,43 @@
                         <viewLayoutGuide key="safeArea" id="oeP-jG-K5H"/>
                     </view>
                     <navigationItem key="navigationItem" id="VXN-N6-DIh">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Yfu-Xg-HyS"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MHk-Sd-BVb"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Yfu-Xg-HyS">
+                            <connections>
+                                <action selector="donePressed:" destination="zee-Q1-o1b" id="4SX-4Q-WF3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="MHk-Sd-BVb">
+                            <connections>
+                                <segue destination="3HA-QI-2Rf" kind="presentation" id="1YK-YM-quY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textView" destination="FW7-8z-sxn" id="Pu3-b4-NT8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bn1-ng-hqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2633" y="127"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="WE4-MV-xA2">
+            <objects>
+                <viewController id="Osv-0H-056" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="phK-pM-OWb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="4ml-iI-UGO"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CpJ-8s-kgY">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="GcA-9p-bO2"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pZO-Ha-eBP"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ft-Ft-Pbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4527" y="125"/>
         </scene>
         <!--New Entry-->
         <scene sceneID="FDX-zm-XaM">
@@ -196,7 +226,7 @@
         <!--Title-->
         <scene sceneID="IY6-xr-AH0">
             <objects>
-                <viewController id="yJF-ql-skw" customClass="NewEntryViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yJF-ql-skw" customClass="EditEntryViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5GD-xT-h7l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,6 +349,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Egw-UK-x15" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1601.5999999999999" y="126.83658170914543"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="AK7-xb-SrV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3HA-QI-2Rf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Vx-I0-Tlp">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Osv-0H-056" kind="relationship" relationship="rootViewController" id="dnG-0X-Sxa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9cp-fV-Izo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3632" y="125.93703148425789"/>
         </scene>
     </scenes>
     <resources>
