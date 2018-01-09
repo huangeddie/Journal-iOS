@@ -139,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="3599" y="127"/>
         </scene>
-        <!--View Controller-->
+        <!--New Entry View Controller-->
         <scene sceneID="FDX-zm-XaM">
             <objects>
-                <viewController id="om2-5G-qrX" sceneMemberID="viewController">
+                <viewController id="om2-5G-qrX" customClass="NewEntryViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CiG-7E-LxR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

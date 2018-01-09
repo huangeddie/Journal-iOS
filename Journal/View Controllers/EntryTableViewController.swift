@@ -24,8 +24,13 @@ class EntryTableViewController: UIViewController {
         tableView.dataSource = self
         timeFrameSegmentControl.addTarget(self, action: #selector(segmentControlValueDidChange), for: .valueChanged)
         
+        // Watch for any changes to the entries
         NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangeNotification), name: PersistentService.contextChangedNotificationName, object: nil)
         entryHistorian.update()
+        
+        // Set title to current journal
+        let currentJournal = Journal.getCurrentJournal()
+        navigationItem.title = currentJournal.name
     }
 
     override func didReceiveMemoryWarning() {
