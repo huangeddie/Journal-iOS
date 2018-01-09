@@ -37,14 +37,16 @@ class EditEntryViewController: UIViewController {
         // Setup the entry
         if entry == nil {
             entry = Entry(context: PersistentService.context)
+            let currentJournal = Journal.getCurrentJournal()
+            entry.journal = currentJournal
+            
+            entry.date = Date()
+            entry.text = ""
+            guard let title = navigationItem.title else {
+                fatalError("Could not get navigation title")
+            }
+            entry.title = title
         }
-        
-        entry.date = Date()
-        entry.text = ""
-        guard let title = navigationItem.title else {
-            fatalError("Could not get navigation title")
-        }
-        entry.title = title
         
         // Prompt the title change
         if shouldPromptChangeTitle {
