@@ -11,16 +11,15 @@ import UIKit
 class EditEntryViewController: UIViewController {
     
     // MARK: Properties
-    
+    var shouldPromptChangeTitle = true
     var entry: Entry!
     
     @IBOutlet weak var textView: UITextView!
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Add a "Done" button for the keyboard
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         
@@ -32,19 +31,25 @@ class EditEntryViewController: UIViewController {
         toolBar.setItems([flexibleSpace, doneItem], animated: true)
         
         textView.inputAccessoryView = toolBar
-        
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         // Setup the entry
-        entry = Entry(context: PersistentService.context)
+        if entry == nil {
+            entry = Entry(context: PersistentService.context)
+        }
+        
         entry.date = Date()
         entry.text = ""
         guard let title = navigationItem.title else {
             fatalError("Could not get navigation title")
         }
         entry.title = title
-
-        // Do any additional setup after loading the view.
-        alertChangeTitle()
+        
+        // Prompt the title change
+        if shouldPromptChangeTitle {
+            alertChangeTitle()
+        }
     }
 
     override func didReceiveMemoryWarning() {

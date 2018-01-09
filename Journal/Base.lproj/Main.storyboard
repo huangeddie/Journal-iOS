@@ -139,25 +139,6 @@
             </objects>
             <point key="canvasLocation" x="2633" y="127"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="WE4-MV-xA2">
-            <objects>
-                <viewController id="Osv-0H-056" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="phK-pM-OWb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="4ml-iI-UGO"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="CpJ-8s-kgY">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="GcA-9p-bO2"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pZO-Ha-eBP"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ft-Ft-Pbu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4527" y="125"/>
-        </scene>
         <!--New Entry-->
         <scene sceneID="FDX-zm-XaM">
             <objects>
@@ -223,79 +204,6 @@
             </objects>
             <point key="canvasLocation" x="596" y="-650"/>
         </scene>
-        <!--Title-->
-        <scene sceneID="IY6-xr-AH0">
-            <objects>
-                <viewController id="yJF-ql-skw" customClass="EditEntryViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5GD-xT-h7l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jpe-w0-7ci">
-                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="GTc-OL-XuU">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A58-pY-f1P">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                                                <state key="normal" title="Change Title"/>
-                                                <connections>
-                                                    <action selector="changeTitlePressed:" destination="yJF-ql-skw" eventType="touchUpInside" id="BK1-ZZ-Phd"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="GTc-OL-XuU" secondAttribute="trailing" id="mOA-Jw-0hE"/>
-                                    <constraint firstAttribute="bottom" secondItem="GTc-OL-XuU" secondAttribute="bottom" id="mhi-DV-RpG"/>
-                                    <constraint firstAttribute="height" constant="80" id="pG8-vR-ojO"/>
-                                    <constraint firstItem="GTc-OL-XuU" firstAttribute="top" secondItem="Jpe-w0-7ci" secondAttribute="top" id="rye-7N-hZt"/>
-                                    <constraint firstItem="GTc-OL-XuU" firstAttribute="leading" secondItem="Jpe-w0-7ci" secondAttribute="leading" id="uo8-Re-reu"/>
-                                </constraints>
-                            </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yfV-oD-3bm">
-                                <rect key="frame" x="0.0" y="64" width="375" height="523"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="yfV-oD-3bm" firstAttribute="top" secondItem="qrD-hH-FFg" secondAttribute="top" id="38Z-Hn-eG3"/>
-                            <constraint firstItem="Jpe-w0-7ci" firstAttribute="top" secondItem="yfV-oD-3bm" secondAttribute="bottom" id="B69-N6-il9"/>
-                            <constraint firstItem="qrD-hH-FFg" firstAttribute="bottom" secondItem="Jpe-w0-7ci" secondAttribute="bottom" id="Hb6-4M-yYr"/>
-                            <constraint firstItem="Jpe-w0-7ci" firstAttribute="leading" secondItem="qrD-hH-FFg" secondAttribute="leading" id="Nxa-y8-OdC"/>
-                            <constraint firstItem="qrD-hH-FFg" firstAttribute="trailing" secondItem="Jpe-w0-7ci" secondAttribute="trailing" id="Rbi-N4-tWd"/>
-                            <constraint firstItem="yfV-oD-3bm" firstAttribute="leading" secondItem="qrD-hH-FFg" secondAttribute="leading" id="TKt-vk-vya"/>
-                            <constraint firstItem="qrD-hH-FFg" firstAttribute="trailing" secondItem="yfV-oD-3bm" secondAttribute="trailing" id="Zy6-nC-UMV"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="qrD-hH-FFg"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Title" id="3NM-Yq-k6K">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qtE-aa-PQm">
-                            <connections>
-                                <action selector="cancelPressed:" destination="yJF-ql-skw" id="Jmz-XA-exq"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="BIE-8R-lgB">
-                            <connections>
-                                <action selector="savePressed:" destination="yJF-ql-skw" id="mtc-28-1F0"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="textView" destination="yfV-oD-3bm" id="96n-Qn-NPt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nmp-1a-gXW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2633" y="-652"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CKp-dN-WdJ">
             <objects>
@@ -325,12 +233,22 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="yJF-ql-skw" kind="relationship" relationship="rootViewController" id="s0G-KL-gWu"/>
+                        <segue destination="4ad-7b-fnj" kind="relationship" relationship="rootViewController" id="ubB-e4-6Lb"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lwd-qH-Fy8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1603.2" y="-651.2743628185907"/>
+        </scene>
+        <!--EditEntryView-->
+        <scene sceneID="sSR-Bt-dam">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EditEntryView" id="4ad-7b-fnj" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Niv-rf-RQN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JC8-aU-Tjf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2431" y="-651"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rtu-0C-BGS">
@@ -361,12 +279,22 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Osv-0H-056" kind="relationship" relationship="rootViewController" id="dnG-0X-Sxa"/>
+                        <segue destination="wZP-kf-s0O" kind="relationship" relationship="rootViewController" id="i6S-G7-il4"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9cp-fV-Izo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3632" y="125.93703148425789"/>
+        </scene>
+        <!--EditEntryView-->
+        <scene sceneID="5al-hs-Bu0">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EditEntryView" id="wZP-kf-s0O" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ZEj-Ax-V8z"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c58-br-LkZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4460" y="125"/>
         </scene>
     </scenes>
     <resources>
