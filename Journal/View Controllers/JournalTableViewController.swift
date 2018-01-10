@@ -24,8 +24,11 @@ class JournalTableViewController: UIViewController {
         let currentJournal = JournalLibrarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
         
-        // Watch for any changes to the journals
+        // Watch for any changes to the selection of journals
         NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: .journalChanged, object: nil)
+        // Watch for any change to the addition of journals
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangedNotification), name: .contextChanged, object: nil)
+        
         journalLibrarian.update()
         
         // Setup the table view
@@ -87,6 +90,13 @@ class JournalTableViewController: UIViewController {
     private func receivedJournalChangeNotification() {
         let currentJournal = JournalLibrarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
+    }
+    
+    @objc
+    private func receivedContextChangedNotification() {
+        // A journal might have been added
+        journalLibrarian.update()
+        tableView.reloadData()
     }
 }
 

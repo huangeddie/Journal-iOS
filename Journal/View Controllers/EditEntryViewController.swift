@@ -43,10 +43,11 @@ class EditEntryViewController: UIViewController {
             
             entry.date = Date()
             entry.text = ""
-            guard let title = navigationItem.title else {
-                fatalError("Could not get navigation title")
+            if let title = navigationItem.title {
+                entry.title = title
+            } else {
+                entry.title = ""
             }
-            entry.title = title
         }
         
         navigationItem.title = entry.title
