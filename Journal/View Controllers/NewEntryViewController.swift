@@ -36,8 +36,9 @@ class NewEntryViewController: UIViewController {
         // Pass the selected object to the new view controller.
         
         if let navVC = segue.destination as? UINavigationController {
-            if let editEntryVC = segue.destination as? EditEntryViewController {
+            if let editEntryVC = navVC.childViewControllers.first as? EditEntryViewController {
                 EntryHistorian.historian.addEntry(title: "", text: "", date: Date())
+                editEntryVC.indexToEdit = 0
             }
         }
     }
