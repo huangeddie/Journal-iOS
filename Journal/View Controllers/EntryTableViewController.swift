@@ -112,7 +112,18 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
     private static let cellIdentifier = "entry_cell"
     
     // MARK: Delegate
-    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            let row = indexPath.row
+            entryHistorian.deletEntry(atIndex: row)
+            tableView.endUpdates()
+        }
+    }
     
     
     // MARK: Data Source

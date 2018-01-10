@@ -38,6 +38,17 @@ class EntryHistorian {
         return entry
     }
     
+    func deletEntry(atIndex index: Int) {
+        guard index < entries.count else {
+            fatalError("Out of bounds")
+        }
+        
+        let entry = entries[index]
+        let context = PersistentService.context
+        context.delete(entry)
+        PersistentService.saveContext()
+    }
+    
     func numberOfEntries() -> Int {
         return entries.count
     }
