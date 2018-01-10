@@ -11,9 +11,9 @@ import UIKit
 class EditEntryViewController: UIViewController {
     
     // MARK: Properties
-    var shouldPromptChangeTitle = true
-    var entryHistorian: EntryHistorian?
-    var entry: Entry!
+    var editingANewEntry = true
+    var entryHistorian: EntryHistorian = EntryHistorian.historian
+    var indexToEdit: Int!
     
     @IBOutlet weak var textView: UITextView!
 
@@ -32,29 +32,15 @@ class EditEntryViewController: UIViewController {
         toolBar.setItems([flexibleSpace, doneItem], animated: true)
         
         textView.inputAccessoryView = toolBar
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        
         // Setup the entry
-        if entry == nil {
-            entry = Entry(context: PersistentService.context)
-            let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
-            entry.journal = currentJournal
-            
-            entry.date = Date()
-            entry.text = ""
-            if let title = navigationItem.title {
-                entry.title = title
-            } else {
-                entry.title = ""
-            }
-        }
+        let entry = entryHistorian.getEntry(for: indexToEdit)
         
         navigationItem.title = entry.title
         textView.text = entry.text
         
         // Prompt the title change
-        if shouldPromptChangeTitle {
+        if editingANewEntry {
             alertChangeTitle()
         }
     }
@@ -79,12 +65,10 @@ class EditEntryViewController: UIViewController {
     
     @IBAction func cancelPressed(_ sender: Any) {
         
-        // Reset the context
-        let context = PersistentService.context
-        
-        context.reset()
-        entryHistorian?.update()
-        assert(!context.hasChanges)
+        if editingANewEntry {
+            // Remove that entry
+            entryHistorian.deleteEntry(atIndex: indexToEdit)
+        }
         
         // Dismiss
         textView.resignFirstResponder()
@@ -92,9 +76,6 @@ class EditEntryViewController: UIViewController {
     }
     
     @IBAction func savePressed(_ sender: Any) {
-        
-        // Save the context
-        PersistentService.saveContext()
         
         // Dismiss
         textView.resignFirstResponder()
@@ -117,7 +98,8 @@ class EditEntryViewController: UIViewController {
         guard let text = textView.text else {
             fatalError("Could not get text from text field")
         }
-        entry.text = text
+        
+        entryHistorian.editEntry(index: indexToEdit, text: text)
     }
     
     /// Show an alert to change the title
@@ -131,7 +113,7 @@ class EditEntryViewController: UIViewController {
         let doneAction = UIAlertAction(title: "Set", style: .default) { (action) in
             if let newTitle = alertChangeTitle.textFields?.first?.text {
                 self.navigationItem.title = newTitle
-                self.entry.title = newTitle
+                self.entryHistorian.editEntry(index: self.indexToEdit, title: newTitle)
             }
         }
         

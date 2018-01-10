@@ -16,7 +16,7 @@ class EntryHistorian {
     
     var timeFrame: TimeFrame {
         didSet {
-            updateEntries()
+            update()
         }
     }
     
@@ -25,7 +25,8 @@ class EntryHistorian {
     // MARK: Initialization
     private init(timeFrame: TimeFrame) {
         self.timeFrame = timeFrame
-        updateEntries()
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangedNotification), name: .contextChanged, object: nil)
+        update()
     }
     
     // MARK: Public
@@ -66,6 +67,8 @@ class EntryHistorian {
         if let journal = journal {
             entry.journal = journal
         }
+        
+        PersistentService.saveContext()
     }
     
     func deleteEntry(atIndex index: Int) {
@@ -77,7 +80,6 @@ class EntryHistorian {
         let context = PersistentService.context
         context.delete(entry)
         PersistentService.saveContext()
-        update()
     }
     
     func numberOfEntries() -> Int {
@@ -85,11 +87,6 @@ class EntryHistorian {
     }
     
     func update() {
-        updateEntries()
-    }
-
-    // MARK: Private functions
-    private func updateEntries() {
         
         let context = PersistentService.context
         
@@ -112,5 +109,11 @@ class EntryHistorian {
         catch {
             print("Error: \(error)")
         }
+    }
+    
+    // MARK: Private functions
+    @objc
+    private func receivedContextChangedNotification() {
+        update()
     }
 }

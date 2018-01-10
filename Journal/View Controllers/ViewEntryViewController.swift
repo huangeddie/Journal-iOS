@@ -11,7 +11,7 @@ import UIKit
 class ViewEntryViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
-    var entryHistorian: EntryHistorian!
+    var entryHistorian: EntryHistorian = EntryHistorian.historian
     var index: Int!
     
     override func viewDidLoad() {
@@ -50,9 +50,8 @@ class ViewEntryViewController: UIViewController {
             fatalError("First child is not a ViewEntryViewController")
         }
         
-        editEntryVC.shouldPromptChangeTitle = false
-        editEntryVC.entry = entryHistorian.getEntry(for: index)
-        editEntryVC.entryHistorian = entryHistorian
+        editEntryVC.editingANewEntry = false
+        editEntryVC.indexToEdit = index
     }
  
 

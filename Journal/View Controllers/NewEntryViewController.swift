@@ -27,15 +27,21 @@ class NewEntryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let navVC = segue.destination as? UINavigationController {
+            if let editEntryVC = segue.destination as? EditEntryViewController {
+                EntryHistorian.historian.addEntry(title: "", text: "", date: Date())
+            }
+        }
     }
-    */
+ 
     
     // MARK: Private Functions
     @objc

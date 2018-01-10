@@ -32,17 +32,11 @@ class JournalTests: XCTestCase {
             print(error)
             XCTFail("Something happened when fetching journals")
         }
-        
-        journalLibrarian.update()
-        entryHistorian.update()
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
-        
-        
-        
     }
     
     func testSetupData() {
@@ -74,6 +68,32 @@ class JournalTests: XCTestCase {
     }
     
     func testDeleteEntry() {
+        entryHistorian.addEntry(title: "Hello", text: "World", date: Date())
+        XCTAssertEqual(1, entryHistorian.numberOfEntries())
+        
+        entryHistorian.deleteEntry(atIndex: 0)
+        
+        XCTAssertEqual(0, entryHistorian.numberOfEntries())
+    }
+    
+    func testDeleteDefaultJournal() {
+        entryHistorian.addEntry(title: "Hello", text: "World", date: Date())
+        XCTAssertEqual(1, entryHistorian.numberOfEntries())
+        
+        journalLibrarian.deleteJournal(atIndex: 0)
+        
+        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
+        
+        XCTAssertEqual(0, entryHistorian.numberOfEntries())
+    }
+    
+    func testDeleteJournal() {
+        journalLibrarian.addJournal(name: "Dream")
+        XCTAssertEqual(2, journalLibrarian.numberOfJournals())
+        
+        journalLibrarian.deleteJournal(atIndex: 0)
+        
+        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
     }
     
 //    func testPerformanceExample() {

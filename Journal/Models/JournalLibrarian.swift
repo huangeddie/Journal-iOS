@@ -19,6 +19,7 @@ class JournalLibrarian {
     
     // MARK: Initialization
     private init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangedNotification), name: .contextChanged, object: nil)
         update()
     }
     
@@ -74,8 +75,6 @@ class JournalLibrarian {
         }
         
         PersistentService.saveContext()
-        
-        update()
     }
     
     func numberOfJournals() -> Int {
@@ -111,9 +110,6 @@ class JournalLibrarian {
         newJournal.id = smallestAvailableID
         
         PersistentService.saveContext()
-        
-        // We modified the data for journals so we must update
-        update()
     }
     
     func update() {
@@ -154,7 +150,6 @@ class JournalLibrarian {
                 newJournal.id = 0
                 newJournal.name = "Journal"
                 PersistentService.saveContext()
-                update()
                 return newJournal
             }
             guard let journal = searchResults.first else {
@@ -166,5 +161,10 @@ class JournalLibrarian {
             print("Error: \(error)")
         }
         fatalError("Could not get journal with id: \(id)")
+    }
+    
+    @objc
+    private func receivedContextChangedNotification() {
+        update()
     }
 }

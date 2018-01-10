@@ -72,7 +72,6 @@ class EntryTableViewController: UIViewController {
             fatalError("First child is not a ViewEntryViewController")
         }
         viewEntryVC.index = row
-        viewEntryVC.entryHistorian = entryHistorian
     }
  
     
