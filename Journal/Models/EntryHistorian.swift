@@ -47,6 +47,7 @@ class EntryHistorian {
         let context = PersistentService.context
         context.delete(entry)
         PersistentService.saveContext()
+        update()
     }
     
     func numberOfEntries() -> Int {

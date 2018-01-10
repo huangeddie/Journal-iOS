@@ -48,11 +48,41 @@ class JournalLibrarian {
         }
     }
     
+    func deleteJournal(atIndex index: Int) {
+        guard index < allJournals.count else {
+            fatalError("Out of bounds")
+        }
+        
+        let journal = allJournals[index]
+        let context = PersistentService.context
+        if journal.id != 0 {
+            context.delete(journal)
+        } else {
+            // Instead of deleting the default journal, we delete all of its entries
+            let entriesFetchRequest = NSFetchRequest<Entry>(entityName: Entry.description())
+            let defaultJournalPredicate = NSPredicate(format: "journal.id = 0")
+            entriesFetchRequest.predicate = defaultJournalPredicate
+            do {
+                let searchResults = try context.fetch(entriesFetchRequest)
+                for entry in searchResults {
+                    context.delete(entry)
+                }
+            } catch {
+                print(error)
+                fatalError("Could not get entries")
+            }
+        }
+        
+        PersistentService.saveContext()
+        
+        update()
+    }
+    
     func numberOfJournals() -> Int {
         return allJournals.count
     }
     
-    func getJournal(for index: Int) -> Journal {
+    func getJournal(forIndex index: Int) -> Journal {
         guard index < allJournals.count else {
             fatalError("Out of bounds for allJournals")
         }

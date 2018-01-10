@@ -108,7 +108,7 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         
-        let selectedJournal = journalLibrarian.getJournal(for: row)
+        let selectedJournal = journalLibrarian.getJournal(forIndex: row)
         
         let journalID = selectedJournal.id
         UserDefaults.standard.set(journalID, forKey: JournalLibrarian.userDefaultKeyName)
@@ -116,10 +116,36 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
         NotificationCenter.default.post(Notification(name: .journalChanged))
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            let row = indexPath.row
+            let journal = journalLibrarian.getJournal(forIndex: row)
+            journalLibrarian.deleteJournal(atIndex: row)
+            
+            if journal.id != 0 {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            } else {
+                let alert = UIAlertController(title: "All entries have been deleted", message: "This default journal cannot be deleted, but all of its entries have been deleted for you", preferredStyle: .alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alert.dismiss(animated: true, completion: nil)
+                })
+                alert.addAction(okAction)
+                present(alert, animated: true, completion: nil)
+            }
+            tableView.endUpdates()
+        }
+    }
+    
     // MARK: Data Source
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let journal = journalLibrarian.getJournal(for: row)
+        let journal = journalLibrarian.getJournal(forIndex: row)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: JournalTableViewController.cellIdentifier, for: indexPath)
         
