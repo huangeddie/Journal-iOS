@@ -120,7 +120,7 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .automatic)
             let row = indexPath.row
-            entryHistorian.deletEntry(atIndex: row)
+            entryHistorian.deleteEntry(atIndex: row)
             tableView.endUpdates()
         }
     }

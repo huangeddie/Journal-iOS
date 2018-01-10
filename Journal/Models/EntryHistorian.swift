@@ -38,7 +38,37 @@ class EntryHistorian {
         return entry
     }
     
-    func deletEntry(atIndex index: Int) {
+    func addEntry(title title: String, text text: String, date date: Date) {
+        let context = PersistentService.context
+        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
+        let newEntry = Entry(context: context)
+        
+        newEntry.date = date
+        newEntry.journal = currentJournal
+        newEntry.text = text
+        newEntry.title = title
+        
+        PersistentService.saveContext()
+    }
+    
+    func editEntry(index index: Int, title title: String? = nil, text text: String? = nil, date date: Date? = nil, journal journal: Journal? = nil) {
+        let entry = entries[index]
+        
+        if let title = title {
+            entry.title = title
+        }
+        if let text = text {
+            entry.text = text
+        }
+        if let date = date {
+            entry.date = date
+        }
+        if let journal = journal {
+            entry.journal = journal
+        }
+    }
+    
+    func deleteEntry(atIndex index: Int) {
         guard index < entries.count else {
             fatalError("Out of bounds")
         }

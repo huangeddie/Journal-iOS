@@ -73,6 +73,9 @@ class JournalTests: XCTestCase {
         XCTAssertEqual(2, journalLibrarian.numberOfJournals())
     }
     
+    func testDeleteEntry() {
+    }
+    
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
 //        self.measure {
