@@ -13,6 +13,7 @@
 		2C62522C200480C200D75065 /* JournalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62522B200480C200D75065 /* JournalTableViewController.swift */; };
 		2C62522E2004827100D75065 /* JournalLibrarian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C62522D2004827100D75065 /* JournalLibrarian.swift */; };
 		2C6252312005208800D75065 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252302005208800D75065 /* Notifications.swift */; };
+		2C625233200672F300D75065 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C625232200672F300D75065 /* Downloader.swift */; };
 		2C7FB7F42003147F00554B70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FB7F32003147F00554B70 /* AppDelegate.swift */; };
 		2C7FB7F92003147F00554B70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C7FB7F72003147F00554B70 /* Main.storyboard */; };
 		2C7FB7FC2003147F00554B70 /* Journal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FB7FA2003147F00554B70 /* Journal.xcdatamodeld */; };
@@ -50,6 +51,7 @@
 		2C62522B200480C200D75065 /* JournalTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableViewController.swift; sourceTree = "<group>"; };
 		2C62522D2004827100D75065 /* JournalLibrarian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalLibrarian.swift; sourceTree = "<group>"; };
 		2C6252302005208800D75065 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		2C625232200672F300D75065 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		2C7FB7F02003147F00554B70 /* Journal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Journal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C7FB7F32003147F00554B70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C7FB7F82003147F00554B70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		2C7FB7F22003147F00554B70 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
+				2C625232200672F300D75065 /* Downloader.swift */,
 				2C6252302005208800D75065 /* Notifications.swift */,
 				2C7FB7F32003147F00554B70 /* AppDelegate.swift */,
 				2C7FB81A2003F47100554B70 /* PersistentService.swift */,
@@ -428,6 +431,7 @@
 				2CD4839820045EF700606D32 /* ViewEntryViewController.swift in Sources */,
 				2C6252312005208800D75065 /* Notifications.swift in Sources */,
 				2C7FB7FC2003147F00554B70 /* Journal.xcdatamodeld in Sources */,
+				2C625233200672F300D75065 /* Downloader.swift in Sources */,
 				2C62522E2004827100D75065 /* JournalLibrarian.swift in Sources */,
 				2C62522A2004796E00D75065 /* NewEntryViewController.swift in Sources */,
 				2C62522C200480C200D75065 /* JournalTableViewController.swift in Sources */,

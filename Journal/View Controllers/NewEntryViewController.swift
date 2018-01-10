@@ -42,6 +42,15 @@ class NewEntryViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: IBActions
+    @IBAction func downloadPressed(_ sender: Any) {
+        guard let url = URL(string: "https://raw.githubusercontent.com/aigagror/Journal/master/LICENSE") else {
+            fatalError("Could not get url")
+        }
+        Downloader.load(URL: url)
+    }
+    
  
     
     // MARK: Private Functions

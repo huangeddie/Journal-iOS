@@ -186,13 +186,22 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HsO-Oe-vnw">
+                                <rect key="frame" x="152.5" y="194" width="69" height="30"/>
+                                <state key="normal" title="Download"/>
+                                <connections>
+                                    <action selector="downloadPressed:" destination="om2-5G-qrX" eventType="touchUpInside" id="jbc-oa-900"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yuk-qd-cep" firstAttribute="centerY" secondItem="CiG-7E-LxR" secondAttribute="centerY" id="1aF-KZ-PNq"/>
                             <constraint firstItem="HHw-BH-f4j" firstAttribute="bottom" secondItem="Mwt-uJ-Osb" secondAttribute="bottom" constant="71" id="4Pg-iD-fO2"/>
+                            <constraint firstItem="yuk-qd-cep" firstAttribute="top" secondItem="HsO-Oe-vnw" secondAttribute="bottom" constant="87" id="4hz-NN-Aef"/>
                             <constraint firstItem="Mwt-uJ-Osb" firstAttribute="centerX" secondItem="CiG-7E-LxR" secondAttribute="centerX" id="BoC-J9-K0I"/>
                             <constraint firstItem="Mwt-uJ-Osb" firstAttribute="width" secondItem="CiG-7E-LxR" secondAttribute="width" multiplier="0.8" id="Lcq-R7-i30"/>
+                            <constraint firstItem="HsO-Oe-vnw" firstAttribute="centerX" secondItem="CiG-7E-LxR" secondAttribute="centerX" id="WaC-3p-SrD"/>
                             <constraint firstItem="Mwt-uJ-Osb" firstAttribute="top" secondItem="yuk-qd-cep" secondAttribute="bottom" constant="64" id="do9-JV-9oz"/>
                             <constraint firstItem="yuk-qd-cep" firstAttribute="centerX" secondItem="CiG-7E-LxR" secondAttribute="centerX" id="ojw-zx-Jz2"/>
                         </constraints>
