@@ -9,8 +9,11 @@
 import Foundation
 import CoreData
 
+/// Singleton Class
 class EntryHistorian {
     // MARK: Properties
+    static let historian = EntryHistorian(timeFrame: .week)
+    
     var timeFrame: TimeFrame {
         didSet {
             updateEntries()
@@ -20,7 +23,7 @@ class EntryHistorian {
     private var entries: [Entry] = []
     
     // MARK: Initialization
-    init(timeFrame: TimeFrame) {
+    private init(timeFrame: TimeFrame) {
         self.timeFrame = timeFrame
         updateEntries()
     }
@@ -50,7 +53,7 @@ class EntryHistorian {
         
         assert(Entry.description() == "Entry")
         let fetchRequest = NSFetchRequest<Entry>(entityName: Entry.description())
-        let currentJournal = JournalLibrarian.getCurrentJournal()
+        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         let journalPredicate = NSPredicate(format: "journal.id = \(currentJournal.id)")
         fetchRequest.predicate = journalPredicate
         

@@ -18,7 +18,7 @@ class NewEntryViewController: UIViewController {
         // Watch for any change to the journal
         NotificationCenter.default.addObserver(self, selector: #selector(receievedJournalChangeNotification), name: .journalChanged, object: nil)
         
-        let journal = JournalLibrarian.getCurrentJournal()
+        let journal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = journal.name
     }
 
@@ -40,7 +40,7 @@ class NewEntryViewController: UIViewController {
     // MARK: Private Functions
     @objc
     private func receievedJournalChangeNotification() {
-        let currentJournal = JournalLibrarian.getCurrentJournal()
+        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
     }
 }

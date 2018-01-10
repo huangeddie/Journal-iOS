@@ -38,7 +38,7 @@ class EditEntryViewController: UIViewController {
         // Setup the entry
         if entry == nil {
             entry = Entry(context: PersistentService.context)
-            let currentJournal = JournalLibrarian.getCurrentJournal()
+            let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
             entry.journal = currentJournal
             
             entry.date = Date()

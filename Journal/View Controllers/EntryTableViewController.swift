@@ -13,16 +13,26 @@ class EntryTableViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var timeFrameSegmentControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-    var entryHistorian: EntryHistorian = EntryHistorian(timeFrame: .week)
+    var entryHistorian: EntryHistorian = EntryHistorian.historian
     
     // MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
+        // TableView
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // SegmentControl
         timeFrameSegmentControl.addTarget(self, action: #selector(segmentControlValueDidChange), for: .valueChanged)
+        let selectedIndex = timeFrameSegmentControl.selectedSegmentIndex
+        guard let timeFrame = TimeFrame(rawValue: selectedIndex) else {
+            fatalError("Could not get time frame")
+        }
+        entryHistorian.timeFrame = timeFrame
         
         // Watch for any changes to the entries
         NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: Notification.Name.contextChanged, object: nil)
@@ -32,7 +42,7 @@ class EntryTableViewController: UIViewController {
         entryHistorian.update()
         
         // Set title to current journal
-        let currentJournal = JournalLibrarian.getCurrentJournal()
+        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
     }
 
@@ -73,7 +83,7 @@ class EntryTableViewController: UIViewController {
         tableView.reloadData()
         
         // Update title
-        let currentJournal = JournalLibrarian.getCurrentJournal()
+        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
     }
     

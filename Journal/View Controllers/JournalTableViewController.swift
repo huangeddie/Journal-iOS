@@ -11,7 +11,7 @@ import UIKit
 class JournalTableViewController: UIViewController {
 
     // MARK: Properties
-    let journalLibrarian = JournalLibrarian()
+    let journalLibrarian = JournalLibrarian.librarian
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: UIViewController
@@ -21,7 +21,7 @@ class JournalTableViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // Set the title
-        let currentJournal = JournalLibrarian.getCurrentJournal()
+        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
         
         // Watch for any changes to the selection of journals
@@ -88,7 +88,7 @@ class JournalTableViewController: UIViewController {
     // MARK: Private Functions
     @objc
     private func receivedJournalChangeNotification() {
-        let currentJournal = JournalLibrarian.getCurrentJournal()
+        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
     }
     

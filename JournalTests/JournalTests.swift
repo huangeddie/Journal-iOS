@@ -11,15 +11,12 @@ import CoreData
 @testable import Journal
 
 class JournalTests: XCTestCase {
+    let journalLibrarian = JournalLibrarian.librarian
+    let entryHistorian = EntryHistorian.historian
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
         
         // Reset the store
         let psc = PersistentService.persistentContainer.persistentStoreCoordinator
@@ -38,12 +35,41 @@ class JournalTests: XCTestCase {
             print(error)
         }
         
+        journalLibrarian.update()
+        entryHistorian.timeFrame = .all
+        entryHistorian.update()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
         
+        
+        
+    }
+    
+    func testSetupData() {
+        XCTAssertEqual(0, journalLibrarian.numberOfJournals())
+        XCTAssertEqual(0, entryHistorian.numberOfEntries())
+    }
+    
+    func testDefaultJournal() {
+        let journal = journalLibrarian.getCurrentJournal()
+        
+        XCTAssertEqual(0, journal.id)
+        XCTAssertEqual("Journal", journal.name)
+        
+        XCTAssertEqual(0, entryHistorian.numberOfEntries())
+        
+        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
+    }
+    
+    func testAddJournal() {
+        XCTAssertEqual(0, journalLibrarian.numberOfJournals())
+        
+        let defaultJournal = journalLibrarian.getCurrentJournal()
+        
+        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
     }
     
 //    func testPerformanceExample() {

@@ -13,19 +13,20 @@ class JournalLibrarian {
     
     // MARK: Properties
     static let userDefaultKeyName = "journal"
+    static let librarian = JournalLibrarian()
     
     private var allJournals: [Journal] = []
     
     // MARK: Initialization
-    init() {
+    private init() {
         update()
     }
     
     // MARK: Public Functions
     
-    static func getCurrentJournal() -> Journal {
+    func getCurrentJournal() -> Journal {
         
-        guard let id = UserDefaults.standard.value(forKey: userDefaultKeyName) as? Int16 else {
+        guard let id = UserDefaults.standard.value(forKey: JournalLibrarian.userDefaultKeyName) as? Int16 else {
             fatalError("Could not get current journal id")
         }
         
@@ -99,7 +100,7 @@ class JournalLibrarian {
     
     // MARK: Private Functions
     /// This function should always return a journal no matter what, if the id is 0
-    private static func getJournal(withID id: Int16) -> Journal? {
+    private func getJournal(withID id: Int16) -> Journal? {
         let context = PersistentService.context
         
         let fetchRequest = NSFetchRequest<Journal>(entityName: Journal.description())
@@ -119,6 +120,7 @@ class JournalLibrarian {
                 newJournal.id = 0
                 newJournal.name = "Journal"
                 PersistentService.saveContext()
+                update()
                 return newJournal
             }
             guard let journal = searchResults.first else {
