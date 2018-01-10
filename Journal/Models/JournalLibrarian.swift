@@ -26,8 +26,12 @@ class JournalLibrarian {
     
     func getCurrentJournal() -> Journal {
         
+        if UserDefaults.standard.value(forKey: JournalLibrarian.userDefaultKeyName) == nil {
+            UserDefaults.standard.set(0, forKey: JournalLibrarian.userDefaultKeyName)
+        }
+        
         guard let id = UserDefaults.standard.value(forKey: JournalLibrarian.userDefaultKeyName) as? Int16 else {
-            fatalError("Could not get current journal id")
+            fatalError("Could not get id")
         }
         
         let queriedJournal = getJournal(withID: id)

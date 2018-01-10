@@ -18,25 +18,22 @@ class JournalTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        // Reset the store
-        let psc = PersistentService.persistentContainer.persistentStoreCoordinator
-        let stores = psc.persistentStores
-        print("Number of stores: \(stores.count)")
-        let store = stores.first!
-        let storeURL = psc.url(for: store)
-        
+        // Wipe everything
         let context = PersistentService.context
-        XCTAssert(context.persistentStoreCoordinator === psc)
-        
+        let journalFetchRequest = NSFetchRequest<Journal>.init(entityName: Journal.description())
         do {
-            try FileManager.default.removeItem(at: storeURL)
-            let _ = try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+            let searchResults = try context.fetch(journalFetchRequest)
+            
+            for journal in searchResults {
+                context.delete(journal)
+            }
+            PersistentService.saveContext()
         } catch {
             print(error)
+            XCTFail("Something happened when fetching journals")
         }
         
         journalLibrarian.update()
-        entryHistorian.timeFrame = .all
         entryHistorian.update()
     }
     
@@ -49,7 +46,7 @@ class JournalTests: XCTestCase {
     }
     
     func testSetupData() {
-        XCTAssertEqual(0, journalLibrarian.numberOfJournals())
+        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
         XCTAssertEqual(0, entryHistorian.numberOfEntries())
     }
     
@@ -65,11 +62,15 @@ class JournalTests: XCTestCase {
     }
     
     func testAddJournal() {
-        XCTAssertEqual(0, journalLibrarian.numberOfJournals())
+        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
         
         let defaultJournal = journalLibrarian.getCurrentJournal()
         
         XCTAssertEqual(1, journalLibrarian.numberOfJournals())
+        
+        journalLibrarian.addJournal(name: "Dream")
+        
+        XCTAssertEqual(2, journalLibrarian.numberOfJournals())
     }
     
 //    func testPerformanceExample() {
