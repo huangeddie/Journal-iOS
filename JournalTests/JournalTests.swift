@@ -19,19 +19,7 @@ class JournalTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         // Wipe everything
-        let context = PersistentService.context
-        let journalFetchRequest = NSFetchRequest<Journal>.init(entityName: Journal.description())
-        do {
-            let searchResults = try context.fetch(journalFetchRequest)
-            
-            for journal in searchResults {
-                context.delete(journal)
-            }
-            PersistentService.saveContext()
-        } catch {
-            print(error)
-            XCTFail("Something happened when fetching journals")
-        }
+        journalLibrarian.WIPE_EVERYTHING()
     }
     
     override func tearDown() {

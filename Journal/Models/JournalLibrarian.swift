@@ -45,6 +45,8 @@ class JournalLibrarian {
                 fatalError("Default journal was nil")
             }
             
+            setCurrentJournal(journal: journal)
+            
             return journal
         }
     }
@@ -96,10 +98,11 @@ class JournalLibrarian {
         return allJournals[index]
     }
     
-    func getJournal(withName name: String) -> [Journal] {
+    func getJournals(withName name: String) -> [Journal] {
         let context = PersistentService.context
         let fetchRequest = NSFetchRequest<Journal>(entityName: Journal.description())
-        let namePred = NSPredicate(format: "name = \(name)")
+        let namePred = NSPredicate(format: "name = \"\(name)\"")
+        fetchRequest.fetchLimit = 1
         fetchRequest.predicate = namePred
         
         do {
@@ -149,6 +152,22 @@ class JournalLibrarian {
             allJournals = searchResults
         } catch {
             print("Error: \(error)")
+        }
+    }
+    
+    /// BE CAREFUL WHEN USING THIS FUNCTION. IT PERMENANTLY DELETES EVERYTHING!!
+    func WIPE_EVERYTHING() {
+        let context = PersistentService.context
+        let journalFetchRequest = NSFetchRequest<Journal>.init(entityName: Journal.description())
+        do {
+            let searchResults = try context.fetch(journalFetchRequest)
+            
+            for journal in searchResults {
+                context.delete(journal)
+            }
+            PersistentService.saveContext()
+        } catch {
+            print(error)
         }
     }
     

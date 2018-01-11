@@ -37,15 +37,19 @@ class Downloader {
                 }
                 
                 
+                let librarian = JournalLibrarian.librarian
+                
+                // Wipe everything
+                librarian.WIPE_EVERYTHING()
+                
                 for (journal, contents) in JSON {
-                    
                     let currentJournal: Journal
                     
                     // Find existing journals
-                    let existingJournals = JournalLibrarian.librarian.getJournal(withName: journal)
+                    let existingJournals = librarian.getJournals(withName: journal)
                     if existingJournals.isEmpty {
                         // Add a new journal
-                        currentJournal = JournalLibrarian.librarian.addJournal(name: journal)
+                        currentJournal = librarian.addJournal(name: journal)
                     } else {
                         guard let j = existingJournals.first else {
                             fatalError("Could not get a journal from fetched journals")
@@ -53,15 +57,21 @@ class Downloader {
                         currentJournal = j
                     }
                     
-                    print(journal)
+                    librarian.setCurrentJournal(journal: currentJournal)
+                    
                     for entry in contents {
                         guard let date = entry["date"], let title = entry["title"], let text = entry["text"] else {
                             fatalError("Could not get parameters")
                         }
                         
-                        print("Date: \(date)")
-                        print("Title: \(title)")
-                        print("Text: \(text)")
+                        let substrings = date.split(separator: " ")
+                        let day = substrings[0]
+                        let month = substrings[1]
+                        let year = substrings[2]
+                        
+                        print("\(day), \(month), \(year)")
+                        
+                        var component
                     }
                 }
                 
