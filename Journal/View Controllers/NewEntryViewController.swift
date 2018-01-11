@@ -45,7 +45,7 @@ class NewEntryViewController: UIViewController {
     
     // MARK: IBActions
     @IBAction func downloadPressed(_ sender: Any) {
-        guard let url = URL(string: "https://raw.githubusercontent.com/aigagror/Journal/master/LICENSE") else {
+        guard let url = URL(string: "https://raw.githubusercontent.com/aigagror/Journal/master/README.md") else {
             fatalError("Could not get url")
         }
         Downloader.load(URL: url)

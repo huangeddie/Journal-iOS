@@ -38,7 +38,7 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "black square 180.png",
+      "filename" : "180.png",
       "scale" : "3x"
     },
     {
@@ -89,7 +89,7 @@
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "black square 1024.png",
+      "filename" : "Unknown.png",
       "scale" : "1x"
     }
   ],
