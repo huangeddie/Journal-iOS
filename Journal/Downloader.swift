@@ -67,11 +67,9 @@ class Downloader {
                         }
                         
                         let substrings = dateString.split(separator: " ")
-                        let day = substrings[0]
-                        let month = substrings[1]
+                        let month = substrings[0]
+                        let day = substrings[1]
                         let year = substrings[2]
-                        
-                        print("\(day), \(month), \(year)")
                         
                         var components = DateComponents()
                         components.year = Int("20" + year)
