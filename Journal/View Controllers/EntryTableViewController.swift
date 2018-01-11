@@ -79,11 +79,14 @@ class EntryTableViewController: UIViewController {
     @objc
     private func receivedJournalChangeNotification() {
         entryHistorian.update()
-        tableView.reloadData()
         
         // Update title
         let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
-        navigationItem.title = currentJournal.name
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.navigationItem.title = currentJournal.name
+        }
     }
     
     @objc
