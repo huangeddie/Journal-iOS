@@ -19,7 +19,7 @@ class JournalLibrarian {
     
     // MARK: Initialization
     private init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangedNotification), name: .contextChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangedNotification), name: .NSManagedObjectContextDidSave, object: nil)
         update()
     }
     

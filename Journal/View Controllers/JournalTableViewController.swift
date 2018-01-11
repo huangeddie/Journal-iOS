@@ -27,7 +27,7 @@ class JournalTableViewController: UIViewController {
         // Watch for any changes to the selection of journals
         NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: .journalChanged, object: nil)
         // Watch for any change to the addition of journals
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangedNotification), name: .contextChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangedNotification), name: .NSManagedObjectContextDidSave, object: nil)
         
         journalLibrarian.update()
         

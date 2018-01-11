@@ -25,7 +25,7 @@ class EntryHistorian {
     // MARK: Initialization
     private init(timeFrame: TimeFrame) {
         self.timeFrame = timeFrame
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangedNotification), name: .contextChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangedNotification), name: .NSManagedObjectContextDidSave, object: nil)
         update()
     }
     

@@ -35,7 +35,7 @@ class EntryTableViewController: UIViewController {
         entryHistorian.timeFrame = timeFrame
         
         // Watch for any changes to the entries
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: Notification.Name.contextChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: .NSManagedObjectContextDidSave, object: nil)
         
         // Watch for any changes to the journals
         NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: Notification.Name.journalChanged, object: nil)
