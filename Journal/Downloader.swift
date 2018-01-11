@@ -24,6 +24,7 @@ class Downloader {
                     fatalError("Data is nil")
                 }
                 
+                // Get JSON object
                 let JSON: [String: [[String: String]]]
                 do {
                     guard let json = try JSONSerialization.jsonObject(with: data) as? [String: [[String: String]]] else {
@@ -36,11 +37,12 @@ class Downloader {
                     fatalError("Could not parse JSON object")
                 }
                 
-                
+                // Parse JSON object and create journal and entries from it
                 let librarian = JournalLibrarian.librarian
                 
                 // Wipe everything
                 librarian.WIPE_EVERYTHING()
+                let context = PersistentService.context
                 
                 for (journal, contents) in JSON {
                     let currentJournal: Journal
@@ -60,22 +62,35 @@ class Downloader {
                     librarian.setCurrentJournal(journal: currentJournal)
                     
                     for entry in contents {
-                        guard let date = entry["date"], let title = entry["title"], let text = entry["text"] else {
+                        guard let dateString = entry["date"], let title = entry["title"], let text = entry["text"] else {
                             fatalError("Could not get parameters")
                         }
                         
-                        let substrings = date.split(separator: " ")
+                        let substrings = dateString.split(separator: " ")
                         let day = substrings[0]
                         let month = substrings[1]
                         let year = substrings[2]
                         
                         print("\(day), \(month), \(year)")
                         
-                        var component
+                        var components = DateComponents()
+                        components.year = Int("20" + year)
+                        components.month = Int(month)
+                        components.day = Int(day)
+                        
+                        guard let date = Calendar(identifier: .gregorian).date(from: components) else {
+                            fatalError("Could not get date")
+                        }
+                        
+                        let newEntry = Entry(context: context)
+                        newEntry.journal = currentJournal
+                        newEntry.date = date
+                        newEntry.title = title
+                        newEntry.text = text
                     }
                 }
                 
-                
+                PersistentService.saveContext()
             }
             else {
                 // Failure
