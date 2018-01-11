@@ -110,10 +110,7 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
         
         let selectedJournal = journalLibrarian.getJournal(forIndex: row)
         
-        let journalID = selectedJournal.id
-        UserDefaults.standard.set(journalID, forKey: JournalLibrarian.userDefaultKeyName)
-        
-        NotificationCenter.default.post(Notification(name: .journalChanged))
+        journalLibrarian.setCurrentJournal(journal: selectedJournal)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

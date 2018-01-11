@@ -39,7 +39,7 @@ class EntryHistorian {
         return entry
     }
     
-    func addEntry(title title: String, text text: String, date date: Date) {
+    func addEntry(title: String, text: String, date: Date) {
         let context = PersistentService.context
         let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         let newEntry = Entry(context: context)
@@ -52,7 +52,7 @@ class EntryHistorian {
         PersistentService.saveContext()
     }
     
-    func editEntry(index index: Int, title title: String? = nil, text text: String? = nil, date date: Date? = nil, journal journal: Journal? = nil) {
+    func editEntry(index: Int, title: String? = nil, text: String? = nil, date: Date? = nil, journal: Journal? = nil) {
         let entry = entries[index]
         
         if let title = title {

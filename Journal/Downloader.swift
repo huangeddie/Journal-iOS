@@ -20,11 +20,52 @@ class Downloader {
                 let statusCode = (response as! HTTPURLResponse).statusCode
                 print("Success: \(statusCode)")
                 
-                // This is your file-variable:
-                // data
+                guard let data = data else {
+                    fatalError("Data is nil")
+                }
                 
-                print(data?.description)
-                print(String(data: data!, encoding: String.Encoding.ascii))
+                let JSON: [String: [[String: String]]]
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: data) as? [String: [[String: String]]] else {
+                        fatalError("Could not parse JSON object")
+                    }
+                    
+                    JSON = json
+                } catch {
+                    print(error)
+                    fatalError("Could not parse JSON object")
+                }
+                
+                
+                for (journal, contents) in JSON {
+                    
+                    let currentJournal: Journal
+                    
+                    // Find existing journals
+                    let existingJournals = JournalLibrarian.librarian.getJournal(withName: journal)
+                    if existingJournals.isEmpty {
+                        // Add a new journal
+                        currentJournal = JournalLibrarian.librarian.addJournal(name: journal)
+                    } else {
+                        guard let j = existingJournals.first else {
+                            fatalError("Could not get a journal from fetched journals")
+                        }
+                        currentJournal = j
+                    }
+                    
+                    print(journal)
+                    for entry in contents {
+                        guard let date = entry["date"], let title = entry["title"], let text = entry["text"] else {
+                            fatalError("Could not get parameters")
+                        }
+                        
+                        print("Date: \(date)")
+                        print("Title: \(title)")
+                        print("Text: \(text)")
+                    }
+                }
+                
+                
             }
             else {
                 // Failure

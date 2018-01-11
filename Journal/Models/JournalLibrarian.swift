@@ -12,7 +12,7 @@ import CoreData
 class JournalLibrarian {
     
     // MARK: Properties
-    static let userDefaultKeyName = "journal"
+    static let userDefaultCurrentJournalKeyName = "journal"
     static let librarian = JournalLibrarian()
     
     private var allJournals: [Journal] = []
@@ -27,11 +27,11 @@ class JournalLibrarian {
     
     func getCurrentJournal() -> Journal {
         
-        if UserDefaults.standard.value(forKey: JournalLibrarian.userDefaultKeyName) == nil {
-            UserDefaults.standard.set(0, forKey: JournalLibrarian.userDefaultKeyName)
+        if UserDefaults.standard.value(forKey: JournalLibrarian.userDefaultCurrentJournalKeyName) == nil {
+            UserDefaults.standard.set(0, forKey: JournalLibrarian.userDefaultCurrentJournalKeyName)
         }
         
-        guard let id = UserDefaults.standard.value(forKey: JournalLibrarian.userDefaultKeyName) as? Int16 else {
+        guard let id = UserDefaults.standard.value(forKey: JournalLibrarian.userDefaultCurrentJournalKeyName) as? Int16 else {
             fatalError("Could not get id")
         }
         
@@ -47,6 +47,13 @@ class JournalLibrarian {
             
             return journal
         }
+    }
+    
+    func setCurrentJournal(journal: Journal) {
+        UserDefaults.standard.set(journal.id, forKey: JournalLibrarian.userDefaultCurrentJournalKeyName)
+        
+        // Let everyone know, we changed the current journal
+        NotificationCenter.default.post(Notification(name: .journalChanged))
     }
     
     func deleteJournal(atIndex index: Int) {
@@ -89,7 +96,22 @@ class JournalLibrarian {
         return allJournals[index]
     }
     
-    func addJournal(name: String) {
+    func getJournal(withName name: String) -> [Journal] {
+        let context = PersistentService.context
+        let fetchRequest = NSFetchRequest<Journal>(entityName: Journal.description())
+        let namePred = NSPredicate(format: "name = \(name)")
+        fetchRequest.predicate = namePred
+        
+        do {
+            let searchResults = try context.fetch(fetchRequest)
+            return searchResults
+        } catch  {
+            print(error)
+            fatalError("Error occured in fetching journals with given name")
+        }
+    }
+    
+    func addJournal(name: String) -> Journal {
         let context = PersistentService.context
         let newJournal = Journal(context: context)
         newJournal.name = name
@@ -110,6 +132,8 @@ class JournalLibrarian {
         newJournal.id = smallestAvailableID
         
         PersistentService.saveContext()
+        
+        return newJournal
     }
     
     func update() {

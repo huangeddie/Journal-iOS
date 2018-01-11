@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         
-        if UserDefaults.standard.value(forKey: JournalLibrarian.userDefaultKeyName) == nil {
-            UserDefaults.standard.set(0, forKey: JournalLibrarian.userDefaultKeyName)
+        if UserDefaults.standard.value(forKey: JournalLibrarian.userDefaultCurrentJournalKeyName) == nil {
+            UserDefaults.standard.set(0, forKey: JournalLibrarian.userDefaultCurrentJournalKeyName)
         }
         return true
     }
