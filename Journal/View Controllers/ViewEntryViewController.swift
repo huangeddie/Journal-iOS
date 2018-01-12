@@ -21,7 +21,7 @@ class ViewEntryViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let entry = entryHistorian.getEntry(for: index)
+        let entry = entryHistorian.getEntry(forIndex: index)
         navigationItem.title = entry.title
         
         let text = entry.text

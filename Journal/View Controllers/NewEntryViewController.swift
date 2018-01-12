@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class NewEntryViewController: UIViewController {
+class NewEntryViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,12 +52,47 @@ class NewEntryViewController: UIViewController {
         Downloader.load(URL: url)
     }
     
- 
+    @IBAction func exportPressed(_ sender: Any) {
+        //Check to see the device can send email.
+        if( MFMailComposeViewController.canSendMail() ) {
+            print("Can send email.")
+            
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+            
+            //Set the subject and message of the email
+            mailComposer.setSubject("Journal")
+            mailComposer.setMessageBody("Here is your journal:", isHTML: false)
+            
+            // Create JSON object of current journals
+            
+            let librarian = JournalLibrarian.librarian
+            let historian = EntryHistorian.historian
+            
+            
+            
+            if let filePath = Bundle.main.path(forResource: "swifts", ofType: "wav") {
+                print("File path loaded.")
+                
+                if let fileData = NSData(contentsOfFile: filePath) {
+                    print("File data loaded.")
+                    mailComposer.addAttachmentData(fileData as Data, mimeType: "text/plain", fileName: "journalJSON")
+                }
+            }
+            self.present(mailComposer, animated: true, completion: nil)
+        }
+    }
+    
     
     // MARK: Private Functions
     @objc
     private func receievedJournalChangeNotification() {
         let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
+    }
+    
+    // MARK: Mail Delegate
+    private func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

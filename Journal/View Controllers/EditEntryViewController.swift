@@ -34,7 +34,7 @@ class EditEntryViewController: UIViewController {
         textView.inputAccessoryView = toolBar
         
         // Setup the entry
-        let entry = entryHistorian.getEntry(for: indexToEdit)
+        let entry = entryHistorian.getEntry(forIndex: indexToEdit)
         
         navigationItem.title = entry.title
         textView.text = entry.text

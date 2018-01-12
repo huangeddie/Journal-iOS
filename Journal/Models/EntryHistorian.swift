@@ -30,13 +30,35 @@ class EntryHistorian {
     }
     
     // MARK: Public
-    func getEntry(for index: Int) -> Entry {
+    func getEntry(forIndex index: Int) -> Entry {
         guard index < entries.count else {
             fatalError("Index out of bounds")
         }
         
         let entry = entries[index]
         return entry
+    }
+    
+    func getEntries(forJournal journal: Journal) -> [Entry] {
+        let context = PersistentService.context
+        
+        let fetchRequest = NSFetchRequest<Entry>(entityName: Entry.description())
+        let journalPredicate = NSPredicate(format: "journal.id = \(journal.id)")
+        fetchRequest.predicate = journalPredicate
+        
+        do {
+            var searchResults = try context.fetch(fetchRequest)
+            searchResults.sort(by: { (a1, a2) -> Bool in
+                let date1 = a1.date
+                let date2 = a2.date
+                
+                return date1 > date2
+            })
+            return searchResults
+        }
+        catch {
+            print("Error: \(error)")
+        }
     }
     
     func addEntry(title: String, text: String, date: Date) {

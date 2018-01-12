@@ -132,7 +132,7 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         
-        let entry = entryHistorian.getEntry(for: row)
+        let entry = entryHistorian.getEntry(forIndex: row)
         let date = entry.date
         let title = entry.title
         

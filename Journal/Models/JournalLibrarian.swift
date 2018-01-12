@@ -114,6 +114,19 @@ class JournalLibrarian {
         }
     }
     
+    func getAllJournals() -> [Journal] {
+        let context = PersistentService.context
+        let fetchRequest = NSFetchRequest<Journal>(entityName: Journal.description())
+        
+        do {
+            let searchResults = try context.fetch(fetchRequest)
+            return searchResults
+        } catch  {
+            print(error)
+            fatalError("Error occured in fetching journals with given name")
+        }
+    }
+    
     func addJournal(name: String) -> Journal {
         let context = PersistentService.context
         let newJournal = Journal(context: context)
