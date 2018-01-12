@@ -1,5 +1,5 @@
 //
-//  EntryTableViewController.swift
+//  EntryCollectionViewController.swift
 //  Journal
 //
 //  Created by Edward Huang on 1/8/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EntryTableViewController: UIViewController {
+class EntryCollectionViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var timeFrameSegmentControl: UISegmentedControl!
@@ -109,7 +109,7 @@ class EntryTableViewController: UIViewController {
     }
 }
 
-extension EntryTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension EntryCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     private static let cellIdentifier = "entry_cell"
     
@@ -123,7 +123,19 @@ extension EntryTableViewController: UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EntryTableViewController.cellIdentifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EntryCollectionViewController.cellIdentifier, for: indexPath) as? EntryCollectionViewCell else {
+            fatalError("Could not get proper cell")
+        }
+        
+        let entry = entryHistorian.getEntry(forIndex: indexPath.row)
+        
+        let df = DateFormatter()
+        df.dateStyle = .medium
+        df.timeStyle = .short
+        
+        cell.dateLabel.text = df.string(from: entry.date)
+        cell.titleLabel.text = entry.title
+        cell.textLabel.text = entry.text
         
         return cell
     }
