@@ -66,17 +66,9 @@ class Downloader {
                             fatalError("Could not get parameters")
                         }
                         
-                        let substrings = dateString.split(separator: " ")
-                        let month = substrings[0]
-                        let day = substrings[1]
-                        let year = substrings[2]
+                        let df = DateFormatter.RFC3339DateFormatter
                         
-                        var components = DateComponents()
-                        components.year = Int("20" + year)
-                        components.month = Int(month)
-                        components.day = Int(day)
-                        
-                        guard let date = Calendar(identifier: .gregorian).date(from: components) else {
+                        guard let date = df.date(from: dateString) else {
                             fatalError("Could not get date")
                         }
                         
