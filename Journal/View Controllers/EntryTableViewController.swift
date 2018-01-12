@@ -12,7 +12,7 @@ class EntryTableViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var timeFrameSegmentControl: UISegmentedControl!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     var entryHistorian: EntryHistorian = EntryHistorian.historian
     
     // MARK: UIViewController
@@ -23,8 +23,8 @@ class EntryTableViewController: UIViewController {
         
         
         // TableView
-        tableView.delegate = self
-        tableView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         // SegmentControl
         timeFrameSegmentControl.addTarget(self, action: #selector(segmentControlValueDidChange), for: .valueChanged)
@@ -60,7 +60,7 @@ class EntryTableViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        guard let row = tableView.indexPathForSelectedRow?.row else {
+        guard let row = collectionView.indexPathsForSelectedItems?.first?.row else {
             fatalError("An entry was not selected")
         }
         
@@ -84,7 +84,7 @@ class EntryTableViewController: UIViewController {
         let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.collectionView.reloadData()
             self.navigationItem.title = currentJournal.name
         }
     }
@@ -92,7 +92,7 @@ class EntryTableViewController: UIViewController {
     @objc
     private func receivedContextChangeNotification() {
         entryHistorian.update()
-        tableView.reloadData()
+        collectionView.reloadData()
     }
     
     // MARK: Segment Control
@@ -105,55 +105,27 @@ class EntryTableViewController: UIViewController {
         
         entryHistorian.timeFrame = newTimeFrame
         
-        tableView.reloadData()
+        collectionView.reloadData()
     }
 }
 
-extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension EntryTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     private static let cellIdentifier = "entry_cell"
     
     // MARK: Delegate
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            let row = indexPath.row
-            entryHistorian.deleteEntry(atIndex: row)
-            tableView.endUpdates()
-        }
-    }
+    
     
     
     // MARK: Data Source
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        
-        let entry = entryHistorian.getEntry(forIndex: row)
-        let date = entry.date
-        let title = entry.title
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: EntryTableViewController.cellIdentifier, for: indexPath)
-        
-        // Format cell
-        cell.textLabel?.text = title
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US")
-        dateFormatter.setLocalizedDateFormatFromTemplate("dd/MM/yy")
-        let dateString = dateFormatter.string(from: date)
-        cell.detailTextLabel?.text = dateString
-        
-        return cell
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return entryHistorian.numberOfEntries()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return entryHistorian.numberOfEntries()
-        }
-        return 0
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EntryTableViewController.cellIdentifier, for: indexPath)
+        
+        return cell
     }
     
 }
