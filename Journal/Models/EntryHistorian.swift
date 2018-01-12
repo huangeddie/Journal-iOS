@@ -58,6 +58,7 @@ class EntryHistorian {
         }
         catch {
             print("Error: \(error)")
+            fatalError("Error getting entries")
         }
     }
     

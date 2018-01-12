@@ -69,16 +69,40 @@ class NewEntryViewController: UIViewController, MFMailComposeViewControllerDeleg
             let librarian = JournalLibrarian.librarian
             let historian = EntryHistorian.historian
             
+            var json = [String: [[String: Any]]]()
             
+            let allJournals = librarian.getAllJournals()
             
-            if let filePath = Bundle.main.path(forResource: "swifts", ofType: "wav") {
-                print("File path loaded.")
+            for journal in allJournals {
+                json[journal.name] = [[String: Any]]()
                 
-                if let fileData = NSData(contentsOfFile: filePath) {
-                    print("File data loaded.")
-                    mailComposer.addAttachmentData(fileData as Data, mimeType: "text/plain", fileName: "journalJSON")
+                let entries = historian.getEntries(forJournal: journal)
+                
+                for entry in entries {
+                    var e = [String: Any]()
+                    let df = DateFormatter.RFC3339DateFormatter
+                    e["date"] = df.string(from: entry.date)
+                    e["title"] = entry.title
+                    e["text"] = entry.text
+                    json[journal.name]?.append(e)
                 }
             }
+            
+            guard JSONSerialization.isValidJSONObject(json) else {
+                fatalError("Invalid JSON object")
+            }
+            
+            let jsonData: Data
+            do {
+                jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            } catch {
+                print(error)
+                fatalError("Could not serialize json")
+            }
+            
+            
+            mailComposer.addAttachmentData(jsonData, mimeType: "text/plain", fileName: "journalJSON")
+            
             self.present(mailComposer, animated: true, completion: nil)
         }
     }
@@ -92,7 +116,7 @@ class NewEntryViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     // MARK: Mail Delegate
-    private func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
-        self.dismiss(animated: true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

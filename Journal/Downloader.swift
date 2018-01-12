@@ -92,7 +92,7 @@ class Downloader {
             }
             else {
                 // Failure
-                print("Failure: %@", error?.localizedDescription);
+                print("Failure: %@", error?.localizedDescription ?? "");
             }
         })
         task.resume()
