@@ -17,7 +17,8 @@ class EditEntryViewController: UIViewController {
     var indexToEdit: Int!
     
     @IBOutlet weak var textView: UITextView!
-
+    @IBOutlet var dateChangerPopUpView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,15 +53,20 @@ class EditEntryViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if let dateChangerVC = segue.destination as? DateChangerViewController {
+            dateChangerVC.indexToEdit = indexToEdit
+        }
+        
     }
-    */
+ 
     
     // MARK: IBActions
     

@@ -18,13 +18,11 @@ class Exporter {
             let mailComposer = MFMailComposeViewController()
             mailComposer.mailComposeDelegate = delegate
             
-            //Set the subject and message of the email
             mailComposer.setToRecipients(["aigagror@gmail.com"])
             mailComposer.setSubject("Journal")
             mailComposer.setMessageBody("Here is your journal:", isHTML: false)
             
             // Create JSON object of current journals
-            
             let librarian = JournalLibrarian.librarian
             let historian = EntryHistorian.historian
             
