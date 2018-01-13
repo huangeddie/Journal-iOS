@@ -15,9 +15,11 @@ class EditEntryViewController: UIViewController {
     var editingANewEntry = true
     var entryHistorian: EntryHistorian = EntryHistorian.historian
     var indexToEdit: Int!
+    var newTitle: String!
+    var newJournal: Journal!
     
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet var dateChangerPopUpView: UIView!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +40,23 @@ class EditEntryViewController: UIViewController {
         // Setup the entry
         let entry = entryHistorian.getEntry(forIndex: indexToEdit)
         
-        navigationItem.title = entry.title
+        // Setup the new journal
+        newJournal = entry.journal
+        
+        // Setup the new date
+        datePicker.date = entry.date
+        // We don't want the user to modify the date. If they really want, they can do that later by editing it
+        if editingANewEntry {
+            datePicker.isUserInteractionEnabled = false
+        }
+        
+        // Setup the new title
+        newTitle = entry.title
+        
+        // Setup the new text
         textView.text = entry.text
+        
+        updateUI()
         
         // Prompt the title change
         if editingANewEntry {
@@ -91,8 +108,9 @@ class EditEntryViewController: UIViewController {
         textView.resignFirstResponder()
         
         // Commit changes made from text view to entry's text
-        let text = textView.text
-        entryHistorian.editEntry(index: indexToEdit, title: nil, text: text, date: nil, journal: nil)
+        let newText = textView.text
+        let newDate = datePicker.date
+        entryHistorian.editEntry(index: indexToEdit, title: newTitle, text: newText, date: newDate, journal: newJournal)
         
         let mailVC = Exporter.getExportJournalMailComposerVC(delegate: self)
         if let mailVC = mailVC {
@@ -108,7 +126,23 @@ class EditEntryViewController: UIViewController {
         
     }
     
+    @IBAction func changeJournalPressed(_ sender: Any) {
+        
+        // Display a table view of journals to select from
+        
+    }
+    
     // MARK: Private Functions
+    
+    private func updateUI() {
+        let df = DateFormatter()
+        df.dateStyle = .medium
+        df.timeStyle = .short
+        
+        navigationItem.prompt = newJournal.name
+        
+        navigationItem.title = newTitle
+    }
     
     @objc
     private func resignKeyboard() {

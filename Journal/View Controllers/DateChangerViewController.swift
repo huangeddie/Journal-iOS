@@ -11,6 +11,7 @@ import UIKit
 class DateChangerViewController: UIViewController {
     
     var indexToEdit: Int!
+    var newDate: Date!
     let historian = EntryHistorian.historian
 
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -50,9 +51,6 @@ class DateChangerViewController: UIViewController {
     
     @IBAction func savePressed(_ sender: Any) {
         let date = datePicker.date
-        
-        historian.editEntry(index: indexToEdit, date: date)
-        
-        dismiss(animated: true, completion: nil)
+        newDate = date
     }
 }

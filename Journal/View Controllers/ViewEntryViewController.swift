@@ -11,6 +11,8 @@ import UIKit
 class ViewEntryViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var dateLabel: UILabel!
+    
     var entryHistorian: EntryHistorian = EntryHistorian.historian
     var index: Int!
     
@@ -22,6 +24,15 @@ class ViewEntryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         let entry = entryHistorian.getEntry(forIndex: index)
+        
+        navigationItem.prompt = entry.journal.name
+        
+        let df = DateFormatter()
+        df.dateStyle = .medium
+        df.timeStyle = .short
+        
+        dateLabel.text = df.string(from: entry.date)
+        
         navigationItem.title = entry.title
         
         let text = entry.text
