@@ -20,6 +20,7 @@ class EditEntryViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var toolBarStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,15 @@ class EditEntryViewController: UIViewController {
         toolBar.setItems([flexibleSpace, doneItem], animated: true)
         
         textView.inputAccessoryView = toolBar
+        
+        // If editing an old entry, add a delete button
+        if !editingANewEntry {
+            let deleteButton = UIButton()
+            deleteButton.setTitle("Delete", for: .normal)
+            deleteButton.setTitleColor(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), for: .normal)
+            deleteButton.addTarget(self, action: #selector(deleteEntry), for: .touchUpInside)
+            toolBarStackView.addArrangedSubview(deleteButton)
+        }
         
         // Setup the entry
         let entry = entryHistorian.getEntry(forIndex: indexToEdit)
@@ -134,6 +144,31 @@ class EditEntryViewController: UIViewController {
     
     // MARK: Private Functions
     
+    @objc
+    private func deleteEntry() {
+        // Present an alert VC to confirm.
+        // If confirmed, delete entry and then dismiss
+        let confirmAlertVC = UIAlertController(title: "Are you sure you want to delete this entry?", message: "This action cannot be undone", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            confirmAlertVC.dismiss(animated: true, completion: nil)
+        }
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
+            // Delete the entry
+            self.entryHistorian.deleteEntry(atIndex: self.indexToEdit)
+            
+            // Dismiss the edit entry VC
+            self.dismiss(animated: true, completion: {
+                // TODO: Also dismiss the view entry VC
+            })
+        }
+        
+        confirmAlertVC.addAction(cancelAction)
+        confirmAlertVC.addAction(deleteAction)
+        
+        present(confirmAlertVC, animated: true, completion: nil)
+    }
+    
     private func updateUI() {
         let df = DateFormatter()
         df.dateStyle = .medium
@@ -166,8 +201,8 @@ class EditEntryViewController: UIViewController {
         
         let doneAction = UIAlertAction(title: "Set", style: .default) { (action) in
             if let newTitle = alertChangeTitle.textFields?.first?.text {
+                self.newTitle = newTitle
                 self.navigationItem.title = newTitle
-                self.entryHistorian.editEntry(index: self.indexToEdit, title: newTitle)
             }
         }
         

@@ -40,7 +40,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqO-ld-iKu">
                                         <rect key="frame" x="0.0" y="523" width="375" height="80"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="PY4-qt-zwC">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="PY4-qt-zwC" userLabel="Tool Bar">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bE8-AM-ZOb">
@@ -100,6 +100,7 @@
                     <connections>
                         <outlet property="datePicker" destination="fC8-lz-OXM" id="lxo-ct-63Q"/>
                         <outlet property="textView" destination="Xo9-RD-g7K" id="cO3-zA-t3n"/>
+                        <outlet property="toolBarStackView" destination="PY4-qt-zwC" id="3yf-Xy-ihg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7r-CM-NtE" userLabel="First Responder" sceneMemberID="firstResponder"/>
