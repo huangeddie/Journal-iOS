@@ -74,7 +74,7 @@ class JournalTableViewController: UIViewController {
                 fatalError("Could not get text")
             }
             
-            self.journalLibrarian.addJournal(name: text)
+            _ = self.journalLibrarian.addJournal(name: text)
             
             alertVC.dismiss(animated: true, completion: nil)
         }

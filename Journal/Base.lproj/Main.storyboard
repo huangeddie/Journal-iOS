@@ -339,11 +339,11 @@
             </objects>
             <point key="canvasLocation" x="595.20000000000005" y="-650.37481259370315"/>
         </scene>
-        <!--View Past Entries-->
+        <!--Past Entries-->
         <scene sceneID="oFl-4Z-Brk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UJn-gP-Kn4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="View Past Entries" image="black square" id="QqU-rP-AZx"/>
+                    <tabBarItem key="tabBarItem" title="Past Entries" image="black square" id="QqU-rP-AZx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w97-ac-OIl">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

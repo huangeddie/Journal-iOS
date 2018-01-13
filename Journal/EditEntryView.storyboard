@@ -24,8 +24,12 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Vpx-iz-nOf">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDY-hD-9Kr">
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="80"/>
+                                                <state key="normal" title="Change Date"/>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bX4-Qw-B0s">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="80"/>
                                                 <state key="normal" title="Change Title"/>
                                                 <connections>
                                                     <action selector="changeTitlePressed:" destination="Afq-CV-Zlw" eventType="touchUpInside" id="XnK-mA-Xbn"/>

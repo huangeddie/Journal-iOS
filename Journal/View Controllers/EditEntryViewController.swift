@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class EditEntryViewController: UIViewController {
     
@@ -63,6 +64,9 @@ class EditEntryViewController: UIViewController {
     
     // MARK: IBActions
     
+    /// If this VC was editing a new entry, it removes that new entry from the data base. Otherwise it is editing an old entry, in which case it simply dismisses the VC, not committing any changes made to the text view to the entry's text
+    ///
+    /// - Parameter sender: <#sender description#>
     @IBAction func cancelPressed(_ sender: Any) {
         
         if editingANewEntry {
@@ -79,7 +83,17 @@ class EditEntryViewController: UIViewController {
         
         // Dismiss
         textView.resignFirstResponder()
-        dismiss(animated: true, completion: nil)
+        
+        // Commit changes made from text view to entry's text
+        let text = textView.text
+        entryHistorian.editEntry(index: indexToEdit, title: nil, text: text, date: nil, journal: nil)
+        
+        let mailVC = Exporter.getExportJournalMailComposerVC(delegate: self)
+        if let mailVC = mailVC {
+            present(mailVC, animated: true, completion: nil)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func changeTitlePressed(_ sender: Any) {
@@ -126,5 +140,14 @@ class EditEntryViewController: UIViewController {
         }
         
         present(alertChangeTitle, animated: true, completion: nil)
+    }
+}
+
+extension EditEntryViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+        
+        // Dismiss the edit entry VC itself
+        dismiss(animated: true, completion: nil)
     }
 }

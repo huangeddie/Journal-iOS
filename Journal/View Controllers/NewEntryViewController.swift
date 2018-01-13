@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class NewEntryViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class NewEntryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,57 +53,9 @@ class NewEntryViewController: UIViewController, MFMailComposeViewControllerDeleg
     }
     
     @IBAction func exportPressed(_ sender: Any) {
-        //Check to see the device can send email.
-        if( MFMailComposeViewController.canSendMail() ) {
-            print("Can send email.")
-            
-            let mailComposer = MFMailComposeViewController()
-            mailComposer.mailComposeDelegate = self
-            
-            //Set the subject and message of the email
-            mailComposer.setSubject("Journal")
-            mailComposer.setMessageBody("Here is your journal:", isHTML: false)
-            
-            // Create JSON object of current journals
-            
-            let librarian = JournalLibrarian.librarian
-            let historian = EntryHistorian.historian
-            
-            var json = [String: [[String: Any]]]()
-            
-            let allJournals = librarian.getAllJournals()
-            
-            for journal in allJournals {
-                json[journal.name] = [[String: Any]]()
-                
-                let entries = historian.getEntries(forJournal: journal)
-                
-                for entry in entries {
-                    var e = [String: Any]()
-                    let df = DateFormatter.RFC3339DateFormatter
-                    e["date"] = df.string(from: entry.date)
-                    e["title"] = entry.title
-                    e["text"] = entry.text
-                    json[journal.name]?.append(e)
-                }
-            }
-            
-            guard JSONSerialization.isValidJSONObject(json) else {
-                fatalError("Invalid JSON object")
-            }
-            
-            let jsonData: Data
-            do {
-                jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-            } catch {
-                print(error)
-                fatalError("Could not serialize json")
-            }
-            
-            
-            mailComposer.addAttachmentData(jsonData, mimeType: "text/plain", fileName: "journalJSON")
-            
-            self.present(mailComposer, animated: true, completion: nil)
+        let mailVC = Exporter.getExportJournalMailComposerVC(delegate: self)
+        if let mailVC = mailVC {
+            present(mailVC, animated: true, completion: nil)
         }
     }
     
@@ -114,8 +66,9 @@ class NewEntryViewController: UIViewController, MFMailComposeViewControllerDeleg
         let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
     }
-    
-    // MARK: Mail Delegate
+}
+
+extension NewEntryViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
