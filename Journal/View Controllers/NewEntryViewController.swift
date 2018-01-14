@@ -58,27 +58,12 @@ class NewEntryViewController: UIViewController {
         }
     }
     
-    // MARK: IBActions
-    
-    @IBAction func exportPressed(_ sender: Any) {
-        let mailVC = Exporter.getExportJournalMailComposerVC(delegate: self)
-        if let mailVC = mailVC {
-            present(mailVC, animated: true, completion: nil)
-        }
-    }
-    
     
     // MARK: Private Functions
     @objc
     private func receievedJournalChangeNotification() {
         let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
-    }
-}
-
-extension NewEntryViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
     }
 }
 

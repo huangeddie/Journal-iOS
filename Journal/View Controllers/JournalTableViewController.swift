@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class JournalTableViewController: UIViewController {
 
@@ -54,6 +55,13 @@ class JournalTableViewController: UIViewController {
     
     // MARK: IBActions
     
+    @IBAction func actionPressed(_ sender: Any) {
+        
+        let mailComposerVC = Exporter.getExportJournalMailComposerVC(delegate: self)
+        if let mailComposerVC = mailComposerVC {
+            present(mailComposerVC, animated: true, completion: nil)
+        }   
+    }
     @IBAction func addJournalPressed(_ sender: Any) {
         let alertVC = UIAlertController(title: "New Journal", message: nil, preferredStyle: .alert)
         alertVC.addTextField { (textField) in
@@ -97,6 +105,12 @@ class JournalTableViewController: UIViewController {
         // A journal might have been added
         journalLibrarian.update()
         tableView.reloadData()
+    }
+}
+
+extension JournalTableViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
