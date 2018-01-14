@@ -22,6 +22,8 @@ class EditEntryViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var toolBarStackView: UIStackView!
     
+    
+    // MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +39,10 @@ class EditEntryViewController: UIViewController {
         toolBar.setItems([flexibleSpace, doneItem], animated: true)
         
         textView.inputAccessoryView = toolBar
+        
+        // Pay attention to when keyboard is shown and hidden
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         // If editing an old entry, add a delete button
         if !editingANewEntry {
@@ -145,6 +151,35 @@ class EditEntryViewController: UIViewController {
     // MARK: Private Functions
     
     @objc
+    private func keyboardDidShow(aNotification: NSNotification) {
+        guard let info = aNotification.userInfo as NSDictionary? else {
+            fatalError("Could not get NSDictionary")
+        }
+        
+        guard let kbRect = info.object(forKey: UIKeyboardFrameEndUserInfoKey) as? CGRect else {
+            fatalError("Could not get keyboard rect")
+        }
+        let kbSize = kbRect.size
+        
+        // TODO: Make this dynamic
+        let textViewBottomOffset: CGFloat = 80
+        
+        let contentInsets = UIEdgeInsetsMake(0, 0, kbSize.height - textViewBottomOffset, 0)
+        textView.contentInset = contentInsets
+        textView.scrollIndicatorInsets = contentInsets
+        
+        // If active text field is hidden by keyboard, scroll it so it's visible
+        // Your app might not need or want this behavior.
+    }
+    
+    @objc
+    private func keyboardWillHide() {
+        let contentInsets = UIEdgeInsets.zero
+        textView.contentInset = contentInsets
+        textView.scrollIndicatorInsets = contentInsets
+    }
+    
+    @objc
     private func deleteEntry() {
         // Present an alert VC to confirm.
         // If confirmed, delete entry and then dismiss
@@ -212,6 +247,7 @@ class EditEntryViewController: UIViewController {
         alertChangeTitle.addTextField { (textField) in
             // Auto capitalize words because it is a title
             textField.autocapitalizationType = UITextAutocapitalizationType.words
+            textField.autocorrectionType = .default
         }
         
         present(alertChangeTitle, animated: true, completion: nil)
