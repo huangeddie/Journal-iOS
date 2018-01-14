@@ -21,8 +21,17 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YNj-2i-VXE">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" scrollEnabled="NO" text="Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nV2-k1-KNl">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="423"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="hdg-hf-EPk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fC8-lz-OXM">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="423" width="375" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="nb4-g4-cAV"/>
                                         </constraints>
@@ -31,7 +40,7 @@
                                         </date>
                                     </datePicker>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="Xo9-RD-g7K">
-                                        <rect key="frame" x="0.0" y="100" width="375" height="423"/>
+                                        <rect key="frame" x="0.0" y="523" width="375" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -44,17 +53,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bE8-AM-ZOb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="80"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                                         <state key="normal" title="Change Journal"/>
                                                         <connections>
                                                             <action selector="changeJournalPressed:" destination="Afq-CV-Zlw" eventType="touchUpInside" id="tGY-wy-LdZ"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBy-d8-efo">
-                                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="80"/>
-                                                        <state key="normal" title="Change Title"/>
-                                                        <connections>
-                                                            <action selector="changeTitlePressed:" destination="Afq-CV-Zlw" eventType="touchUpInside" id="4Fe-9e-Dey"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -100,6 +102,7 @@
                     <connections>
                         <outlet property="datePicker" destination="fC8-lz-OXM" id="lxo-ct-63Q"/>
                         <outlet property="textView" destination="Xo9-RD-g7K" id="cO3-zA-t3n"/>
+                        <outlet property="titleTextView" destination="nV2-k1-KNl" id="KiA-4A-dF5"/>
                         <outlet property="toolBarStackView" destination="PY4-qt-zwC" id="3yf-Xy-ihg"/>
                     </connections>
                 </viewController>

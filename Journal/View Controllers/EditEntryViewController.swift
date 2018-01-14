@@ -15,9 +15,10 @@ class EditEntryViewController: UIViewController {
     var editingANewEntry = true
     var entryHistorian: EntryHistorian = EntryHistorian.historian
     var indexToEdit: Int!
-    var newTitle: String!
     var newJournal: Journal!
     
+    
+    @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var toolBarStackView: UIStackView!
@@ -67,17 +68,12 @@ class EditEntryViewController: UIViewController {
         }
         
         // Setup the new title
-        newTitle = entry.title
+        titleTextView.text = entry.title
         
         // Setup the new text
         textView.text = entry.text
         
         updateUI()
-        
-        // Prompt the title change
-        if editingANewEntry {
-            alertChangeTitle()
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -124,8 +120,13 @@ class EditEntryViewController: UIViewController {
         textView.resignFirstResponder()
         
         // Commit changes made from text view to entry's text
-        let newText = textView.text
+        
         let newDate = datePicker.date
+        
+        let newText = textView.text
+        
+        let newTitle = titleTextView.text
+        
         entryHistorian.editEntry(index: indexToEdit, title: newTitle, text: newText, date: newDate, journal: newJournal)
         
         let mailVC = Exporter.getExportJournalMailComposerVC(delegate: self)
@@ -134,12 +135,6 @@ class EditEntryViewController: UIViewController {
         } else {
             dismiss(animated: true, completion: nil)
         }
-    }
-    
-    @IBAction func changeTitlePressed(_ sender: Any) {
-        
-        alertChangeTitle()
-        
     }
     
     @IBAction func changeJournalPressed(_ sender: Any) {
@@ -205,13 +200,7 @@ class EditEntryViewController: UIViewController {
     }
     
     private func updateUI() {
-        let df = DateFormatter()
-        df.dateStyle = .medium
-        df.timeStyle = .short
-        
-        navigationItem.prompt = newJournal.name
-        
-        navigationItem.title = newTitle
+        navigationItem.title = newJournal.name
     }
     
     @objc
@@ -224,33 +213,6 @@ class EditEntryViewController: UIViewController {
         }
         
         entryHistorian.editEntry(index: indexToEdit, text: text)
-    }
-    
-    /// Show an alert to change the title
-    private func alertChangeTitle() {
-        let alertChangeTitle = UIAlertController(title: "Set Title", message: nil, preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-            // TODO: something?
-        }
-        
-        let doneAction = UIAlertAction(title: "Set", style: .default) { (action) in
-            if let newTitle = alertChangeTitle.textFields?.first?.text {
-                self.newTitle = newTitle
-                self.navigationItem.title = newTitle
-            }
-        }
-        
-        alertChangeTitle.addAction(cancelAction)
-        alertChangeTitle.addAction(doneAction)
-        
-        alertChangeTitle.addTextField { (textField) in
-            // Auto capitalize words because it is a title
-            textField.autocapitalizationType = UITextAutocapitalizationType.words
-            textField.autocorrectionType = .default
-        }
-        
-        present(alertChangeTitle, animated: true, completion: nil)
     }
 }
 
