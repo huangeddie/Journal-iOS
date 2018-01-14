@@ -11,6 +11,11 @@ import MessageUI
 
 class NewEntryViewController: UIViewController {
 
+    // MARK: Properties
+    @IBOutlet weak var tableView: UITableView!
+    let historian = EntryHistorian.historian
+    
+    // MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,8 +24,17 @@ class NewEntryViewController: UIViewController {
         // Watch for any change to the journal
         NotificationCenter.default.addObserver(self, selector: #selector(receievedJournalChangeNotification), name: .journalChanged, object: nil)
         
+        // Table View
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        // Setup UI
         let journal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = journal.name
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,12 +59,6 @@ class NewEntryViewController: UIViewController {
     }
     
     // MARK: IBActions
-    @IBAction func downloadPressed(_ sender: Any) {
-        guard let url = URL(string: "https://raw.githubusercontent.com/aigagror/Life-Journal/master/exportedJournalJSON.txt?token=ATEr41O0eWbfoYGiWrRz1f-XI0AldJAAks5aYXkNwA%3D%3D") else {
-            fatalError("Could not get url")
-        }
-        Downloader.load(URL: url)
-    }
     
     @IBAction func exportPressed(_ sender: Any) {
         let mailVC = Exporter.getExportJournalMailComposerVC(delegate: self)
@@ -71,5 +79,37 @@ class NewEntryViewController: UIViewController {
 extension NewEntryViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension NewEntryViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    private static let cellIdentifier = "entry_cell"
+    
+    // MARK: Delegate
+    
+    // MARK: Data Source
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return historian.numberOfEntriesMadeToday()
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: NewEntryViewController.cellIdentifier) else {
+            fatalError("Could not get cell")
+        }
+        
+        let entry = historian.getEntry(forIndex: indexPath.row)
+        
+        let df = DateFormatter()
+        df.dateStyle = .none
+        df.timeStyle = .short
+        
+        cell.textLabel?.text = entry.title
+        cell.detailTextLabel?.text = df.string(from: entry.date)
+        
+        return cell
     }
 }

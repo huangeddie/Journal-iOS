@@ -201,22 +201,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xzQ-sl-672">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HsO-Oe-vnw">
-                                        <rect key="frame" x="153" y="0.0" width="69" height="30"/>
-                                        <state key="normal" title="Download"/>
-                                        <connections>
-                                            <action selector="downloadPressed:" destination="om2-5G-qrX" eventType="touchUpInside" id="jbc-oa-900"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ty-Zd-i7V">
-                                        <rect key="frame" x="164.5" y="113.5" width="46" height="30"/>
+                                        <rect key="frame" x="164.5" y="0.0" width="46" height="30"/>
                                         <state key="normal" title="Export"/>
                                         <connections>
                                             <action selector="exportPressed:" destination="om2-5G-qrX" eventType="touchUpInside" id="wWS-S3-4Nb"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuk-qd-cep">
-                                        <rect key="frame" x="129.5" y="226.5" width="116" height="44"/>
+                                        <rect key="frame" x="129.5" y="170" width="116" height="44"/>
                                         <color key="backgroundColor" red="0.46666666870000001" green="0.76470589639999997" blue="0.26666668059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <state key="normal" title="New Entry"/>
@@ -273,6 +266,9 @@
                         <viewLayoutGuide key="safeArea" id="HHw-BH-f4j"/>
                     </view>
                     <navigationItem key="navigationItem" id="pS9-87-3cz"/>
+                    <connections>
+                        <outlet property="tableView" destination="Mwt-uJ-Osb" id="OeF-03-SDZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LE2-Qq-P7k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

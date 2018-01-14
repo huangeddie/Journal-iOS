@@ -109,6 +109,20 @@ class EntryHistorian {
         return entries.count
     }
     
+    func numberOfEntriesMadeToday() -> Int {
+        let calendar = Calendar(identifier: .gregorian)
+        var count = 0
+        for entry in entries {
+            if calendar.isDateInToday(entry.date) {
+                count += 1
+            } else {
+                break
+            }
+        }
+        
+        return count
+    }
+    
     func update() {
         
         let context = PersistentService.context
