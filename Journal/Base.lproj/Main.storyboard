@@ -139,10 +139,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1ON-Hn-4OP">
-                                <rect key="frame" x="15" y="79" width="345" height="573"/>
+                                <rect key="frame" x="0.0" y="79" width="0.0" height="573"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ded-a1-LvV">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="20.5"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" text="Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ucc-6V-rn5">
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="cte-4O-E1M"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ded-a1-LvV">
+                                        <rect key="frame" x="0.0" y="40" width="0.0" height="20.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20.5" id="UYg-eD-URE"/>
                                         </constraints>
@@ -151,7 +160,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FW7-8z-sxn">
-                                        <rect key="frame" x="0.0" y="30.5" width="345" height="542.5"/>
+                                        <rect key="frame" x="0.0" y="70.5" width="0.0" height="502.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -184,6 +193,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="ded-a1-LvV" id="O9T-qd-Hzl"/>
                         <outlet property="textView" destination="FW7-8z-sxn" id="Pu3-b4-NT8"/>
+                        <outlet property="titleTextView" destination="Ucc-6V-rn5" id="zZX-mt-QKh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bn1-ng-hqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
