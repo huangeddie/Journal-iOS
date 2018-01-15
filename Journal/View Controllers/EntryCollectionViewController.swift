@@ -64,11 +64,7 @@ class EntryCollectionViewController: UIViewController {
             fatalError("An entry was not selected")
         }
         
-        guard let navVC = segue.destination as? UINavigationController else {
-            fatalError("Destination is not a UINavigationController")
-        }
-        
-        guard let viewEntryVC = navVC.childViewControllers.first as? ViewEntryViewController else {
+        guard let viewEntryVC = segue.destination as? ViewEntryViewController else {
             fatalError("First child is not a ViewEntryViewController")
         }
         viewEntryVC.index = row

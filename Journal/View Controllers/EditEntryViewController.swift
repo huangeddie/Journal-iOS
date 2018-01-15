@@ -17,6 +17,7 @@ class EditEntryViewController: UIViewController {
     var indexToEdit: Int!
     var newJournal: Journal!
     
+    private let defaultContentInsets = UIEdgeInsetsMake(0, 10, 10, 10)
     
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var textView: UITextView!
@@ -72,6 +73,8 @@ class EditEntryViewController: UIViewController {
         
         // Setup the new text
         textView.text = entry.text
+        // Add some margins to the text
+        textView.contentInset = defaultContentInsets
         
         updateUI()
     }
@@ -157,11 +160,17 @@ class EditEntryViewController: UIViewController {
         let kbSize = kbRect.size
         
         // TODO: Make this dynamic
-        let textViewBottomOffset: CGFloat = 80
+        guard let stackView = textView.superview as? UIStackView else {
+            fatalError("Expected Stack View")
+        }
         
-        let contentInsets = UIEdgeInsetsMake(0, 0, kbSize.height - textViewBottomOffset, 0)
+        let textViewBottomOffset: CGFloat = stackView.frame.height - textView.frame.maxY - 10
+        
+        let contentInsets = UIEdgeInsetsMake(defaultContentInsets.top, defaultContentInsets.left, kbSize.height - textViewBottomOffset, defaultContentInsets.right)
         textView.contentInset = contentInsets
-        textView.scrollIndicatorInsets = contentInsets
+        
+        let scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, kbSize.height - textViewBottomOffset, 0)
+        textView.scrollIndicatorInsets = scrollIndicatorInsets
         
         // If active text field is hidden by keyboard, scroll it so it's visible
         // Your app might not need or want this behavior.
@@ -169,9 +178,9 @@ class EditEntryViewController: UIViewController {
     
     @objc
     private func keyboardWillHide() {
-        let contentInsets = UIEdgeInsets.zero
-        textView.contentInset = contentInsets
-        textView.scrollIndicatorInsets = contentInsets
+        let zeroContentInsets = UIEdgeInsets.zero
+        textView.contentInset = defaultContentInsets
+        textView.scrollIndicatorInsets = zeroContentInsets
     }
     
     @objc

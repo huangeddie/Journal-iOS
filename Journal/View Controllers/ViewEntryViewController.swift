@@ -21,6 +21,9 @@ class ViewEntryViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Add some margins to the textview
+        textView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,12 +68,4 @@ class ViewEntryViewController: UIViewController {
         editEntryVC.editingANewEntry = false
         editEntryVC.indexToEdit = index
     }
- 
-
-    // MARK: IBActions
-    @IBAction func donePressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
 }
