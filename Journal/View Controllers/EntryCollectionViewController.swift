@@ -25,17 +25,7 @@ class EntryCollectionViewController: UIViewController {
         // Search Bar
         searchBar.delegate = self
         // Add a "Cancel" button for the keyboard
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(resignKeyboard))
-        
-        
-        toolBar.setItems([flexibleSpace, cancelItem], animated: true)
-        
-        searchBar.inputAccessoryView = toolBar
+        searchBar.addCancelButtonAccessory()
         
         // TableView
         collectionView.delegate = self

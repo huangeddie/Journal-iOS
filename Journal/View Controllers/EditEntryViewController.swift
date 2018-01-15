@@ -30,17 +30,8 @@ class EditEntryViewController: UIViewController {
         super.viewDidLoad()
         
         // Add a "Done" button for the keyboard
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        let doneItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(resignKeyboard))
-        
-        
-        toolBar.setItems([flexibleSpace, doneItem], animated: true)
-        
-        textView.inputAccessoryView = toolBar
+        textView.addDoneButtonAccessory()
+        titleTextView.addDoneButtonAccessory()
         
         // Pay attention to when keyboard is shown and hidden
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
