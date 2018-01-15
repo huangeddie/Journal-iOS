@@ -31,7 +31,9 @@ class EditEntryViewController: UIViewController {
         
         // Add a "Done" button for the keyboard
         textView.addDoneButtonAccessory()
-        titleTextView.addDoneButtonAccessory()
+        
+        // Text View Delegation
+        titleTextView.delegate = self
         
         // Pay attention to when keyboard is shown and hidden
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
@@ -68,6 +70,11 @@ class EditEntryViewController: UIViewController {
         textView.contentInset = defaultContentInsets
         
         updateUI()
+        
+        // Assign title as first responder
+        if editingANewEntry {
+            titleTextView.becomeFirstResponder()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,6 +118,7 @@ class EditEntryViewController: UIViewController {
     @IBAction func savePressed(_ sender: Any) {
         
         // Dismiss
+        titleTextView.resignFirstResponder()
         textView.resignFirstResponder()
         
         // Commit changes made from text view to entry's text
@@ -213,6 +221,16 @@ class EditEntryViewController: UIViewController {
         }
         
         entryHistorian.editEntry(index: indexToEdit, text: text)
+    }
+}
+
+extension EditEntryViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 }
 
