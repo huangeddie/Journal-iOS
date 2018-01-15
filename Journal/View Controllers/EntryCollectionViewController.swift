@@ -27,9 +27,10 @@ class EntryCollectionViewController: UIViewController {
         // Add a "Cancel" button for the keyboard
         searchBar.addCancelButtonAccessory()
         
-        // TableView
+        // Collection View
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10)
         
         // SegmentControl
         timeFrameSegmentControl.addTarget(self, action: #selector(segmentControlValueDidChange), for: .valueChanged)

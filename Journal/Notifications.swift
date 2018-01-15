@@ -10,5 +10,5 @@ import Foundation
 
 
 extension Notification.Name {
-    static let journalChanged = Notification.Name(rawValue: "context_changed")
+    static let journalChanged = Notification.Name(rawValue: "journal_changed")
 }
