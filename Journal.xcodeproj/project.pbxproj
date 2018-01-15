@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C283F8E200D2ED100B8F52F /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C283F8D200D2ED100B8F52F /* UISearchBar.swift */; };
 		2C6252272004715600D75065 /* Journal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252252004715600D75065 /* Journal+CoreDataClass.swift */; };
 		2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */; };
 		2C62522A2004796E00D75065 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252292004796E00D75065 /* NewEntryViewController.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		24462FA03F935B76BB640C8F /* Pods-Journal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Journal/Pods-Journal.debug.xcconfig"; sourceTree = "<group>"; };
+		2C283F8D200D2ED100B8F52F /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		2C6252252004715600D75065 /* Journal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C6252292004796E00D75065 /* NewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		2C7FB7F22003147F00554B70 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
+				2C283F8D200D2ED100B8F52F /* UISearchBar.swift */,
 				2CEB588920087285001EDEDC /* DateFormatter.swift */,
 				2CEB5892200A7019001EDEDC /* Exporter.swift */,
 				2C625232200672F300D75065 /* Downloader.swift */,
@@ -458,6 +461,7 @@
 				2C62522E2004827100D75065 /* JournalLibrarian.swift in Sources */,
 				2C62522A2004796E00D75065 /* NewEntryViewController.swift in Sources */,
 				2C62522C200480C200D75065 /* JournalTableViewController.swift in Sources */,
+				2C283F8E200D2ED100B8F52F /* UISearchBar.swift in Sources */,
 				2C7FB817200315EE00554B70 /* EditEntryViewController.swift in Sources */,
 				2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */,
 				2C7FB7F42003147F00554B70 /* AppDelegate.swift in Sources */,

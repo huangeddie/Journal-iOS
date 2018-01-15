@@ -20,13 +20,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ucV-Cw-bjs">
-                                <rect key="frame" x="0.0" y="74" width="375" height="544"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d3s-gt-K7N">
-                                        <rect key="frame" x="37.5" y="0.0" width="300" height="29"/>
+                                    <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="QBE-As-fMQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="28" id="zRc-QB-M4v"/>
+                                            <constraint firstAttribute="height" constant="50" id="v3A-ua-at9"/>
                                         </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="d3s-gt-K7N">
+                                        <rect key="frame" x="37.5" y="70" width="300" height="29"/>
                                         <segments>
                                             <segment title="Week"/>
                                             <segment title="Month"/>
@@ -36,7 +40,7 @@
                                         </segments>
                                     </segmentedControl>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a7M-XO-UBB">
-                                        <rect key="frame" x="0.0" y="48" width="375" height="496"/>
+                                        <rect key="frame" x="0.0" y="118" width="375" height="436"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="szP-XM-vXp">
                                             <size key="itemSize" width="374" height="174"/>
@@ -108,13 +112,14 @@
                                 <constraints>
                                     <constraint firstItem="a7M-XO-UBB" firstAttribute="width" secondItem="ucV-Cw-bjs" secondAttribute="width" id="DdP-UL-pAb"/>
                                     <constraint firstItem="d3s-gt-K7N" firstAttribute="width" secondItem="ucV-Cw-bjs" secondAttribute="width" multiplier="0.8" id="v7X-xu-32a"/>
+                                    <constraint firstItem="QBE-As-fMQ" firstAttribute="width" secondItem="ucV-Cw-bjs" secondAttribute="width" id="ywW-Zf-iYP"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8nF-zm-yTH" firstAttribute="trailing" secondItem="ucV-Cw-bjs" secondAttribute="trailing" id="7sQ-U6-t5f"/>
-                            <constraint firstItem="ucV-Cw-bjs" firstAttribute="top" secondItem="8nF-zm-yTH" secondAttribute="top" constant="10" id="lyk-hy-nxu"/>
+                            <constraint firstItem="ucV-Cw-bjs" firstAttribute="top" secondItem="8nF-zm-yTH" secondAttribute="top" id="lyk-hy-nxu"/>
                             <constraint firstItem="8nF-zm-yTH" firstAttribute="bottom" secondItem="ucV-Cw-bjs" secondAttribute="bottom" id="qvU-a5-3E9"/>
                             <constraint firstItem="ucV-Cw-bjs" firstAttribute="leading" secondItem="8nF-zm-yTH" secondAttribute="leading" id="zzb-F7-F2f"/>
                         </constraints>
@@ -123,6 +128,7 @@
                     <navigationItem key="navigationItem" id="3Nv-Vt-BqQ"/>
                     <connections>
                         <outlet property="collectionView" destination="a7M-XO-UBB" id="kAR-Wr-N0U"/>
+                        <outlet property="searchBar" destination="QBE-As-fMQ" id="G6W-fn-6zx"/>
                         <outlet property="timeFrameSegmentControl" destination="d3s-gt-K7N" id="uiT-tw-fbp"/>
                     </connections>
                 </viewController>

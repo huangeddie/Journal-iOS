@@ -11,6 +11,7 @@ import UIKit
 class EntryCollectionViewController: UIViewController {
 
     // MARK: Properties
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var timeFrameSegmentControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
     var entryHistorian: EntryHistorian = EntryHistorian.historian
@@ -21,6 +22,20 @@ class EntryCollectionViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        // Search Bar
+        searchBar.delegate = self
+        // Add a "Cancel" button for the keyboard
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let cancelItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(resignKeyboard))
+        
+        
+        toolBar.setItems([flexibleSpace, cancelItem], animated: true)
+        
+        searchBar.inputAccessoryView = toolBar
         
         // TableView
         collectionView.delegate = self
@@ -67,11 +82,24 @@ class EntryCollectionViewController: UIViewController {
         guard let viewEntryVC = segue.destination as? ViewEntryViewController else {
             fatalError("First child is not a ViewEntryViewController")
         }
-        viewEntryVC.index = row
+        
+        // Collection row is not necessarily same as entry index due to keyword search
+        let words = searchBar.getLowerCaseWords()
+        let entry = entryHistorian.getEntry(forIndex: row, containingWords: words)
+        
+        let index = entryHistorian.getIndex(forEntry: entry)
+        
+        viewEntryVC.index = index
     }
  
     
     // MARK: Private functions
+    
+    @objc
+    private func resignKeyboard() {
+        searchBar.resignFirstResponder()
+    }
+    
     @objc
     private func receivedJournalChangeNotification() {
         entryHistorian.update()
@@ -105,6 +133,15 @@ class EntryCollectionViewController: UIViewController {
     }
 }
 
+extension EntryCollectionViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        collectionView.reloadData()
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+}
+
 extension EntryCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     private static let cellIdentifier = "entry_cell"
@@ -115,7 +152,9 @@ extension EntryCollectionViewController: UICollectionViewDelegate, UICollectionV
     
     // MARK: Data Source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return entryHistorian.numberOfEntries()
+        let words = searchBar.getLowerCaseWords()
+        
+        return entryHistorian.numberOfEntries(containingWords: words)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -123,7 +162,9 @@ extension EntryCollectionViewController: UICollectionViewDelegate, UICollectionV
             fatalError("Could not get proper cell")
         }
         
-        let entry = entryHistorian.getEntry(forIndex: indexPath.row)
+        let words = searchBar.getLowerCaseWords()
+        
+        let entry = entryHistorian.getEntry(forIndex: indexPath.row, containingWords: words)
         
         let df = DateFormatter()
         df.dateStyle = .medium

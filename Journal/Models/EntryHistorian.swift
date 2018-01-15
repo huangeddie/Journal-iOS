@@ -30,9 +30,31 @@ class EntryHistorian {
     }
     
     // MARK: Public
-    func getEntry(forIndex index: Int) -> Entry {
-        guard index < entries.count else {
-            fatalError("Index out of bounds")
+    func getEntry(forIndex index: Int, containingWords words: [String]? = nil) -> Entry {
+        if let words = words {
+            var currentIndex = -1
+            for entry in entries {
+                
+                var containsAllWords = true
+                for word in words {
+                    let lowercaseText = entry.text.lowercased()
+                    let lowercaseTitle = entry.title.lowercased()
+                    if !lowercaseText.contains(word) && !lowercaseTitle.contains(word) {
+                        containsAllWords = false
+                        break
+                    }
+                }
+                
+                if containsAllWords {
+                    currentIndex += 1
+                }
+                
+                if currentIndex == index {
+                    return entry
+                }
+            }
+            
+            fatalError("Should've found an entry")
         }
         
         let entry = entries[index]
@@ -60,6 +82,14 @@ class EntryHistorian {
             print("Error: \(error)")
             fatalError("Error getting entries")
         }
+    }
+    
+    func getIndex(forEntry entry: Entry) -> Int {
+        guard let index = entries.index(of: entry) else {
+            fatalError("Expected valid index")
+        }
+        
+        return index
     }
     
     func addEntry(title: String, text: String, date: Date) {
@@ -105,7 +135,24 @@ class EntryHistorian {
         PersistentService.saveContext()
     }
     
-    func numberOfEntries() -> Int {
+    func numberOfEntries(containingWords words: [String]? = nil) -> Int {
+        if let words = words {
+            let predicateCount = entries.reduce(0, { (result, entry) -> Int in
+                var containsAllWords = true
+                for word in words {
+                    let lowercaseText = entry.text.lowercased()
+                    let lowercaseTitle = entry.title.lowercased()
+                    if !lowercaseText.contains(word) && !lowercaseTitle.contains(word) {
+                        containsAllWords = false
+                        break
+                    }
+                }
+                
+                return containsAllWords ? result + 1 : result
+            })
+            
+            return predicateCount
+        }
         return entries.count
     }
     
