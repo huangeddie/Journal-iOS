@@ -35,17 +35,7 @@ class EntryHistorian {
             var currentIndex = -1
             for entry in entries {
                 
-                var containsAllWords = true
-                for word in words {
-                    let lowercaseText = entry.text.lowercased()
-                    let lowercaseTitle = entry.title.lowercased()
-                    if !lowercaseText.contains(word) && !lowercaseTitle.contains(word) {
-                        containsAllWords = false
-                        break
-                    }
-                }
-                
-                if containsAllWords {
+                if containsAllWords(entry: entry, words: words) {
                     currentIndex += 1
                 }
                 
@@ -138,17 +128,9 @@ class EntryHistorian {
     func numberOfEntries(containingWords words: [String]? = nil) -> Int {
         if let words = words {
             let predicateCount = entries.reduce(0, { (result, entry) -> Int in
-                var containsAllWords = true
-                for word in words {
-                    let lowercaseText = entry.text.lowercased()
-                    let lowercaseTitle = entry.title.lowercased()
-                    if !lowercaseText.contains(word) && !lowercaseTitle.contains(word) {
-                        containsAllWords = false
-                        break
-                    }
-                }
+                let containsAll = containsAllWords(entry: entry, words: words)
                 
-                return containsAllWords ? result + 1 : result
+                return containsAll ? result + 1 : result
             })
             
             return predicateCount
@@ -196,6 +178,20 @@ class EntryHistorian {
     }
     
     // MARK: Private functions
+    private func containsAllWords(entry: Entry, words: [String]) -> Bool {
+        var containsAllWords = true
+        for word in words {
+            let lowercaseText = entry.text.lowercased()
+            let lowercaseTitle = entry.title.lowercased()
+            if !lowercaseText.contains(word) && !lowercaseTitle.contains(word) {
+                containsAllWords = false
+                break
+            }
+        }
+        
+        return containsAllWords
+    }
+    
     @objc
     private func receivedContextChangedNotification() {
         update()
