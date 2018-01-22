@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Theme stuff
+        let sharedApplication = UIApplication.shared
+        sharedApplication.delegate?.window??.tintColor = .black
+        
         return true
     }
     

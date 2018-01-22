@@ -278,7 +278,7 @@
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="backColor">
-                                        <color key="value" red="0.88481062789999998" green="0.86845339109999997" blue="0.58907545240000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.80391345046082952" green="0.80391345046082952" blue="0.80391345046082952" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                         <real key="value" value="1"/>

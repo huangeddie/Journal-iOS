@@ -14,28 +14,28 @@ class NewEntryButton: UIButton {
     @IBInspectable
     var plusWidth: CGFloat = 10 {
         didSet {
-            setNeedsDisplay()
+            setup()
         }
     }
     
     @IBInspectable
     var plusSizeToFrameRatio: CGFloat = 0.8 {
         didSet {
-            setNeedsDisplay()
+            setup()
         }
     }
     
     @IBInspectable
     var plusColor: UIColor = .white {
         didSet {
-            setNeedsDisplay()
+            setup()
         }
     }
     
     @IBInspectable
     var backColor: UIColor = .black {
         didSet {
-            setNeedsDisplay()
+            setup()
         }
     }
     
