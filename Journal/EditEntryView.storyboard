@@ -37,7 +37,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="hdg-hf-EPk"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="Xo9-RD-g7K">
                                         <rect key="frame" x="0.0" y="130" width="375" height="423"/>

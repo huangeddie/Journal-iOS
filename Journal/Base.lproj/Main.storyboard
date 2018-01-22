@@ -260,7 +260,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuk-qd-cep">
-                                <rect key="frame" x="129" y="520" width="116" height="44"/>
+                                <rect key="frame" x="129" y="494" width="116" height="44"/>
                                 <color key="backgroundColor" red="0.46666666870000001" green="0.76470589639999997" blue="0.26666668059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="New Entry"/>
@@ -275,7 +275,7 @@
                             <constraint firstItem="yuk-qd-cep" firstAttribute="centerX" secondItem="CiG-7E-LxR" secondAttribute="centerX" id="Nwv-9k-vsL"/>
                             <constraint firstItem="Mwt-uJ-Osb" firstAttribute="width" secondItem="HHw-BH-f4j" secondAttribute="width" multiplier="0.9" id="b1f-VB-aY7"/>
                             <constraint firstItem="Mwt-uJ-Osb" firstAttribute="top" secondItem="HHw-BH-f4j" secondAttribute="top" id="cv9-q9-vfd"/>
-                            <constraint firstItem="HHw-BH-f4j" firstAttribute="bottom" secondItem="yuk-qd-cep" secondAttribute="bottom" constant="54" id="cxJ-Ba-K4k"/>
+                            <constraint firstItem="HHw-BH-f4j" firstAttribute="bottom" secondItem="yuk-qd-cep" secondAttribute="bottom" constant="80" id="cxJ-Ba-K4k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HHw-BH-f4j"/>
                     </view>
