@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sharedApplication = UIApplication.shared
         sharedApplication.delegate?.window??.tintColor = .black
         
+        let titleFont = UIFont.systemFont(ofSize: 25, weight: .heavy)
+        UINavigationBar.appearance().titleTextAttributes = [.font: titleFont]
+        
         return true
     }
     
