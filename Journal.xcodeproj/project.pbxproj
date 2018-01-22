@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C283F8E200D2ED100B8F52F /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C283F8D200D2ED100B8F52F /* UISearchBar.swift */; };
 		2C283F90200D335300B8F52F /* FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C283F8F200D335300B8F52F /* FirstResponder.swift */; };
+		2C4C89AD201682E700EFA2C3 /* EntryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C89AC201682E700EFA2C3 /* EntryCollectionView.swift */; };
 		2C6252272004715600D75065 /* Journal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252252004715600D75065 /* Journal+CoreDataClass.swift */; };
 		2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */; };
 		2C62522A2004796E00D75065 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252292004796E00D75065 /* NewEntryViewController.swift */; };
@@ -53,6 +54,7 @@
 		24462FA03F935B76BB640C8F /* Pods-Journal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Journal/Pods-Journal.debug.xcconfig"; sourceTree = "<group>"; };
 		2C283F8D200D2ED100B8F52F /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		2C283F8F200D335300B8F52F /* FirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponder.swift; sourceTree = "<group>"; };
+		2C4C89AC201682E700EFA2C3 /* EntryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionView.swift; sourceTree = "<group>"; };
 		2C6252252004715600D75065 /* Journal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C6252292004796E00D75065 /* NewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		2CEB588D20087B22001EDEDC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2C4C89AC201682E700EFA2C3 /* EntryCollectionView.swift */,
 				2CEB588E20087BBE001EDEDC /* EntryCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -452,6 +455,7 @@
 				2CEB5893200A7019001EDEDC /* Exporter.swift in Sources */,
 				2CD4839020042C3400606D32 /* EntryCollectionViewController.swift in Sources */,
 				2CD4839420042E1900606D32 /* TimeFrame.swift in Sources */,
+				2C4C89AD201682E700EFA2C3 /* EntryCollectionView.swift in Sources */,
 				2CEB5895200A7AFD001EDEDC /* DateChangerViewController.swift in Sources */,
 				2C6252272004715600D75065 /* Journal+CoreDataClass.swift in Sources */,
 				2C7FB81B2003F47100554B70 /* PersistentService.swift in Sources */,

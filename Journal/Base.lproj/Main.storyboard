@@ -39,7 +39,7 @@
                                             <segment title="All"/>
                                         </segments>
                                     </segmentedControl>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a7M-XO-UBB">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a7M-XO-UBB" customClass="EntryCollectionView" customModule="Journal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="98" width="375" height="456"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="szP-XM-vXp">
@@ -50,7 +50,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="entry_cell" id="Pgw-jm-iFc" customClass="EntryCollectionViewCell" customModule="Journal" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="355" height="174"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="355" height="174"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="355" height="174"/>
@@ -112,6 +112,14 @@
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="topAndBottomContentInsets">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="sideContentInsets">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </collectionView>
                                 </subviews>
                                 <constraints>
@@ -132,7 +140,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="3Nv-Vt-BqQ"/>
                     <connections>
-                        <outlet property="collectionView" destination="a7M-XO-UBB" id="kAR-Wr-N0U"/>
+                        <outlet property="collectionView" destination="a7M-XO-UBB" id="yT9-e0-Fh8"/>
                         <outlet property="searchBar" destination="QBE-As-fMQ" id="G6W-fn-6zx"/>
                         <outlet property="timeFrameSegmentControl" destination="d3s-gt-K7N" id="uiT-tw-fbp"/>
                     </connections>

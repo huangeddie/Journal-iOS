@@ -13,7 +13,7 @@ class EntryCollectionViewController: UIViewController {
     // MARK: Properties
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var timeFrameSegmentControl: UISegmentedControl!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: EntryCollectionView!
     var entryHistorian: EntryHistorian = EntryHistorian.historian
     
     // MARK: UIViewController
@@ -30,7 +30,6 @@ class EntryCollectionViewController: UIViewController {
         // Collection View
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10)
         
         // SegmentControl
         timeFrameSegmentControl.addTarget(self, action: #selector(segmentControlValueDidChange), for: .valueChanged)
