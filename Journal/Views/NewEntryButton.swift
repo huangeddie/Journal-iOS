@@ -74,7 +74,6 @@ class NewEntryButton: UIButton {
         let circlePath = UIBezierPath(ovalIn: CGRect(origin: .zero, size: CGSize(width: length, height: length)))
         backColor.set()
         circlePath.fill()
-        circlePath.stroke()
         
         // Add a plus
         let drawer = UIBezierPath()
@@ -97,6 +96,6 @@ class NewEntryButton: UIButton {
         
         // Add a shadow
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 5, height: 5)
+        layer.shadowOffset = CGSize(width: 0, height: 5)
     }
 }
