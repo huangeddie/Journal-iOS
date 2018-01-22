@@ -8,7 +8,17 @@
 
 import UIKit
 
+@IBDesignable
 class EntryCollectionViewCell: UICollectionViewCell {
+    
+    @IBInspectable
+    var cornerRadius: CGFloat = 0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+            layer.masksToBounds = cornerRadius > 0
+        }
+    }
+    
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var titleLabel: UILabel!
