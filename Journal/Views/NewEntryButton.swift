@@ -53,6 +53,13 @@ class NewEntryButton: UIButton {
         }
     }
     
+    @IBInspectable
+    var shadowOffset: CGSize = CGSize(width: 0, height: 5) {
+        didSet {
+            layer.shadowOffset = shadowOffset
+        }
+    }
+    
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setup()
@@ -96,6 +103,8 @@ class NewEntryButton: UIButton {
         
         // Add a shadow
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowOffset = shadowOffset
+        layer.shadowRadius = shadowRadius
+        layer.shadowOpacity = shadowOpacity
     }
 }

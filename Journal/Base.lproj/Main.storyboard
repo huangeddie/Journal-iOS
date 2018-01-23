@@ -44,7 +44,7 @@
                                                 </segments>
                                             </segmentedControl>
                                         </subviews>
-                                        <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="d3s-gt-K7N" firstAttribute="centerY" secondItem="Num-5i-IJT" secondAttribute="centerY" id="6xH-4W-DMi"/>
                                             <constraint firstItem="d3s-gt-K7N" firstAttribute="centerX" secondItem="Num-5i-IJT" secondAttribute="centerX" id="8NE-hA-YA8"/>
@@ -53,41 +53,36 @@
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a7M-XO-UBB" customClass="EntryCollectionView" customModule="Journal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="96.5" width="375" height="457.5"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="szP-XM-vXp">
-                                            <size key="itemSize" width="355" height="174"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <collectionViewLayout key="collectionViewLayout" id="Psx-Vf-JoG" customClass="EntryCollectionViewLayout" customModule="Journal" customModuleProvider="target"/>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="entry_cell" id="Pgw-jm-iFc" customClass="EntryCollectionViewCell" customModule="Journal" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="174"/>
+                                                <rect key="frame" x="2.5" y="0.0" width="350" height="200"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="174"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-5D-rsM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="354" height="174"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDw-5D-rsM" customClass="EntryCollectionViewCellMainView" customModule="Journal" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dwx-wp-r5H">
-                                                                    <rect key="frame" x="18" y="8.5" width="319.5" height="157"/>
+                                                                    <rect key="frame" x="17.5" y="15.5" width="315" height="170.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Nov 23, 1937 3:30 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHb-He-DTd">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="319.5" height="12"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="315" height="12"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="10"/>
                                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kXU-BC-4wd">
-                                                                            <rect key="frame" x="0.0" y="22" width="319.5" height="24"/>
+                                                                            <rect key="frame" x="0.0" y="22" width="315" height="24"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8u-hk-717">
-                                                                            <rect key="frame" x="0.0" y="56" width="319.5" height="101"/>
+                                                                            <rect key="frame" x="0.0" y="56" width="315" height="114.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -95,22 +90,38 @@
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstItem="dwx-wp-r5H" firstAttribute="height" secondItem="kDw-5D-rsM" secondAttribute="height" multiplier="0.9" id="1ap-cf-irg"/>
-                                                                <constraint firstItem="dwx-wp-r5H" firstAttribute="width" secondItem="kDw-5D-rsM" secondAttribute="width" multiplier="0.9" id="QDx-4J-dXA"/>
-                                                                <constraint firstItem="dwx-wp-r5H" firstAttribute="centerX" secondItem="kDw-5D-rsM" secondAttribute="centerX" id="Qu7-HO-yeE"/>
-                                                                <constraint firstItem="dwx-wp-r5H" firstAttribute="centerY" secondItem="kDw-5D-rsM" secondAttribute="centerY" id="neD-Mt-VxT"/>
+                                                                <constraint firstItem="dwx-wp-r5H" firstAttribute="height" secondItem="kDw-5D-rsM" secondAttribute="height" multiplier="0.85" id="0PM-I8-LvB"/>
+                                                                <constraint firstItem="dwx-wp-r5H" firstAttribute="centerY" secondItem="kDw-5D-rsM" secondAttribute="centerY" id="as4-Ll-Hlk"/>
+                                                                <constraint firstItem="dwx-wp-r5H" firstAttribute="width" secondItem="kDw-5D-rsM" secondAttribute="width" multiplier="0.9" id="eib-NT-7Uq"/>
+                                                                <constraint firstItem="dwx-wp-r5H" firstAttribute="centerX" secondItem="kDw-5D-rsM" secondAttribute="centerX" id="sdr-vC-rx6"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                    <real key="value" value="0.20000000000000001"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                    <size key="value" width="0.0" height="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                 </view>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="kDw-5D-rsM" secondAttribute="trailing" id="T25-hQ-aMg"/>
                                                     <constraint firstItem="kDw-5D-rsM" firstAttribute="leading" secondItem="Pgw-jm-iFc" secondAttribute="leading" id="otv-v4-LzW"/>
                                                     <constraint firstItem="kDw-5D-rsM" firstAttribute="top" secondItem="Pgw-jm-iFc" secondAttribute="top" id="vXo-0H-4aC"/>
                                                     <constraint firstAttribute="bottom" secondItem="kDw-5D-rsM" secondAttribute="bottom" id="w27-XD-GWr"/>
                                                 </constraints>
+                                                <size key="customSize" width="350" height="200"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="24"/>
@@ -169,16 +180,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1ON-Hn-4OP">
-                                <rect key="frame" x="0.0" y="74" width="375" height="544"/>
+                                <rect key="frame" x="0.0" y="74" width="0.0" height="544"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Jan 1, 2018 at 12:00pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ded-a1-LvV">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="16"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="16"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" scrollEnabled="NO" editable="NO" text="Title" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ucc-6V-rn5">
-                                        <rect key="frame" x="0.0" y="16" width="375" height="30"/>
+                                        <rect key="frame" x="0.0" y="16" width="0.0" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="cte-4O-E1M"/>
@@ -187,7 +198,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FW7-8z-sxn">
-                                        <rect key="frame" x="0.0" y="46" width="375" height="498"/>
+                                        <rect key="frame" x="0.0" y="46" width="0.0" height="498"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
