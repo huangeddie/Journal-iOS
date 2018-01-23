@@ -155,7 +155,7 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
     
     // MARK: Data Source
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
+        let row = indexPath.section
         let journal = journalLibrarian.getJournal(forIndex: row)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: JournalTableViewController.cellIdentifier, for: indexPath)
@@ -166,10 +166,19 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        return 1
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if self.tableView === tableView {
             return journalLibrarian.numberOfJournals()
         }
-        return 0
+        fatalError("Unexpected table view")
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 20
+    }
 }

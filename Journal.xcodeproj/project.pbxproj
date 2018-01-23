@@ -14,6 +14,7 @@
 		2C53E8132016A96100E3A02D /* JournalTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8122016A96100E3A02D /* JournalTableView.swift */; };
 		2C53E8172016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8162016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift */; };
 		2C53E8192016B2C000E3A02D /* EntryCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8182016B2C000E3A02D /* EntryCollectionViewLayout.swift */; };
+		2C53E81D2016BA2A00E3A02D /* JournalTableCellMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E81C2016BA2A00E3A02D /* JournalTableCellMainView.swift */; };
 		2C6252272004715600D75065 /* Journal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252252004715600D75065 /* Journal+CoreDataClass.swift */; };
 		2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */; };
 		2C62522A2004796E00D75065 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252292004796E00D75065 /* NewEntryViewController.swift */; };
@@ -63,6 +64,7 @@
 		2C53E8122016A96100E3A02D /* JournalTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableView.swift; sourceTree = "<group>"; };
 		2C53E8162016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewCellMainView.swift; sourceTree = "<group>"; };
 		2C53E8182016B2C000E3A02D /* EntryCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewLayout.swift; sourceTree = "<group>"; };
+		2C53E81C2016BA2A00E3A02D /* JournalTableCellMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalTableCellMainView.swift; sourceTree = "<group>"; };
 		2C6252252004715600D75065 /* Journal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C6252292004796E00D75065 /* NewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		2CEB588D20087B22001EDEDC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2C53E81C2016BA2A00E3A02D /* JournalTableCellMainView.swift */,
 				2C53E8182016B2C000E3A02D /* EntryCollectionViewLayout.swift */,
 				2C53E8122016A96100E3A02D /* JournalTableView.swift */,
 				2C4C89AE2016858600EFA2C3 /* NewEntryButton.swift */,
@@ -484,6 +487,7 @@
 				2C62522A2004796E00D75065 /* NewEntryViewController.swift in Sources */,
 				2C62522C200480C200D75065 /* JournalTableViewController.swift in Sources */,
 				2C283F8E200D2ED100B8F52F /* UISearchBar.swift in Sources */,
+				2C53E81D2016BA2A00E3A02D /* JournalTableCellMainView.swift in Sources */,
 				2C7FB817200315EE00554B70 /* EditEntryViewController.swift in Sources */,
 				2C4C89AF2016858600EFA2C3 /* NewEntryButton.swift in Sources */,
 				2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */,
