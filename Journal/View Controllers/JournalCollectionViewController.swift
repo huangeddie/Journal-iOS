@@ -1,5 +1,5 @@
 //
-//  JournalTableViewController.swift
+//  JournalCollectionViewController.swift
 //  Journal
 //
 //  Created by Edward Huang on 1/8/18.
@@ -9,11 +9,13 @@
 import UIKit
 import MessageUI
 
-class JournalTableViewController: UIViewController {
+class JournalCollectionViewController: UIViewController {
 
     // MARK: Properties
     let journalLibrarian = JournalLibrarian.librarian
-    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     
     // MARK: UIViewController
     override func viewDidLoad() {
@@ -33,8 +35,8 @@ class JournalTableViewController: UIViewController {
         journalLibrarian.update()
         
         // Setup the table view
-        tableView.delegate = self
-        tableView.dataSource = self
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,22 +106,23 @@ class JournalTableViewController: UIViewController {
     private func receivedContextChangedNotification() {
         // A journal might have been added
         journalLibrarian.update()
-        tableView.reloadData()
+        collectionView.reloadData()
     }
 }
 
-extension JournalTableViewController: MFMailComposeViewControllerDelegate {
+extension JournalCollectionViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
 }
 
-extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension JournalCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     static let cellIdentifier = "journal_cell"
     
     // MARK: Delegate
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let row = indexPath.row
         
         let selectedJournal = journalLibrarian.getJournal(forIndex: row)
@@ -127,58 +130,22 @@ extension JournalTableViewController: UITableViewDelegate, UITableViewDataSource
         journalLibrarian.setCurrentJournal(journal: selectedJournal)
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableView.beginUpdates()
-            let row = indexPath.row
-            let journal = journalLibrarian.getJournal(forIndex: row)
-            journalLibrarian.deleteJournal(atIndex: row)
-            
-            if journal.id != 0 {
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            } else {
-                let alert = UIAlertController(title: "All entries have been deleted", message: "This default journal cannot be deleted, but all of its entries have been deleted for you", preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                    alert.dismiss(animated: true, completion: nil)
-                })
-                alert.addAction(okAction)
-                present(alert, animated: true, completion: nil)
-            }
-            tableView.endUpdates()
-        }
-    }
-    
     // MARK: Data Source
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.section
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let row = indexPath.row
         let journal = journalLibrarian.getJournal(forIndex: row)
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: JournalTableViewController.cellIdentifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JournalCollectionViewController.cellIdentifier, for: indexPath) as? JournalCollectionViewCell else {
+            fatalError("Unknown collection view cell")
+        }
         
-        cell.textLabel?.text = journal.name
+        cell.title?.text = journal.name
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if self.tableView === tableView {
-            return journalLibrarian.numberOfJournals()
-        }
-        fatalError("Unexpected table view")
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return journalLibrarian.numberOfJournals()
     }
 }
