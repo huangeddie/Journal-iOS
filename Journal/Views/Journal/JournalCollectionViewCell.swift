@@ -9,6 +9,10 @@
 import UIKit
 
 class JournalCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var view: UIView!
+    @IBOutlet weak var view: JournalCollectionViewCellMainView!
     @IBOutlet weak var title: UILabel!
+    override func draw(_ rect: CGRect) {
+        clipsToBounds = false
+        layer.masksToBounds = false
+    }
 }

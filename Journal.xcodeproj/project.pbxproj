@@ -14,6 +14,8 @@
 		2C53E8172016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8162016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift */; };
 		2C53E8192016B2C000E3A02D /* EntryCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8182016B2C000E3A02D /* EntryCollectionViewLayout.swift */; };
 		2C53E8242019259F00E3A02D /* JournalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8232019259F00E3A02D /* JournalCollectionViewCell.swift */; };
+		2C53E826201927D500E3A02D /* JournalCollectionViewCellMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E825201927D500E3A02D /* JournalCollectionViewCellMainView.swift */; };
+		2C53E82920192A7900E3A02D /* JournalCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E82820192A7900E3A02D /* JournalCollectionViewLayout.swift */; };
 		2C6252272004715600D75065 /* Journal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252252004715600D75065 /* Journal+CoreDataClass.swift */; };
 		2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */; };
 		2C62522A2004796E00D75065 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6252292004796E00D75065 /* NewEntryViewController.swift */; };
@@ -63,6 +65,8 @@
 		2C53E8162016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewCellMainView.swift; sourceTree = "<group>"; };
 		2C53E8182016B2C000E3A02D /* EntryCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewLayout.swift; sourceTree = "<group>"; };
 		2C53E8232019259F00E3A02D /* JournalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewCell.swift; sourceTree = "<group>"; };
+		2C53E825201927D500E3A02D /* JournalCollectionViewCellMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewCellMainView.swift; sourceTree = "<group>"; };
+		2C53E82820192A7900E3A02D /* JournalCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewLayout.swift; sourceTree = "<group>"; };
 		2C6252252004715600D75065 /* Journal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2C6252262004715600D75065 /* Journal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2C6252292004796E00D75065 /* NewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +133,16 @@
 				2C53E8162016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift */,
 			);
 			path = Entry;
+			sourceTree = "<group>";
+		};
+		2C53E8272019281E00E3A02D /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				2C53E82820192A7900E3A02D /* JournalCollectionViewLayout.swift */,
+				2C53E8232019259F00E3A02D /* JournalCollectionViewCell.swift */,
+				2C53E825201927D500E3A02D /* JournalCollectionViewCellMainView.swift */,
+			);
+			path = Journal;
 			sourceTree = "<group>";
 		};
 		2C62522F2005205200D75065 /* Core Data */ = {
@@ -222,7 +236,7 @@
 		2CEB588D20087B22001EDEDC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2C53E8232019259F00E3A02D /* JournalCollectionViewCell.swift */,
+				2C53E8272019281E00E3A02D /* Journal */,
 				2C4C89AE2016858600EFA2C3 /* NewEntryButton.swift */,
 				2C53E81E2016D1F100E3A02D /* Entry */,
 			);
@@ -488,6 +502,7 @@
 				2C6252312005208800D75065 /* Notifications.swift in Sources */,
 				2C7FB7FC2003147F00554B70 /* Journal.xcdatamodeld in Sources */,
 				2C625233200672F300D75065 /* Downloader.swift in Sources */,
+				2C53E82920192A7900E3A02D /* JournalCollectionViewLayout.swift in Sources */,
 				2C62522E2004827100D75065 /* JournalLibrarian.swift in Sources */,
 				2C62522A2004796E00D75065 /* NewEntryViewController.swift in Sources */,
 				2C62522C200480C200D75065 /* JournalCollectionViewController.swift in Sources */,
@@ -495,6 +510,7 @@
 				2C7FB817200315EE00554B70 /* EditEntryViewController.swift in Sources */,
 				2C4C89AF2016858600EFA2C3 /* NewEntryButton.swift in Sources */,
 				2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */,
+				2C53E826201927D500E3A02D /* JournalCollectionViewCellMainView.swift in Sources */,
 				2C283F90200D335300B8F52F /* FirstResponder.swift in Sources */,
 				2C7FB7F42003147F00554B70 /* AppDelegate.swift in Sources */,
 				2CEB588F20087BBE001EDEDC /* EntryCollectionViewCell.swift in Sources */,

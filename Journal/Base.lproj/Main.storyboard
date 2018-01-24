@@ -417,61 +417,88 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="okQ-lp-CW1">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lZH-r5-3hk">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kdY-5x-7FK">
-                                    <size key="itemSize" width="146" height="117"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="journal_cell" id="Giu-ws-4VM" customClass="JournalCollectionViewCell" customModule="Journal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="146" height="117"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="146" height="117"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMy-jl-vyR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="146" height="117"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="okQ-lp-CW1">
+                                        <rect key="frame" x="25" y="25" width="325" height="504"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewLayout key="collectionViewLayout" id="VBY-cm-COl" customClass="JournalCollectionViewLayout" customModule="Journal" customModuleProvider="target"/>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="journal_cell" id="Giu-ws-4VM" customClass="JournalCollectionViewCell" customModule="Journal" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Journal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3g-5R-LmN">
-                                                            <rect key="frame" x="44.5" y="48" width="57" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMy-jl-vyR" customClass="JournalCollectionViewCellMainView" customModule="Journal" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Journal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3g-5R-LmN">
+                                                                    <rect key="frame" x="45" y="49.5" width="60" height="21"/>
+                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="O3g-5R-LmN" firstAttribute="centerX" secondItem="tMy-jl-vyR" secondAttribute="centerX" id="JUV-xy-heN"/>
+                                                                <constraint firstItem="O3g-5R-LmN" firstAttribute="centerY" secondItem="tMy-jl-vyR" secondAttribute="centerY" id="eCO-VS-TpS"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                    <real key="value" value="0.20000000000000001"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                    <size key="value" width="0.0" height="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="backColor">
+                                                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstItem="O3g-5R-LmN" firstAttribute="centerX" secondItem="tMy-jl-vyR" secondAttribute="centerX" id="JUV-xy-heN"/>
-                                                        <constraint firstItem="O3g-5R-LmN" firstAttribute="centerY" secondItem="tMy-jl-vyR" secondAttribute="centerY" id="eCO-VS-TpS"/>
-                                                    </constraints>
                                                 </view>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="tMy-jl-vyR" firstAttribute="top" secondItem="Giu-ws-4VM" secondAttribute="top" id="PV0-6Y-9m5"/>
-                                            <constraint firstItem="tMy-jl-vyR" firstAttribute="leading" secondItem="Giu-ws-4VM" secondAttribute="leading" id="QWe-n3-CQb"/>
-                                            <constraint firstAttribute="trailing" secondItem="tMy-jl-vyR" secondAttribute="trailing" id="Vg6-k7-ORC"/>
-                                            <constraint firstAttribute="bottom" secondItem="tMy-jl-vyR" secondAttribute="bottom" id="tnL-6t-Ctf"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="title" destination="O3g-5R-LmN" id="yfq-d7-XrV"/>
-                                            <outlet property="view" destination="tMy-jl-vyR" id="9Cn-7o-vtr"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="tMy-jl-vyR" firstAttribute="top" secondItem="Giu-ws-4VM" secondAttribute="top" id="PV0-6Y-9m5"/>
+                                                    <constraint firstItem="tMy-jl-vyR" firstAttribute="leading" secondItem="Giu-ws-4VM" secondAttribute="leading" id="QWe-n3-CQb"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tMy-jl-vyR" secondAttribute="trailing" id="Vg6-k7-ORC"/>
+                                                    <constraint firstAttribute="bottom" secondItem="tMy-jl-vyR" secondAttribute="bottom" id="tnL-6t-Ctf"/>
+                                                </constraints>
+                                                <size key="customSize" width="150" height="120"/>
+                                                <connections>
+                                                    <outlet property="title" destination="O3g-5R-LmN" id="yfq-d7-XrV"/>
+                                                    <outlet property="view" destination="tMy-jl-vyR" id="9Cn-7o-vtr"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="okQ-lp-CW1" firstAttribute="leading" secondItem="lZH-r5-3hk" secondAttribute="leading" constant="25" id="0w9-Nu-XTD"/>
+                                    <constraint firstItem="okQ-lp-CW1" firstAttribute="top" secondItem="lZH-r5-3hk" secondAttribute="top" constant="25" id="8n3-ud-UxJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="okQ-lp-CW1" secondAttribute="bottom" constant="25" id="Imt-6z-zdE"/>
+                                    <constraint firstAttribute="trailing" secondItem="okQ-lp-CW1" secondAttribute="trailing" constant="25" id="W0f-cG-RkP"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="okQ-lp-CW1" firstAttribute="top" secondItem="X4P-hU-sJE" secondAttribute="top" id="7uv-X0-4O3"/>
-                            <constraint firstItem="X4P-hU-sJE" firstAttribute="bottom" secondItem="okQ-lp-CW1" secondAttribute="bottom" id="i1y-rg-Qc2"/>
-                            <constraint firstItem="okQ-lp-CW1" firstAttribute="leading" secondItem="X4P-hU-sJE" secondAttribute="leading" id="m8Y-tv-EXM"/>
-                            <constraint firstItem="X4P-hU-sJE" firstAttribute="trailing" secondItem="okQ-lp-CW1" secondAttribute="trailing" id="wLe-Hq-WQX"/>
+                            <constraint firstItem="lZH-r5-3hk" firstAttribute="leading" secondItem="X4P-hU-sJE" secondAttribute="leading" id="4Vv-pT-YR4"/>
+                            <constraint firstItem="X4P-hU-sJE" firstAttribute="trailing" secondItem="lZH-r5-3hk" secondAttribute="trailing" id="N4s-AY-9oW"/>
+                            <constraint firstItem="lZH-r5-3hk" firstAttribute="top" secondItem="X4P-hU-sJE" secondAttribute="top" id="jsj-V7-14e"/>
+                            <constraint firstItem="X4P-hU-sJE" firstAttribute="bottom" secondItem="lZH-r5-3hk" secondAttribute="bottom" id="wwV-Im-IXf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X4P-hU-sJE"/>
                     </view>
