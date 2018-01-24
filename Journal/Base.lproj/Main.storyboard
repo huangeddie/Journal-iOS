@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -56,8 +55,41 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <collectionViewLayout key="collectionViewLayout" id="Psx-Vf-JoG" customClass="EntryCollectionViewLayout" customModule="Journal" customModuleProvider="target"/>
                                         <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="time_group_cell" id="R6f-wH-r7Q">
+                                                <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEc-OH-ySn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtZ-pf-Zoz">
+                                                                    <rect key="frame" x="132.5" y="4" width="89.5" height="21"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstItem="mtZ-pf-Zoz" firstAttribute="centerX" secondItem="zEc-OH-ySn" secondAttribute="centerX" id="pxb-wj-wbg"/>
+                                                                <constraint firstItem="mtZ-pf-Zoz" firstAttribute="centerY" secondItem="zEc-OH-ySn" secondAttribute="centerY" id="yT8-Xv-2da"/>
+                                                            </constraints>
+                                                        </view>
+                                                    </subviews>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="zEc-OH-ySn" firstAttribute="top" secondItem="R6f-wH-r7Q" secondAttribute="top" id="NPK-np-pDY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zEc-OH-ySn" secondAttribute="trailing" id="c5S-xE-mKM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="zEc-OH-ySn" secondAttribute="bottom" id="dZS-AO-g2l"/>
+                                                    <constraint firstItem="zEc-OH-ySn" firstAttribute="leading" secondItem="R6f-wH-r7Q" secondAttribute="leading" id="iSz-Yg-4IX"/>
+                                                </constraints>
+                                                <size key="customSize" width="355" height="30"/>
+                                            </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="entry_cell" id="Pgw-jm-iFc" customClass="EntryCollectionViewCell" customModule="Journal" customModuleProvider="target">
-                                                <rect key="frame" x="2.5" y="0.0" width="350" height="200"/>
+                                                <rect key="frame" x="2.5" y="40" width="350" height="200"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
@@ -282,30 +314,35 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yuk-qd-cep" customClass="NewEntryButton" customModule="Journal" customModuleProvider="target">
-                                <rect key="frame" x="147" y="458" width="80" height="80"/>
+                                <rect key="frame" x="19" y="533" width="337.5" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="ChC-Xr-LJz"/>
-                                    <constraint firstAttribute="width" secondItem="yuk-qd-cep" secondAttribute="height" multiplier="1:1" id="RCU-Uq-UQ3"/>
+                                    <constraint firstAttribute="height" constant="40" id="uVb-a0-vKf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="New Entry">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="plusSizeToFrameRatio">
-                                        <real key="value" value="0.59999999999999998"/>
+                                        <real key="value" value="0.5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="plusColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="plusWidth">
-                                        <real key="value" value="8"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="backColor">
-                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                         <real key="value" value="0.20000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -317,9 +354,10 @@
                         <constraints>
                             <constraint firstItem="Mwt-uJ-Osb" firstAttribute="centerX" secondItem="CiG-7E-LxR" secondAttribute="centerX" id="BJI-1v-0gs"/>
                             <constraint firstItem="yuk-qd-cep" firstAttribute="centerX" secondItem="CiG-7E-LxR" secondAttribute="centerX" id="Nwv-9k-vsL"/>
+                            <constraint firstItem="yuk-qd-cep" firstAttribute="width" secondItem="CiG-7E-LxR" secondAttribute="width" multiplier="0.9" id="UPy-Dc-wR9"/>
                             <constraint firstItem="Mwt-uJ-Osb" firstAttribute="width" secondItem="HHw-BH-f4j" secondAttribute="width" multiplier="0.9" id="b1f-VB-aY7"/>
                             <constraint firstItem="Mwt-uJ-Osb" firstAttribute="top" secondItem="HHw-BH-f4j" secondAttribute="top" id="cv9-q9-vfd"/>
-                            <constraint firstItem="HHw-BH-f4j" firstAttribute="bottom" secondItem="yuk-qd-cep" secondAttribute="bottom" constant="80" id="cxJ-Ba-K4k"/>
+                            <constraint firstItem="HHw-BH-f4j" firstAttribute="bottom" secondItem="yuk-qd-cep" secondAttribute="bottom" constant="45" id="cxJ-Ba-K4k"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HHw-BH-f4j"/>
                     </view>
@@ -330,7 +368,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LE2-Qq-P7k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1486" y="-651"/>
+            <point key="canvasLocation" x="1561" y="-651"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="CKp-dN-WdJ">
@@ -359,7 +397,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JC8-aU-Tjf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2581" y="-651"/>
+            <point key="canvasLocation" x="2656" y="-650"/>
         </scene>
         <!--EditEntryView-->
         <scene sceneID="5al-hs-Bu0">
@@ -436,10 +474,10 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="150" height="120"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Journal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3g-5R-LmN">
-                                                                    <rect key="frame" x="45" y="49.5" width="60" height="21"/>
+                                                                    <rect key="frame" x="41" y="48" width="69" height="24"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                                    <nil key="textColor"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -462,7 +500,7 @@
                                                                     <real key="value" value="10"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="backColor">
-                                                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>

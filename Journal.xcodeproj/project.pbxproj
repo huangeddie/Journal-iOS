@@ -236,9 +236,9 @@
 		2CEB588D20087B22001EDEDC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2C53E8272019281E00E3A02D /* Journal */,
 				2C4C89AE2016858600EFA2C3 /* NewEntryButton.swift */,
 				2C53E81E2016D1F100E3A02D /* Entry */,
+				2C53E8272019281E00E3A02D /* Journal */,
 			);
 			path = Views;
 			sourceTree = "<group>";

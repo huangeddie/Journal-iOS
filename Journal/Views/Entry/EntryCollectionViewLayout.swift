@@ -21,4 +21,5 @@ class EntryCollectionViewLayout: UICollectionViewFlowLayout {
         minimumLineSpacing = 20
         itemSize = CGSize(width: 350, height: 200)
     }
+
 }

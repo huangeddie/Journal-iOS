@@ -60,6 +60,13 @@ class NewEntryButton: UIButton {
         }
     }
     
+    @IBInspectable
+    var cornerRadius: CGFloat = 0 {
+        didSet {
+            setup()
+        }
+    }
+    
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         setup()
@@ -75,12 +82,12 @@ class NewEntryButton: UIButton {
     fileprivate func setup() {
         // Drawing code
         let length = self.frame.height
-        assert(length == self.frame.width)
+        let width = self.frame.width
         
         // Add a circle
-        let circlePath = UIBezierPath(ovalIn: CGRect(origin: .zero, size: CGSize(width: length, height: length)))
+        let roundedRectPath = UIBezierPath(roundedRect: CGRect(origin: .zero, size: CGSize(width: width, height: length)), cornerRadius: cornerRadius)
         backColor.set()
-        circlePath.fill()
+        roundedRectPath.fill()
         
         // Add a plus
         let drawer = UIBezierPath()
@@ -89,10 +96,10 @@ class NewEntryButton: UIButton {
         plusColor.set()
         
         // Points for the plus
-        let top = CGPoint(x: length/2, y: (length / 2) * (1 - plusSizeToFrameRatio))
-        let bottom = CGPoint(x: length/2, y: (length / 2) * (1 + plusSizeToFrameRatio))
-        let left = CGPoint(x: (length / 2) * (1 - plusSizeToFrameRatio), y: length/2)
-        let right = CGPoint(x: (length / 2) * (1 + plusSizeToFrameRatio), y: length/2)
+        let top = CGPoint(x: width/2, y: (length / 2) * (1 - plusSizeToFrameRatio))
+        let bottom = CGPoint(x: width/2, y: (length / 2) * (1 + plusSizeToFrameRatio))
+        let left = CGPoint(x: (width - plusSizeToFrameRatio * length) / 2, y: length/2)
+        let right = CGPoint(x: (width + plusSizeToFrameRatio * length) / 2, y: length/2)
         drawer.move(to: top)
         drawer.addLine(to: bottom)
         
