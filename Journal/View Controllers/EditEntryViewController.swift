@@ -17,7 +17,7 @@ class EditEntryViewController: UIViewController {
     var indexToEdit: Int!
     var newJournal: Journal!
     
-    private let defaultContentInsets = UIEdgeInsetsMake(0, 10, 10, 10)
+    private let defaultContentInsets = UIEdgeInsetsMake(0, 0, 0, 0)
     
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var textView: UITextView!

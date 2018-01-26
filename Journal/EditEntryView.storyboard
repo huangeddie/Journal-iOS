@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,11 +19,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YNj-2i-VXE">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YNj-2i-VXE">
+                                <rect key="frame" x="0.0" y="64" width="0.0" height="603"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fC8-lz-OXM">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="nb4-g4-cAV"/>
                                         </constraints>
@@ -31,7 +32,7 @@
                                         </date>
                                     </datePicker>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="nV2-k1-KNl">
-                                        <rect key="frame" x="0.0" y="80" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="80" width="0.0" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="hdg-hf-EPk"/>
@@ -40,20 +41,20 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="Xo9-RD-g7K">
-                                        <rect key="frame" x="0.0" y="130" width="375" height="423"/>
+                                        <rect key="frame" x="0.0" y="130" width="0.0" height="423"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqO-ld-iKu">
-                                        <rect key="frame" x="0.0" y="553" width="375" height="50"/>
+                                        <rect key="frame" x="0.0" y="553" width="0.0" height="50"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="PY4-qt-zwC" userLabel="Tool Bar">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bE8-AM-ZOb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="50"/>
                                                         <state key="normal" title="Change Journal"/>
                                                         <connections>
                                                             <action selector="changeJournalPressed:" destination="Afq-CV-Zlw" eventType="touchUpInside" id="tGY-wy-LdZ"/>
@@ -75,6 +76,12 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="CqO-ld-iKu" firstAttribute="width" secondItem="YNj-2i-VXE" secondAttribute="width" id="4gA-Tj-Ng4"/>
+                                    <constraint firstItem="fC8-lz-OXM" firstAttribute="width" secondItem="YNj-2i-VXE" secondAttribute="width" id="BYG-J2-y5D"/>
+                                    <constraint firstItem="nV2-k1-KNl" firstAttribute="width" secondItem="YNj-2i-VXE" secondAttribute="width" multiplier="0.95" id="I0i-Ui-du9"/>
+                                    <constraint firstItem="Xo9-RD-g7K" firstAttribute="width" secondItem="YNj-2i-VXE" secondAttribute="width" multiplier="0.95" id="Nl5-jo-lQk"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
