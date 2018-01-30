@@ -60,6 +60,15 @@ class JournalLibrarian {
         }
         
         let journal = allJournals[index]
+        
+        // Set current journal to something not this
+        for j in allJournals {
+            if j != journal {
+                setCurrentJournal(journal: j)
+                break
+            }
+        }
+        
         let context = PersistentService.context
         context.delete(journal)
         
