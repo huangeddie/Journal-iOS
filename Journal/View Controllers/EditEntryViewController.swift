@@ -165,7 +165,7 @@ class EditEntryViewController: UIViewController {
         
         let textViewBottomOffset: CGFloat = stackView.frame.height - textView.frame.maxY - 10
         
-        let contentInsets = UIEdgeInsetsMake(defaultContentInsets.top, defaultContentInsets.left, kbSize.height - textViewBottomOffset, defaultContentInsets.right)
+    ]    let contentInsets = UIEdgeInsetsMake(defaultContentInsets.top, defaultContentInsets.left, kbSize.height - textViewBottomOffset, defaultContentInsets.right)
         textView.contentInset = contentInsets
         
         let scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, kbSize.height - textViewBottomOffset, 0)
@@ -228,6 +228,9 @@ extension EditEntryViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             textView.resignFirstResponder()
+            if textView == titleTextView {
+                self.textView.becomeFirstResponder()
+            }
             return false
         }
         return true

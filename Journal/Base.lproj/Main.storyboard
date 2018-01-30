@@ -183,9 +183,7 @@
                                             <barButtonItem systemItem="flexibleSpace" id="46c-ak-C06"/>
                                             <barButtonItem systemItem="compose" id="Vn1-TW-STi">
                                                 <connections>
-                                                    <segue destination="LJR-6M-XaO" kind="popoverPresentation" identifier="new_entry" popoverAnchorBarButtonItem="Vn1-TW-STi" id="ZPD-6x-h2R">
-                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                    </segue>
+                                                    <segue destination="LJR-6M-XaO" kind="presentation" identifier="new_entry" modalPresentationStyle="fullScreen" id="ZPD-6x-h2R"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem systemItem="flexibleSpace" id="3vS-QA-dT9"/>
@@ -288,16 +286,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1ON-Hn-4OP">
-                                <rect key="frame" x="0.0" y="74" width="0.0" height="593"/>
+                                <rect key="frame" x="9.5" y="74" width="356" height="593"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Jan 1, 2018 at 12:00pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ded-a1-LvV">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="16"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="356" height="16"/>
                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" scrollEnabled="NO" editable="NO" text="Title" translatesAutoresizingMaskIntoConstraints="NO" id="Ucc-6V-rn5">
-                                        <rect key="frame" x="0.0" y="16" width="0.0" height="30"/>
+                                        <rect key="frame" x="0.0" y="16" width="356" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="cte-4O-E1M"/>
@@ -306,7 +304,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FW7-8z-sxn">
-                                        <rect key="frame" x="0.0" y="46" width="0.0" height="547"/>
+                                        <rect key="frame" x="0.0" y="46" width="356" height="547"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>

@@ -218,12 +218,12 @@
 		2CD4839520042EA700606D32 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2C5E32E9201FE68A002E584B /* EditJournalViewController.swift */,
-				2CEB5894200A7AFD001EDEDC /* DateChangerViewController.swift */,
 				2C62522B200480C200D75065 /* JournalCollectionViewController.swift */,
-				2C7FB816200315EE00554B70 /* EditEntryViewController.swift */,
 				2CD4838F20042C3400606D32 /* EntryCollectionViewController.swift */,
+				2C7FB816200315EE00554B70 /* EditEntryViewController.swift */,
+				2CEB5894200A7AFD001EDEDC /* DateChangerViewController.swift */,
 				2CD4839720045EF700606D32 /* ViewEntryViewController.swift */,
+				2C5E32E9201FE68A002E584B /* EditJournalViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -676,8 +676,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CNVS5VG567;
+				DEVELOPMENT_TEAM = FB436C8524;
 				INFOPLIST_FILE = Journal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aigagror.Journal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -692,8 +693,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CNVS5VG567;
+				DEVELOPMENT_TEAM = FB436C8524;
 				INFOPLIST_FILE = Journal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.aigagror.Journal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
