@@ -97,6 +97,30 @@ class JournalCollectionViewController: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
+    @IBAction func downloadPressed(_ sender: Any) {
+        let urlLoader = UIAlertController(title: "Enter the URL of JSON file", message: nil, preferredStyle: .alert)
+        urlLoader.addTextField { (textfield) in
+            textfield.returnKeyType = .done
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            urlLoader.dismiss(animated: true, completion: nil)
+        }
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { (action) in
+            if let text = urlLoader.textFields?.first?.text {
+                if let url = URL(string: text) {
+                    Downloader.load(URL: url)
+                }
+            }
+            
+            urlLoader.dismiss(animated: true, completion: nil)
+        }
+        
+        urlLoader.addAction(cancelAction)
+        urlLoader.addAction(submitAction)
+        
+        present(urlLoader, animated: true, completion: nil)
+    }
+    
     // MARK: Private Functions
     @objc
     func journalLongPressed(_ sender: JournalLongPressGestureRecognizer) {
@@ -125,7 +149,9 @@ class JournalCollectionViewController: UIViewController {
     private func receivedContextChangedNotification() {
         // A journal might have been added
         journalLibrarian.update()
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 

@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -276,7 +277,7 @@
                 <viewControllerPlaceholder storyboardName="EditEntryView" id="LJR-6M-XaO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbT-h7-W2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1056" y="488.45577211394306"/>
+            <point key="canvasLocation" x="717" y="362"/>
         </scene>
         <!--View Entry View Controller-->
         <scene sceneID="h5X-us-XqF">
@@ -452,11 +453,18 @@
                                 <action selector="addJournalPressed:" destination="AeE-4B-TmU" id="MnW-le-Jze"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="LWf-BL-FOn">
-                            <connections>
-                                <action selector="actionPressed:" destination="AeE-4B-TmU" id="Hcx-VI-m29"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="action" id="LWf-BL-FOn">
+                                <connections>
+                                    <action selector="actionPressed:" destination="AeE-4B-TmU" id="Hcx-VI-m29"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Load" id="bYB-NL-bCI">
+                                <connections>
+                                    <action selector="downloadPressed:" destination="AeE-4B-TmU" id="57n-7c-Xq4"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="okQ-lp-CW1" id="5lY-iz-1Qa"/>
