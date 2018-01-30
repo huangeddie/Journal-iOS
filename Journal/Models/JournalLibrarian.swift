@@ -166,7 +166,7 @@ class JournalLibrarian {
                 return newJournal
             }
             guard let journal = searchResults.first else {
-                return nil
+                fatalError("Could not get journal")
             }
             
             return journal

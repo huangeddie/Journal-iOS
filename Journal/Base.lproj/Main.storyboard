@@ -231,6 +231,20 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fal-1r-Uh6">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="flexibleSpace" id="Z3L-tl-cEQ"/>
+                                    <barButtonItem systemItem="trash" id="Ypi-bv-DUt">
+                                        <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="trashPressed:" destination="EEc-bi-Xyc" id="e8N-hX-dQd"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="e8n-Us-FE5"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -239,16 +253,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uu8-ao-pQu"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem systemItem="flexibleSpace" id="Z3L-tl-cEQ"/>
-                        <barButtonItem systemItem="trash" id="Ypi-bv-DUt">
-                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="trashPressed:" destination="EEc-bi-Xyc" id="e8N-hX-dQd"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem systemItem="flexibleSpace" id="e8n-Us-FE5"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="30O-0r-oqS">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="7Oh-qn-Lna">
                             <connections>
