@@ -16,6 +16,8 @@ class JournalCollectionViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private var journalIndexToEdit = 0
+    
     
     // MARK: UIViewController
     override func viewDidLoad() {
@@ -97,6 +99,23 @@ class JournalCollectionViewController: UIViewController {
     
     // MARK: Private Functions
     @objc
+    func journalLongPressed(_ sender: JournalLongPressGestureRecognizer) {
+        let editJournalVCIdentifier = "edit_journal"
+        
+        guard let editVC = UIStoryboard(name: UIStoryboard.main, bundle: nil).instantiateViewController(withIdentifier: editJournalVCIdentifier) as? EditJournalViewController else {
+            fatalError("Could not get edit journal vc")
+        }
+        
+        let navVC = UINavigationController()
+        navVC.pushViewController(editVC, animated: false)
+        
+        let index = sender.journalIndex
+        editVC.indexToEdit = index
+        
+        present(navVC, animated: true, completion: nil)
+    }
+    
+    @objc
     private func receivedJournalChangeNotification() {
         let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
@@ -142,6 +161,11 @@ extension JournalCollectionViewController: UICollectionViewDelegate, UICollectio
         
         cell.title?.text = journal.name
         
+        let longPress = JournalLongPressGestureRecognizer()
+        longPress.journalIndex = row
+        longPress.addTarget(self, action: #selector(journalLongPressed))
+        cell.addGestureRecognizer(longPress)
+        
         return cell
     }
     
@@ -149,3 +173,4 @@ extension JournalCollectionViewController: UICollectionViewDelegate, UICollectio
         return journalLibrarian.numberOfJournals()
     }
 }
+

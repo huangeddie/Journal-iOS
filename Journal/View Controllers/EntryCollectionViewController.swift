@@ -64,22 +64,37 @@ class EntryCollectionViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let viewSpecificEntrySegueIdentifier = "view_specific_entry"
+        let newEntrySegueIdentifier = "new_entry"
         
-        guard let row = collectionView.indexPathsForSelectedItems?.first?.row else {
-            fatalError("An entry was not selected")
+        switch segue.identifier ?? "" {
+        case viewSpecificEntrySegueIdentifier:
+            guard let row = collectionView.indexPathsForSelectedItems?.first?.row else {
+                fatalError("An entry was not selected")
+            }
+            
+            guard let viewEntryVC = segue.destination as? ViewEntryViewController else {
+                fatalError("First child is not a ViewEntryViewController")
+            }
+            
+            // Collection row is not necessarily same as entry index due to keyword search
+            let words = searchBar.getLowerCaseWords()
+            let entry = entryHistorian.getEntry(forIndex: row, containingWords: words)
+            
+            let index = entryHistorian.getIndex(forEntry: entry)
+            
+            viewEntryVC.index = index
+        case newEntrySegueIdentifier:
+            if let navVC = segue.destination as? UINavigationController {
+                if let editEntryVC = navVC.childViewControllers.first as? EditEntryViewController {
+                    EntryHistorian.historian.addEntry(title: "", text: "", date: Date())
+                    editEntryVC.indexToEdit = 0
+                }
+            }
+        default:
+            // Do nothing
+            break
         }
-        
-        guard let viewEntryVC = segue.destination as? ViewEntryViewController else {
-            fatalError("First child is not a ViewEntryViewController")
-        }
-        
-        // Collection row is not necessarily same as entry index due to keyword search
-        let words = searchBar.getLowerCaseWords()
-        let entry = entryHistorian.getEntry(forIndex: row, containingWords: words)
-        
-        let index = entryHistorian.getIndex(forEntry: entry)
-        
-        viewEntryVC.index = index
     }
  
     

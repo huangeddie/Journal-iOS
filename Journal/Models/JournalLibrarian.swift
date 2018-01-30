@@ -37,18 +37,7 @@ class JournalLibrarian {
         
         let queriedJournal = getJournal(withID: id)
         
-        if let journal = queriedJournal {
-            return journal
-        } else {
-            let defaultJournal = getJournal(withID: 0)
-            guard let journal = defaultJournal else {
-                fatalError("Default journal was nil")
-            }
-            
-            setCurrentJournal(journal: journal)
-            
-            return journal
-        }
+        return queriedJournal
     }
     
     func setCurrentJournal(journal: Journal) {
@@ -58,6 +47,13 @@ class JournalLibrarian {
         NotificationCenter.default.post(Notification(name: .journalChanged))
     }
     
+    func editJournal(atIndex index: Int, name: String) {
+        let journal = allJournals[index]
+        journal.name = name
+        
+        PersistentService.saveContext()
+    }
+    
     func deleteJournal(atIndex index: Int) {
         guard index < allJournals.count else {
             fatalError("Out of bounds")
@@ -65,23 +61,7 @@ class JournalLibrarian {
         
         let journal = allJournals[index]
         let context = PersistentService.context
-        if journal.id != 0 {
-            context.delete(journal)
-        } else {
-            // Instead of deleting the default journal, we delete all of its entries
-            let entriesFetchRequest = NSFetchRequest<Entry>(entityName: Entry.description())
-            let defaultJournalPredicate = NSPredicate(format: "journal.id = 0")
-            entriesFetchRequest.predicate = defaultJournalPredicate
-            do {
-                let searchResults = try context.fetch(entriesFetchRequest)
-                for entry in searchResults {
-                    context.delete(entry)
-                }
-            } catch {
-                print(error)
-                fatalError("Could not get entries")
-            }
-        }
+        context.delete(journal)
         
         PersistentService.saveContext()
     }
@@ -91,40 +71,17 @@ class JournalLibrarian {
     }
     
     func getJournal(forIndex index: Int) -> Journal {
-        guard index < allJournals.count else {
-            fatalError("Out of bounds for allJournals")
-        }
-        
         return allJournals[index]
     }
     
     func getJournals(withName name: String) -> [Journal] {
-        let context = PersistentService.context
-        let fetchRequest = NSFetchRequest<Journal>(entityName: Journal.description())
-        let namePred = NSPredicate(format: "name = \"\(name)\"")
-        fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = namePred
-        
-        do {
-            let searchResults = try context.fetch(fetchRequest)
-            return searchResults
-        } catch  {
-            print(error)
-            fatalError("Error occured in fetching journals with given name")
+        return allJournals.filter { (journal) -> Bool in
+            journal.name == name
         }
     }
     
     func getAllJournals() -> [Journal] {
-        let context = PersistentService.context
-        let fetchRequest = NSFetchRequest<Journal>(entityName: Journal.description())
-        
-        do {
-            let searchResults = try context.fetch(fetchRequest)
-            return searchResults
-        } catch  {
-            print(error)
-            fatalError("Error occured in fetching journals with given name")
-        }
+        return allJournals
     }
     
     func addJournal(name: String) -> Journal {
@@ -156,8 +113,8 @@ class JournalLibrarian {
         let context = PersistentService.context
         
         let fetchRequest = NSFetchRequest<Journal>(entityName: Journal.description())
-        let nameSort = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [nameSort]
+        let idSort = NSSortDescriptor(key: "id", ascending: true)
+        fetchRequest.sortDescriptors = [idSort]
         
         do {
             let searchResults = try context.fetch(fetchRequest)
@@ -185,8 +142,8 @@ class JournalLibrarian {
     }
     
     // MARK: Private Functions
-    /// This function should always return a journal no matter what, if the id is 0
-    private func getJournal(withID id: Int16) -> Journal? {
+    /// This function should always return a journal no matter what. If no journal is originally found, it creates a journal and sets its id to the given id
+    private func getJournal(withID id: Int16) -> Journal {
         let context = PersistentService.context
         
         let fetchRequest = NSFetchRequest<Journal>(entityName: Journal.description())
@@ -200,10 +157,10 @@ class JournalLibrarian {
             
             assert(searchResults.count <= 1)
             
-            if id == 0 && searchResults.isEmpty {
-                // Make new journal. There should always be a journal with ID 0
+            if searchResults.isEmpty {
+                // Make new journal.
                 let newJournal = Journal(context: context)
-                newJournal.id = 0
+                newJournal.id = id
                 newJournal.name = "Journal"
                 PersistentService.saveContext()
                 return newJournal
