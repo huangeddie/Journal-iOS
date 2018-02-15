@@ -95,6 +95,10 @@ class EditEntryViewController: UIViewController {
             dateChangerVC.indexToEdit = indexToEdit
         }
         
+        if let navVC = segue.destination as? UINavigationController, let changeJournalVC = navVC.topViewController as? ChangeJournalTableViewController {
+            changeJournalVC.entryToEdit = entryHistorian.getEntry(forIndex: indexToEdit)
+        }
+        
     }
  
     
@@ -165,7 +169,7 @@ class EditEntryViewController: UIViewController {
         
         let textViewBottomOffset: CGFloat = stackView.frame.height - textView.frame.maxY - 10
         
-    ]    let contentInsets = UIEdgeInsetsMake(defaultContentInsets.top, defaultContentInsets.left, kbSize.height - textViewBottomOffset, defaultContentInsets.right)
+        let contentInsets = UIEdgeInsetsMake(defaultContentInsets.top, defaultContentInsets.left, kbSize.height - textViewBottomOffset, defaultContentInsets.right)
         textView.contentInset = contentInsets
         
         let scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, kbSize.height - textViewBottomOffset, 0)

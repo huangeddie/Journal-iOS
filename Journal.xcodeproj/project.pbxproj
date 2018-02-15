@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C283F8E200D2ED100B8F52F /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C283F8D200D2ED100B8F52F /* UISearchBar.swift */; };
 		2C283F90200D335300B8F52F /* FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C283F8F200D335300B8F52F /* FirstResponder.swift */; };
+		2C3BC5A12024CD9E00EDE694 /* ChangeJournalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BC5A02024CD9E00EDE694 /* ChangeJournalTableViewController.swift */; };
 		2C4C89AD201682E700EFA2C3 /* EntryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C89AC201682E700EFA2C3 /* EntryCollectionView.swift */; };
 		2C4C89AF2016858600EFA2C3 /* NewEntryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C89AE2016858600EFA2C3 /* NewEntryButton.swift */; };
 		2C53E8172016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8162016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift */; };
@@ -62,6 +63,7 @@
 		24462FA03F935B76BB640C8F /* Pods-Journal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Journal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Journal/Pods-Journal.debug.xcconfig"; sourceTree = "<group>"; };
 		2C283F8D200D2ED100B8F52F /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		2C283F8F200D335300B8F52F /* FirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponder.swift; sourceTree = "<group>"; };
+		2C3BC5A02024CD9E00EDE694 /* ChangeJournalTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeJournalTableViewController.swift; sourceTree = "<group>"; };
 		2C4C89AC201682E700EFA2C3 /* EntryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionView.swift; sourceTree = "<group>"; };
 		2C4C89AE2016858600EFA2C3 /* NewEntryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryButton.swift; sourceTree = "<group>"; };
 		2C53E8162016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewCellMainView.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 		2CD4839520042EA700606D32 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2C3BC5A02024CD9E00EDE694 /* ChangeJournalTableViewController.swift */,
 				2C62522B200480C200D75065 /* JournalCollectionViewController.swift */,
 				2CD4838F20042C3400606D32 /* EntryCollectionViewController.swift */,
 				2C7FB816200315EE00554B70 /* EditEntryViewController.swift */,
@@ -508,6 +511,7 @@
 				2CD4839820045EF700606D32 /* ViewEntryViewController.swift in Sources */,
 				2C6252312005208800D75065 /* Notifications.swift in Sources */,
 				2C5E32EE201FF159002E584B /* JournalLongPressGestureRecognizer.swift in Sources */,
+				2C3BC5A12024CD9E00EDE694 /* ChangeJournalTableViewController.swift in Sources */,
 				2C7FB7FC2003147F00554B70 /* Journal.xcdatamodeld in Sources */,
 				2C625233200672F300D75065 /* Downloader.swift in Sources */,
 				2C5E32EC201FE747002E584B /* UIStoryboard.swift in Sources */,
