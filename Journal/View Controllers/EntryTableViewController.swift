@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EntryCollectionViewController: UIViewController {
+class EntryTableViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var searchBar: UISearchBar!
@@ -117,7 +117,7 @@ class EntryCollectionViewController: UIViewController {
     }
 }
 
-extension EntryCollectionViewController: UISearchBarDelegate {
+extension EntryTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         tableView.reloadData()
     }
@@ -126,7 +126,7 @@ extension EntryCollectionViewController: UISearchBarDelegate {
     }
 }
 
-extension EntryCollectionViewController: UITableViewDelegate, UITableViewDataSource {
+extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     private static let cellIdentifier = "entry_cell"
     
@@ -142,7 +142,7 @@ extension EntryCollectionViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EntryCollectionViewController.cellIdentifier) as? EntryTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EntryTableViewController.cellIdentifier) as? EntryTableViewCell else {
             fatalError("Could not get proper cell")
         }
         
