@@ -10,13 +10,11 @@
 		2C283F8E200D2ED100B8F52F /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C283F8D200D2ED100B8F52F /* UISearchBar.swift */; };
 		2C283F90200D335300B8F52F /* FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C283F8F200D335300B8F52F /* FirstResponder.swift */; };
 		2C3BC5A12024CD9E00EDE694 /* ChangeJournalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BC5A02024CD9E00EDE694 /* ChangeJournalTableViewController.swift */; };
-		2C4C89AD201682E700EFA2C3 /* EntryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C89AC201682E700EFA2C3 /* EntryCollectionView.swift */; };
 		2C4C89AF2016858600EFA2C3 /* NewEntryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C89AE2016858600EFA2C3 /* NewEntryButton.swift */; };
-		2C53E8172016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8162016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift */; };
-		2C53E8192016B2C000E3A02D /* EntryCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8182016B2C000E3A02D /* EntryCollectionViewLayout.swift */; };
 		2C53E8242019259F00E3A02D /* JournalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8232019259F00E3A02D /* JournalCollectionViewCell.swift */; };
 		2C53E826201927D500E3A02D /* JournalCollectionViewCellMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E825201927D500E3A02D /* JournalCollectionViewCellMainView.swift */; };
 		2C53E82920192A7900E3A02D /* JournalCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E82820192A7900E3A02D /* JournalCollectionViewLayout.swift */; };
+		2C5AAF6B2035474700CC4940 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5AAF6A2035474700CC4940 /* EntryTableViewCell.swift */; };
 		2C5E32EA201FE68A002E584B /* EditJournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E32E9201FE68A002E584B /* EditJournalViewController.swift */; };
 		2C5E32EC201FE747002E584B /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E32EB201FE747002E584B /* UIStoryboard.swift */; };
 		2C5E32EE201FF159002E584B /* JournalLongPressGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E32ED201FF159002E584B /* JournalLongPressGestureRecognizer.swift */; };
@@ -42,7 +40,6 @@
 		2CD4839F200466A100606D32 /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839D200466A100606D32 /* Entry+CoreDataClass.swift */; };
 		2CD483A0200466A100606D32 /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839E200466A100606D32 /* Entry+CoreDataProperties.swift */; };
 		2CEB588A20087285001EDEDC /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB588920087285001EDEDC /* DateFormatter.swift */; };
-		2CEB588F20087BBE001EDEDC /* EntryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB588E20087BBE001EDEDC /* EntryCollectionViewCell.swift */; };
 		2CEB5893200A7019001EDEDC /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB5892200A7019001EDEDC /* Exporter.swift */; };
 		2CEB5895200A7AFD001EDEDC /* DateChangerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB5894200A7AFD001EDEDC /* DateChangerViewController.swift */; };
 		44646266D425FBCA080CEBC7 /* Pods_JournalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E691FACDCD5FA6CD862F261 /* Pods_JournalTests.framework */; };
@@ -64,13 +61,11 @@
 		2C283F8D200D2ED100B8F52F /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		2C283F8F200D335300B8F52F /* FirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponder.swift; sourceTree = "<group>"; };
 		2C3BC5A02024CD9E00EDE694 /* ChangeJournalTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeJournalTableViewController.swift; sourceTree = "<group>"; };
-		2C4C89AC201682E700EFA2C3 /* EntryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionView.swift; sourceTree = "<group>"; };
 		2C4C89AE2016858600EFA2C3 /* NewEntryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryButton.swift; sourceTree = "<group>"; };
-		2C53E8162016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewCellMainView.swift; sourceTree = "<group>"; };
-		2C53E8182016B2C000E3A02D /* EntryCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewLayout.swift; sourceTree = "<group>"; };
 		2C53E8232019259F00E3A02D /* JournalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewCell.swift; sourceTree = "<group>"; };
 		2C53E825201927D500E3A02D /* JournalCollectionViewCellMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewCellMainView.swift; sourceTree = "<group>"; };
 		2C53E82820192A7900E3A02D /* JournalCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewLayout.swift; sourceTree = "<group>"; };
+		2C5AAF6A2035474700CC4940 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
 		2C5E32E9201FE68A002E584B /* EditJournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJournalViewController.swift; sourceTree = "<group>"; };
 		2C5E32EB201FE747002E584B /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		2C5E32ED201FF159002E584B /* JournalLongPressGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalLongPressGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -100,7 +95,6 @@
 		2CD4839D200466A100606D32 /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2CD4839E200466A100606D32 /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2CEB588920087285001EDEDC /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
-		2CEB588E20087BBE001EDEDC /* EntryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2CEB5892200A7019001EDEDC /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
 		2CEB5894200A7AFD001EDEDC /* DateChangerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateChangerViewController.swift; sourceTree = "<group>"; };
 		4F3746C0ABE2719D98BC3A84 /* Pods_Journal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Journal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,10 +127,7 @@
 		2C53E81E2016D1F100E3A02D /* Entry */ = {
 			isa = PBXGroup;
 			children = (
-				2C53E8182016B2C000E3A02D /* EntryCollectionViewLayout.swift */,
-				2C4C89AC201682E700EFA2C3 /* EntryCollectionView.swift */,
-				2CEB588E20087BBE001EDEDC /* EntryCollectionViewCell.swift */,
-				2C53E8162016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift */,
+				2C5AAF6A2035474700CC4940 /* EntryTableViewCell.swift */,
 			);
 			path = Entry;
 			sourceTree = "<group>";
@@ -496,18 +487,16 @@
 				2C53E8242019259F00E3A02D /* JournalCollectionViewCell.swift in Sources */,
 				2CEB588A20087285001EDEDC /* DateFormatter.swift in Sources */,
 				2CD4839220042D5300606D32 /* EntryHistorian.swift in Sources */,
-				2C53E8172016AEFF00E3A02D /* EntryCollectionViewCellMainView.swift in Sources */,
 				2CEB5893200A7019001EDEDC /* Exporter.swift in Sources */,
 				2CD4839020042C3400606D32 /* EntryCollectionViewController.swift in Sources */,
 				2CD4839420042E1900606D32 /* TimeFrame.swift in Sources */,
-				2C4C89AD201682E700EFA2C3 /* EntryCollectionView.swift in Sources */,
+				2C5AAF6B2035474700CC4940 /* EntryTableViewCell.swift in Sources */,
 				2CEB5895200A7AFD001EDEDC /* DateChangerViewController.swift in Sources */,
 				2C6252272004715600D75065 /* Journal+CoreDataClass.swift in Sources */,
 				2C5E32EA201FE68A002E584B /* EditJournalViewController.swift in Sources */,
 				2C7FB81B2003F47100554B70 /* PersistentService.swift in Sources */,
 				2CD483A0200466A100606D32 /* Entry+CoreDataProperties.swift in Sources */,
 				2CD4839F200466A100606D32 /* Entry+CoreDataClass.swift in Sources */,
-				2C53E8192016B2C000E3A02D /* EntryCollectionViewLayout.swift in Sources */,
 				2CD4839820045EF700606D32 /* ViewEntryViewController.swift in Sources */,
 				2C6252312005208800D75065 /* Notifications.swift in Sources */,
 				2C5E32EE201FF159002E584B /* JournalLongPressGestureRecognizer.swift in Sources */,
@@ -525,7 +514,6 @@
 				2C53E826201927D500E3A02D /* JournalCollectionViewCellMainView.swift in Sources */,
 				2C283F90200D335300B8F52F /* FirstResponder.swift in Sources */,
 				2C7FB7F42003147F00554B70 /* AppDelegate.swift in Sources */,
-				2CEB588F20087BBE001EDEDC /* EntryCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

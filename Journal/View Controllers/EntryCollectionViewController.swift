@@ -12,8 +12,8 @@ class EntryCollectionViewController: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var timeFrameSegmentControl: UISegmentedControl!
-    @IBOutlet weak var collectionView: EntryCollectionView!
+    @IBOutlet weak var tableView: UITableView!
+    
     var entryHistorian: EntryHistorian = EntryHistorian.historian
     
     // MARK: UIViewController
@@ -27,17 +27,9 @@ class EntryCollectionViewController: UIViewController {
         // Add a "Cancel" button for the keyboard
         searchBar.addCancelButtonAccessory()
         
-        // Collection View
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        // SegmentControl
-        timeFrameSegmentControl.addTarget(self, action: #selector(segmentControlValueDidChange), for: .valueChanged)
-        let selectedIndex = timeFrameSegmentControl.selectedSegmentIndex
-        guard let timeFrame = TimeFrame(rawValue: selectedIndex) else {
-            fatalError("Could not get time frame")
-        }
-        entryHistorian.timeFrame = timeFrame
+        // Table View
+        tableView.delegate = self
+        tableView.dataSource = self
         
         // Watch for any changes to the entries
         NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: .NSManagedObjectContextDidSave, object: nil)
@@ -69,7 +61,7 @@ class EntryCollectionViewController: UIViewController {
         
         switch segue.identifier ?? "" {
         case viewSpecificEntrySegueIdentifier:
-            guard let row = collectionView.indexPathsForSelectedItems?.first?.row else {
+            guard let row = tableView.indexPathsForSelectedRows?.first?.row else {
                 fatalError("An entry was not selected")
             }
             
@@ -113,7 +105,7 @@ class EntryCollectionViewController: UIViewController {
         let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
         
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            self.tableView.reloadData()
             self.navigationItem.title = currentJournal.name
         }
     }
@@ -121,33 +113,20 @@ class EntryCollectionViewController: UIViewController {
     @objc
     private func receivedContextChangeNotification() {
         entryHistorian.update()
-        collectionView.reloadData()
-    }
-    
-    // MARK: Segment Control
-    @objc
-    private func segmentControlValueDidChange() {
-        let rawValue = timeFrameSegmentControl.selectedSegmentIndex
-        guard let newTimeFrame = TimeFrame(rawValue: rawValue) else {
-            fatalError("Could not get time frame")
-        }
-        
-        entryHistorian.timeFrame = newTimeFrame
-        
-        collectionView.reloadData()
+        tableView.reloadData()
     }
 }
 
 extension EntryCollectionViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        collectionView.reloadData()
+        tableView.reloadData()
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
 }
 
-extension EntryCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension EntryCollectionViewController: UITableViewDelegate, UITableViewDataSource {
     
     private static let cellIdentifier = "entry_cell"
     
@@ -156,14 +135,14 @@ extension EntryCollectionViewController: UICollectionViewDelegate, UICollectionV
     
     
     // MARK: Data Source
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let words = searchBar.getLowerCaseWords()
         
         return entryHistorian.numberOfEntries(containingWords: words)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EntryCollectionViewController.cellIdentifier, for: indexPath) as? EntryCollectionViewCell else {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EntryCollectionViewController.cellIdentifier) as? EntryTableViewCell else {
             fatalError("Could not get proper cell")
         }
         
@@ -171,13 +150,21 @@ extension EntryCollectionViewController: UICollectionViewDelegate, UICollectionV
         
         let entry = entryHistorian.getEntry(forIndex: indexPath.row, containingWords: words)
         
+        let date = entry.date
         let df = DateFormatter()
-        df.dateStyle = .medium
-        df.timeStyle = .short
+        let calendar = Calendar.current
         
+        if calendar.isDateInToday(date) {
+            df.dateStyle = .none
+            df.timeStyle = .short
+        } else {
+            df.dateStyle = .short
+            df.timeStyle = .none
+        }
+
         cell.dateLabel.text = df.string(from: entry.date)
         cell.titleLabel.text = entry.title
-        cell.textLabel.text = entry.text
+        cell.passageLabel.text = entry.text
         
         return cell
     }
