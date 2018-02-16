@@ -11,6 +11,11 @@ import UIKit
 class EntryTableViewController: UIViewController {
 
     // MARK: Properties
+    private var compressEntries = true {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -85,6 +90,16 @@ class EntryTableViewController: UIViewController {
  
     
     // MARK: Private functions
+    @IBAction func toggleExpandAndCompression(_ sender: UIBarButtonItem) {
+        compressEntries = !compressEntries
+        
+        if compressEntries {
+            sender.title = "Expand"
+        } else {
+            sender.title = "Compress"
+        }
+    }
+    
     
     @objc
     private func resignKeyboard() {
@@ -153,6 +168,14 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             df.dateStyle = .short
             df.timeStyle = .none
+        }
+        
+        if compressEntries {
+            cell.passageLabel.numberOfLines = 2
+            cell.titleLabel.numberOfLines = 3
+        } else {
+            cell.passageLabel.numberOfLines = 0
+            cell.titleLabel.numberOfLines = 0
         }
 
         cell.dateLabel.text = df.string(from: entry.date)

@@ -20,9 +20,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iA1-Db-4ab">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iA1-Db-4ab">
                                 <rect key="frame" x="0.0" y="64" width="375" height="515"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="QBE-As-fMQ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -40,10 +40,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7aD-Tb-sCE">
-                                                    <rect key="frame" x="10" y="10" width="355" height="98.5"/>
+                                                    <rect key="frame" x="9.5" y="10" width="356" height="98.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPS-bc-udb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="24"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="356" height="24"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5e-cA-UP4">
                                                                     <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
@@ -52,7 +52,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="750" text="Date" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y2P-MR-xaN">
-                                                                    <rect key="frame" x="-10" y="0.0" width="0.0" height="24"/>
+                                                                    <rect key="frame" x="-9.5" y="0.0" width="0.0" height="24"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Text" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pF7-O2-hkO">
-                                                            <rect key="frame" x="0.0" y="24" width="355" height="74.5"/>
+                                                            <rect key="frame" x="0.0" y="24" width="356" height="74.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -69,10 +69,10 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="7aD-Tb-sCE" firstAttribute="leading" secondItem="AZX-G6-HrP" secondAttribute="leading" constant="10" id="0A9-EG-F4l"/>
                                                 <constraint firstAttribute="bottom" secondItem="7aD-Tb-sCE" secondAttribute="bottom" constant="10" id="J1U-Rz-lnX"/>
+                                                <constraint firstItem="7aD-Tb-sCE" firstAttribute="width" secondItem="AZX-G6-HrP" secondAttribute="width" multiplier="0.95" id="MYW-hN-04c"/>
                                                 <constraint firstItem="7aD-Tb-sCE" firstAttribute="top" secondItem="AZX-G6-HrP" secondAttribute="top" constant="10" id="ch5-d8-moJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="7aD-Tb-sCE" secondAttribute="trailing" constant="10" id="gsb-pA-ba7"/>
+                                                <constraint firstItem="7aD-Tb-sCE" firstAttribute="centerX" secondItem="AZX-G6-HrP" secondAttribute="centerX" id="oo3-4u-KNN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -88,13 +88,17 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="XHE-3i-LVY">
                                 <rect key="frame" x="0.0" y="579" width="375" height="44"/>
                                 <items>
+                                    <barButtonItem title="Expand" id="qee-UL-V4B">
+                                        <connections>
+                                            <action selector="toggleExpandAndCompression:" destination="Sza-1L-5fu" id="Qdf-hn-Uww"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="flexibleSpace" id="46c-ak-C06"/>
                                     <barButtonItem systemItem="compose" id="Vn1-TW-STi">
                                         <connections>
                                             <segue destination="LJR-6M-XaO" kind="presentation" identifier="new_entry" modalPresentationStyle="fullScreen" id="ZPD-6x-h2R"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="flexibleSpace" id="3vS-QA-dT9"/>
                                 </items>
                             </toolbar>
                         </subviews>
