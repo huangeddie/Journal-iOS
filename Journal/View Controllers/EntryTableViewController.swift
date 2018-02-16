@@ -65,11 +65,11 @@ class EntryTableViewController: UIViewController {
             guard let viewEntryVC = segue.destination as? ViewEntryViewController else {
                 fatalError("First child is not a ViewEntryViewController")
             }
-            
-            // Collection row is not necessarily same as entry index due to keyword search
-            let words = searchBar.getLowerCaseWords()
-            let entry = EntryHistorian.getEntry(forIndexPath: indexPath, containingWords: words)
-            viewEntryVC.entry = entry
+            guard let entryCell = tableView.cellForRow(at: indexPath) as? EntryTableViewCell else {
+                fatalError()
+            }
+            let entry = entryCell.entry
+            viewEntryVC.entryToView = entry
         case newEntrySegueIdentifier:
             if let navVC = segue.destination as? UINavigationController {
                 if let editEntryVC = navVC.childViewControllers.first as? EditEntryViewController {

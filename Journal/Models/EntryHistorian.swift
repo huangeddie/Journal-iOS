@@ -179,6 +179,8 @@ class EntryHistorian {
         let context = PersistentService.context
         context.delete(entry)
         PersistentService.saveContext()
+        
+        NotificationCenter.default.post(Notification(name: .entryDeleted))
     }
     
     static func deleteEntry(atIndexPath indexPath: IndexPath) {

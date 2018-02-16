@@ -190,11 +190,6 @@ class EditEntryViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             // Delete the entry
             EntryHistorian.deleteEntry(self.entryToEdit)
-            
-            // Dismiss the edit entry VC
-            self.dismiss(animated: true, completion: {
-                // TODO: Also dismiss the view entry VC
-            })
         }
         
         confirmAlertVC.addAction(cancelAction)
