@@ -23,17 +23,14 @@ class Exporter {
             mailComposer.setMessageBody("Here is your journal:", isHTML: false)
             
             // Create JSON object of current journals
-            let librarian = JournalLibrarian.librarian
-            let historian = EntryHistorian.historian
-            
             var json = [String: [[String: Any]]]()
             
-            let allJournals = librarian.getAllJournals()
+            let allJournals = JournalLibrarian.getAllJournals()
             
             for journal in allJournals {
                 json[journal.name] = [[String: Any]]()
                 
-                let entries = historian.getEntries(forJournal: journal)
+                let entries = EntryHistorian.getAllEntries(forJournal: journal)
                 
                 for entry in entries {
                     var e = [String: Any]()

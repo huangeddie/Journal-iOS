@@ -13,6 +13,8 @@ class EntryTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var passageLabel: UILabel!
     
+    var entry: Entry!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -14,8 +14,7 @@ class ViewEntryViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
     
-    var entryHistorian: EntryHistorian = EntryHistorian.historian
-    var index: Int!
+    var entry: Entry!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +23,6 @@ class ViewEntryViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let entry = entryHistorian.getEntry(forIndex: index)
-        
         let df = DateFormatter()
         df.dateStyle = .medium
         df.timeStyle = .short
@@ -63,6 +60,5 @@ class ViewEntryViewController: UIViewController {
         }
         
         editEntryVC.editingANewEntry = false
-        editEntryVC.indexToEdit = index
     }
 }

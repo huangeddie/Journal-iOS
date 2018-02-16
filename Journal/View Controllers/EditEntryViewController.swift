@@ -13,8 +13,7 @@ class EditEntryViewController: UIViewController {
     
     // MARK: Properties
     var editingANewEntry = true
-    var entryHistorian: EntryHistorian = EntryHistorian.historian
-    var indexToEdit: Int!
+    var entryToEdit: Entry!
     var newJournal: Journal!
     
     private let defaultContentInsets = UIEdgeInsetsMake(0, 0, 0, 0)
@@ -48,24 +47,21 @@ class EditEntryViewController: UIViewController {
             toolBarStackView.addArrangedSubview(deleteButton)
         }
         
-        // Setup the entry
-        let entry = entryHistorian.getEntry(forIndex: indexToEdit)
-        
         // Setup the new journal
-        newJournal = entry.journal
+        newJournal = entryToEdit.journal
         
         // Setup the new date
-        datePicker.date = entry.date
+        datePicker.date = entryToEdit.date
         // We don't want the user to modify the date. If they really want, they can do that later by editing it
         if editingANewEntry {
             datePicker.isUserInteractionEnabled = false
         }
         
         // Setup the new title
-        titleTextView.text = entry.title
+        titleTextView.text = entryToEdit.title
         
         // Setup the new text
-        textView.text = entry.text
+        textView.text = entryToEdit.text
         // Add some margins to the text
         textView.contentInset = defaultContentInsets
         
@@ -91,12 +87,8 @@ class EditEntryViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-        if let dateChangerVC = segue.destination as? DateChangerViewController {
-            dateChangerVC.indexToEdit = indexToEdit
-        }
-        
         if let navVC = segue.destination as? UINavigationController, let changeJournalVC = navVC.topViewController as? ChangeJournalTableViewController {
-            changeJournalVC.entryToEdit = entryHistorian.getEntry(forIndex: indexToEdit)
+            changeJournalVC.entryToEdit = entryToEdit
         }
         
     }
@@ -111,7 +103,7 @@ class EditEntryViewController: UIViewController {
         
         if editingANewEntry {
             // Remove that entry
-            entryHistorian.deleteEntry(atIndex: indexToEdit)
+            EntryHistorian.deleteEntry(entryToEdit)
         }
         
         // Dismiss
@@ -133,7 +125,7 @@ class EditEntryViewController: UIViewController {
         
         let newTitle = titleTextView.text
         
-        entryHistorian.editEntry(index: indexToEdit, title: newTitle, text: newText, date: newDate, journal: newJournal)
+        EntryHistorian.editEntry(entry: entryToEdit, title: newTitle, text: newText, date: newDate, journal: newJournal)
         
         let mailVC = Exporter.getExportJournalMailComposerVC(delegate: self)
         if let mailVC = mailVC {
@@ -197,7 +189,7 @@ class EditEntryViewController: UIViewController {
         }
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             // Delete the entry
-            self.entryHistorian.deleteEntry(atIndex: self.indexToEdit)
+            EntryHistorian.deleteEntry(self.entryToEdit)
             
             // Dismiss the edit entry VC
             self.dismiss(animated: true, completion: {
@@ -224,7 +216,7 @@ class EditEntryViewController: UIViewController {
             fatalError("Could not get text from text field")
         }
         
-        entryHistorian.editEntry(index: indexToEdit, text: text)
+        EntryHistorian.editEntry(entry: entryToEdit, text: text)
     }
 }
 

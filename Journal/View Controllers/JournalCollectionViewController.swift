@@ -12,8 +12,6 @@ import MessageUI
 class JournalCollectionViewController: UIViewController {
 
     // MARK: Properties
-    let journalLibrarian = JournalLibrarian.librarian
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var journalIndexToEdit = 0
@@ -26,15 +24,13 @@ class JournalCollectionViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // Set the title
-        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
+        let currentJournal = JournalLibrarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
         
         // Watch for any changes to the selection of journals
         NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: .journalChanged, object: nil)
         // Watch for any change to the addition of journals
         NotificationCenter.default.addObserver(self, selector: #selector(receivedContextChangedNotification), name: .NSManagedObjectContextDidSave, object: nil)
-        
-        journalLibrarian.update()
         
         // Setup the table view
         collectionView.delegate = self
@@ -86,7 +82,7 @@ class JournalCollectionViewController: UIViewController {
                 fatalError("Could not get text")
             }
             
-            _ = self.journalLibrarian.addJournal(name: text)
+            _ = JournalLibrarian.addJournal(name: text)
             
             alertVC.dismiss(animated: true, completion: nil)
         }
@@ -141,14 +137,13 @@ class JournalCollectionViewController: UIViewController {
     
     @objc
     private func receivedJournalChangeNotification() {
-        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
+        let currentJournal = JournalLibrarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
     }
     
     @objc
     private func receivedContextChangedNotification() {
         // A journal might have been added
-        journalLibrarian.update()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -170,16 +165,16 @@ extension JournalCollectionViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let row = indexPath.row
         
-        let selectedJournal = journalLibrarian.getJournal(forIndex: row)
+        let selectedJournal = JournalLibrarian.getJournal(forIndex: row)
         
-        journalLibrarian.setCurrentJournal(journal: selectedJournal)
+        JournalLibrarian.setCurrentJournal(journal: selectedJournal)
     }
     
     // MARK: Data Source
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let row = indexPath.row
-        let journal = journalLibrarian.getJournal(forIndex: row)
+        let journal = JournalLibrarian.getJournal(forIndex: row)
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: JournalCollectionViewController.cellIdentifier, for: indexPath) as? JournalCollectionViewCell else {
             fatalError("Unknown collection view cell")
@@ -196,7 +191,7 @@ extension JournalCollectionViewController: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return journalLibrarian.numberOfJournals()
+        return JournalLibrarian.numberOfJournals()
     }
 }
 

@@ -9,8 +9,6 @@
 import UIKit
 
 class ChangeJournalTableViewController: UITableViewController {
-
-    let librarian = JournalLibrarian.librarian
     
     var entryToEdit: Entry!
     
@@ -44,14 +42,14 @@ class ChangeJournalTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return librarian.numberOfJournals()
+        return JournalLibrarian.numberOfJournals()
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "journal_cell", for: indexPath)
 
-        let journal = librarian.getJournal(forIndex: indexPath.row)
+        let journal = JournalLibrarian.getJournal(forIndex: indexPath.row)
         
         cell.textLabel?.text = journal.name
 
@@ -59,13 +57,13 @@ class ChangeJournalTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let journal = librarian.getJournal(forIndex: indexPath.row)
+        let journal = JournalLibrarian.getJournal(forIndex: indexPath.row)
         
         entryToEdit.journal = journal
         
         PersistentService.saveContext()
         
-        librarian.setCurrentJournal(journal: journal)
+        JournalLibrarian.setCurrentJournal(journal: journal)
         
         dismiss(animated: true, completion: nil)
     }

@@ -11,15 +11,12 @@ import CoreData
 @testable import Journal
 
 class JournalTests: XCTestCase {
-    let journalLibrarian = JournalLibrarian.librarian
-    let entryHistorian = EntryHistorian.historian
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         // Wipe everything
-        journalLibrarian.WIPE_EVERYTHING()
+        JournalLibrarian.WIPE_EVERYTHING()
     }
     
     override func tearDown() {
@@ -28,60 +25,60 @@ class JournalTests: XCTestCase {
     }
     
     func testSetupData() {
-        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
-        XCTAssertEqual(0, entryHistorian.numberOfEntries())
+        XCTAssertEqual(1, JournalLibrarian.numberOfJournals())
+        XCTAssertEqual(0, EntryHistorian.numberOfEntries())
     }
     
     func testDefaultJournal() {
-        let journal = journalLibrarian.getCurrentJournal()
+        let journal = JournalLibrarian.getCurrentJournal()
         
         XCTAssertEqual(0, journal.id)
         XCTAssertEqual("Journal", journal.name)
         
-        XCTAssertEqual(0, entryHistorian.numberOfEntries())
+        XCTAssertEqual(0, EntryHistorian.numberOfEntries())
         
-        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
+        XCTAssertEqual(1, JournalLibrarian.numberOfJournals())
     }
     
     func testAddJournal() {
-        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
+        XCTAssertEqual(1, JournalLibrarian.numberOfJournals())
         
-        let defaultJournal = journalLibrarian.getCurrentJournal()
+        let defaultJournal = JournalLibrarian.getCurrentJournal()
         
-        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
+        XCTAssertEqual(1, JournalLibrarian.numberOfJournals())
         
-        journalLibrarian.addJournal(name: "Dream")
+        JournalLibrarian.addJournal(name: "Dream")
         
-        XCTAssertEqual(2, journalLibrarian.numberOfJournals())
+        XCTAssertEqual(2, JournalLibrarian.numberOfJournals())
     }
     
     func testDeleteEntry() {
-        entryHistorian.addEntry(title: "Hello", text: "World", date: Date())
-        XCTAssertEqual(1, entryHistorian.numberOfEntries())
+        EntryHistorian.addEntry(title: "Hello", text: "World", date: Date())
+        XCTAssertEqual(1, EntryHistorian.numberOfEntries())
         
-        entryHistorian.deleteEntry(atIndex: 0)
+        EntryHistorian.deleteEntry(atIndex: 0)
         
-        XCTAssertEqual(0, entryHistorian.numberOfEntries())
+        XCTAssertEqual(0, EntryHistorian.numberOfEntries())
     }
     
     func testDeleteDefaultJournal() {
-        entryHistorian.addEntry(title: "Hello", text: "World", date: Date())
-        XCTAssertEqual(1, entryHistorian.numberOfEntries())
+        EntryHistorian.addEntry(title: "Hello", text: "World", date: Date())
+        XCTAssertEqual(1, EntryHistorian.numberOfEntries())
         
-        journalLibrarian.deleteJournal(atIndex: 0)
+        JournalLibrarian.deleteJournal(atIndex: 0)
         
-        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
+        XCTAssertEqual(1, JournalLibrarian.numberOfJournals())
         
-        XCTAssertEqual(0, entryHistorian.numberOfEntries())
+        XCTAssertEqual(0, EntryHistorian.numberOfEntries())
     }
     
     func testDeleteJournal() {
-        journalLibrarian.addJournal(name: "Dream")
-        XCTAssertEqual(2, journalLibrarian.numberOfJournals())
+        JournalLibrarian.addJournal(name: "Dream")
+        XCTAssertEqual(2, JournalLibrarian.numberOfJournals())
         
-        journalLibrarian.deleteJournal(atIndex: 0)
+        JournalLibrarian.deleteJournal(atIndex: 0)
         
-        XCTAssertEqual(1, journalLibrarian.numberOfJournals())
+        XCTAssertEqual(1, JournalLibrarian.numberOfJournals())
     }
     
 //    func testPerformanceExample() {

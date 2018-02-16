@@ -38,28 +38,16 @@ class Downloader {
                 }
                 
                 // Parse JSON object and create journal and entries from it
-                let librarian = JournalLibrarian.librarian
                 
                 // Wipe everything
-                librarian.WIPE_EVERYTHING()
+                JournalLibrarian.WIPE_EVERYTHING()
                 let context = PersistentService.context
                 
                 for (journal, contents) in JSON {
                     let currentJournal: Journal
+                    currentJournal = JournalLibrarian.addJournal(name: journal)
                     
-                    // Find existing journals
-                    let existingJournals = librarian.getJournals(withName: journal)
-                    if existingJournals.isEmpty {
-                        // Add a new journal
-                        currentJournal = librarian.addJournal(name: journal)
-                    } else {
-                        guard let j = existingJournals.first else {
-                            fatalError("Could not get a journal from fetched journals")
-                        }
-                        currentJournal = j
-                    }
-                    
-                    librarian.setCurrentJournal(journal: currentJournal)
+                    JournalLibrarian.setCurrentJournal(journal: currentJournal)
                     
                     for entry in contents {
                         guard let dateString = entry["date"], let title = entry["title"], let text = entry["text"] else {

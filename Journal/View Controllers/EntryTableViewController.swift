@@ -14,8 +14,6 @@ class EntryTableViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var entryHistorian: EntryHistorian = EntryHistorian.historian
-    
     // MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +34,9 @@ class EntryTableViewController: UIViewController {
         
         // Watch for any changes to the journals
         NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: Notification.Name.journalChanged, object: nil)
-        entryHistorian.update()
         
         // Set title to current journal
-        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
+        let currentJournal = JournalLibrarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
     }
 
@@ -61,7 +58,7 @@ class EntryTableViewController: UIViewController {
         
         switch segue.identifier ?? "" {
         case viewSpecificEntrySegueIdentifier:
-            guard let row = tableView.indexPathsForSelectedRows?.first?.row else {
+            guard let indexPath = tableView.indexPathsForSelectedRows?.first else {
                 fatalError("An entry was not selected")
             }
             
@@ -71,16 +68,13 @@ class EntryTableViewController: UIViewController {
             
             // Collection row is not necessarily same as entry index due to keyword search
             let words = searchBar.getLowerCaseWords()
-            let entry = entryHistorian.getEntry(forIndex: row, containingWords: words)
-            
-            let index = entryHistorian.getIndex(forEntry: entry)
-            
-            viewEntryVC.index = index
+            let entry = EntryHistorian.getEntry(forIndexPath: indexPath, containingWords: words)
+            viewEntryVC.entry = entry
         case newEntrySegueIdentifier:
             if let navVC = segue.destination as? UINavigationController {
                 if let editEntryVC = navVC.childViewControllers.first as? EditEntryViewController {
-                    EntryHistorian.historian.addEntry(title: "", text: "", date: Date())
-                    editEntryVC.indexToEdit = 0
+                    let entry = EntryHistorian.addEntry(title: "", text: "", date: Date())
+                    editEntryVC.entryToEdit = entry
                 }
             }
         default:
@@ -99,10 +93,8 @@ class EntryTableViewController: UIViewController {
     
     @objc
     private func receivedJournalChangeNotification() {
-        entryHistorian.update()
-        
         // Update title
-        let currentJournal = JournalLibrarian.librarian.getCurrentJournal()
+        let currentJournal = JournalLibrarian.getCurrentJournal()
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -112,7 +104,6 @@ class EntryTableViewController: UIViewController {
     
     @objc
     private func receivedContextChangeNotification() {
-        entryHistorian.update()
         tableView.reloadData()
     }
 }
@@ -132,13 +123,15 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Delegate
     
-    
-    
     // MARK: Data Source
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return EntryHistorian.getNumberOfSections()
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let words = searchBar.getLowerCaseWords()
         
-        return entryHistorian.numberOfEntries(containingWords: words)
+        let entries = EntryHistorian.getEntries(forSection: section, containingWords: words)
+        return entries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -148,7 +141,7 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
         
         let words = searchBar.getLowerCaseWords()
         
-        let entry = entryHistorian.getEntry(forIndex: indexPath.row, containingWords: words)
+        let entry = EntryHistorian.getEntry(forIndexPath: indexPath, containingWords: words)
         
         let date = entry.date
         let df = DateFormatter()
@@ -165,8 +158,19 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
         cell.dateLabel.text = df.string(from: entry.date)
         cell.titleLabel.text = entry.title
         cell.passageLabel.text = entry.text
+        cell.entry = entry
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let (startDate, endDate) = EntryHistorian.computeStartAndEndDate(forSection: section)
+        
+        let df = DateFormatter()
+        df.dateStyle = .medium
+        
+        return "\(df.string(from: startDate)) - \(df.string(from: endDate))"
+        
     }
     
 }

@@ -11,7 +11,6 @@ import UIKit
 class EditJournalViewController: UIViewController {
 
     @IBOutlet weak var journalTitle: UITextField!
-    let librarian = JournalLibrarian.librarian
     var indexToEdit: Int!
     
     override func viewDidLoad() {
@@ -22,7 +21,7 @@ class EditJournalViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let journal = librarian.getJournal(forIndex: indexToEdit)
+        let journal = JournalLibrarian.getJournal(forIndex: indexToEdit)
         journalTitle.text = journal.name
     }
 
@@ -35,7 +34,7 @@ class EditJournalViewController: UIViewController {
     @IBAction func backPressed(_ sender: Any) {
         
         if let newTitle = journalTitle.text {
-            librarian.editJournal(atIndex: indexToEdit, name: newTitle)
+            JournalLibrarian.editJournal(atIndex: indexToEdit, name: newTitle)
         }
         
         dismiss(animated: true, completion: nil)
@@ -49,7 +48,8 @@ class EditJournalViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
-            self.librarian.deleteJournal(atIndex: self.indexToEdit)
+            let journal = JournalLibrarian.getJournal(forIndex: self.indexToEdit)
+            JournalLibrarian.deleteJournal(journal: journal)
             confirmAlert.dismiss(animated: true, completion: nil)
             self.dismiss(animated: true, completion: nil)
         }
