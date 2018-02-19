@@ -21,7 +21,7 @@ class EditEntryViewController: UIViewController {
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var toolBarStackView: UIStackView!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     
     
     // MARK: UIViewController
@@ -38,15 +38,6 @@ class EditEntryViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        // If editing an old entry, add a delete button
-        if !editingANewEntry {
-            let deleteButton = UIButton()
-            deleteButton.setTitle("Delete", for: .normal)
-            deleteButton.setTitleColor(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1), for: .normal)
-            deleteButton.addTarget(self, action: #selector(deleteEntry), for: .touchUpInside)
-            toolBarStackView.addArrangedSubview(deleteButton)
-        }
-        
         // Setup the new journal
         newJournal = entryToEdit.journal
         
@@ -55,6 +46,11 @@ class EditEntryViewController: UIViewController {
         // We don't want the user to modify the date. If they really want, they can do that later by editing it
         if editingANewEntry {
             datePicker.isUserInteractionEnabled = false
+            // Disable the delete button
+            deleteButton.isEnabled = false
+        } else {
+            // Disable the delete button
+            deleteButton.isEnabled = true
         }
         
         // Setup the new title
@@ -81,17 +77,13 @@ class EditEntryViewController: UIViewController {
 
     
     // MARK: - Navigation
-
+    /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        if let navVC = segue.destination as? UINavigationController, let changeJournalVC = navVC.topViewController as? ChangeJournalTableViewController {
-            changeJournalVC.entryToEdit = entryToEdit
-        }
-        
     }
+    */
  
     
     // MARK: IBActions
@@ -135,10 +127,16 @@ class EditEntryViewController: UIViewController {
         }
     }
     
-    @IBAction func changeJournalPressed(_ sender: Any) {
-        
-        // Display a table view of journals to select from
-        
+    @IBAction func deleteEntry(_ sender: Any) {
+        deleteEntry()
+    }
+    
+    
+    @IBAction func unwindToEditEntry(_ sender: UIStoryboardSegue) {
+        if let changeJournalTVC = sender.source as? ChangeJournalTableViewController {
+            newJournal = changeJournalTVC.selectedJournal
+            updateUI()
+        }
     }
     
     // MARK: Private Functions
@@ -178,7 +176,6 @@ class EditEntryViewController: UIViewController {
         textView.scrollIndicatorInsets = zeroContentInsets
     }
     
-    @objc
     private func deleteEntry() {
         // Present an alert VC to confirm.
         // If confirmed, delete entry and then dismiss
@@ -190,6 +187,7 @@ class EditEntryViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (action) in
             // Delete the entry
             EntryHistorian.deleteEntry(self.entryToEdit)
+            self.dismiss(animated: true)
         }
         
         confirmAlertVC.addAction(cancelAction)

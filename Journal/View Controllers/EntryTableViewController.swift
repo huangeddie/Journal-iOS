@@ -38,7 +38,7 @@ class EntryTableViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: .NSManagedObjectContextDidSave, object: nil)
         
         // Watch for any changes to the journals
-        NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: Notification.Name.journalChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receivedJournalChangeNotification), name: .journalChanged, object: nil)
         
         // Set title to current journal
         let currentJournal = JournalLibrarian.getCurrentJournal()
@@ -49,8 +49,6 @@ class EntryTableViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
     
     // MARK: - Navigation
 
@@ -137,6 +135,10 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
     private static let cellIdentifier = "entry_cell"
     
     // MARK: Delegate
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("hi")
+    }
     
     // MARK: Data Source
     func numberOfSections(in tableView: UITableView) -> Int {

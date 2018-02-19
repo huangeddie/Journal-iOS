@@ -32,6 +32,13 @@ class JournalLibrarian {
     }
     
     static func setCurrentJournal(journal: Journal) {
+        
+        let oldJournal = getCurrentJournal()
+        
+        if oldJournal == journal {
+            return
+        }
+        
         UserDefaults.standard.set(journal.id, forKey: JournalLibrarian.userDefaultCurrentJournalKeyName)
         
         // Let everyone know, we changed the current journal

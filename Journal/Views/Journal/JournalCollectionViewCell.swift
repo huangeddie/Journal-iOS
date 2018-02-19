@@ -9,6 +9,9 @@
 import UIKit
 
 class JournalCollectionViewCell: UICollectionViewCell {
+    
+    var journal: Journal!
+    
     @IBOutlet weak var view: JournalCollectionViewCellMainView!
     @IBOutlet weak var title: UILabel!
     override func draw(_ rect: CGRect) {

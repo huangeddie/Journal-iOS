@@ -180,6 +180,8 @@ extension JournalCollectionViewController: UICollectionViewDelegate, UICollectio
             fatalError("Unknown collection view cell")
         }
         
+        cell.journal = journal
+        
         cell.title?.text = journal.name
         
         let longPress = JournalLongPressGestureRecognizer()

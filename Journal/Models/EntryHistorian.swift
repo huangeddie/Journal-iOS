@@ -11,8 +11,17 @@ import CoreData
 
 /// Singleton Class
 class EntryHistorian {
+    static var contextWatcher: EntryHistorian!
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(cacheOutDated), name: .NSManagedObjectContextDidSave, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cacheOutDated), name: .journalChanged, object: nil)
+    }
+    
     // MARK: Properties
     static var timeFrame: TimeFrame = .week
+    
+    // Speed things up
+    static var cache = [Int:[Entry]]()
     
     // MARK: Public
     static func getAllEntries(forJournal j: Journal? = nil) -> [Entry] {
@@ -51,6 +60,10 @@ class EntryHistorian {
     }
     
     static func getEntries(forSection section: Int, containingWords words: [String]? = nil) -> [Entry] {
+        if let entries = cache[section] {
+            return entries
+        }
+        
         let context = PersistentService.context
         
         let journal = JournalLibrarian.getCurrentJournal()
@@ -58,7 +71,14 @@ class EntryHistorian {
         let (startDate, endDate) = computeStartAndEndDate(forSection: section)
         
         let fetchRequest = NSFetchRequest<Entry>(entityName: Entry.description())
-        let predicate = NSPredicate(format: "journal.id = \(journal.id) AND date >= %@ AND date < %@", startDate as NSDate, endDate as NSDate)
+        
+        var predicateString = "journal.id = \(journal.id) AND date >= %@ AND date < %@"
+        if let words = words {
+            for word in words {
+                predicateString += " AND (title CONTAINS[cd] '\(word)' OR text CONTAINS[cd] '\(word)')"
+            }
+        }
+        let predicate = NSPredicate(format: predicateString, startDate as NSDate, endDate as NSDate)
         fetchRequest.predicate = predicate
         
         let dateSort = NSSortDescriptor(key: "date", ascending: false)
@@ -66,6 +86,10 @@ class EntryHistorian {
         
         do {
             let entries = try context.fetch(fetchRequest)
+            
+            // Set the cache
+            cache[section] = entries
+            
             return entries
         }
         catch {
@@ -169,12 +193,6 @@ class EntryHistorian {
         PersistentService.saveContext()
     }
     
-    static func editEntry(atIndexPath indexPath: IndexPath, title: String? = nil, text: String? = nil, date: Date? = nil, journal: Journal? = nil) {
-        
-        let entry = getEntry(forIndexPath: indexPath)
-        editEntry(entry: entry, title: title, text: text, date: date, journal: journal)
-    }
-    
     static func deleteEntry(_ entry: Entry) {
         let context = PersistentService.context
         context.delete(entry)
@@ -201,7 +219,7 @@ class EntryHistorian {
             let numberOfSecondsInADay = 60 * 60 * 24
             let numberOfSecondsInAWeek = numberOfSecondsInADay * 7
             let offSetDate = Date().addingTimeInterval(TimeInterval(-numberOfSecondsInAWeek * section))
-            return (offSetDate.previous(.sunday), offSetDate.next(.sunday))
+            return (offSetDate.previous(.sunday, considerToday: true), offSetDate.next(.sunday))
         case .month:
             let currentMonth = calendar.component(.month, from: currentDate)
         case .year:
@@ -214,17 +232,8 @@ class EntryHistorian {
     }
     
     // MARK: Private functions
-    private static func containsAllWords(entry: Entry, words: [String]) -> Bool {
-        var containsAllWords = true
-        for word in words {
-            let lowercaseText = entry.text.lowercased()
-            let lowercaseTitle = entry.title.lowercased()
-            if !lowercaseText.contains(word) && !lowercaseTitle.contains(word) {
-                containsAllWords = false
-                break
-            }
-        }
-        
-        return containsAllWords
+    @objc
+    private func cacheOutDated() {
+        EntryHistorian.cache.removeAll()
     }
 }
