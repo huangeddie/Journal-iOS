@@ -18,7 +18,7 @@ class EntryHistorian {
     }
     
     // MARK: Properties
-    static var timeFrame: TimeFrame = .week
+    static var timeFrame: TimeFrame = .all
     
     // Speed things up
     static var cache = [Int:[Entry]]()
@@ -99,6 +99,10 @@ class EntryHistorian {
     }
     
     static func getNumberOfSections() -> Int {
+        if timeFrame == .all {
+            return 1
+        }
+        
         // Get the oldest entry
         let context = PersistentService.context
         

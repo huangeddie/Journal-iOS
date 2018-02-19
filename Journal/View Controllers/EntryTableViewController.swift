@@ -194,8 +194,14 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
         let df = DateFormatter()
         df.dateStyle = .medium
         
-        return "\(df.string(from: startDate)) - \(df.string(from: endDate))"
+        var ret: String?
+        if EntryHistorian.timeFrame == .all {
+            ret = nil
+        } else {
+            ret = "\(df.string(from: startDate)) - \(df.string(from: endDate))"
+        }
         
+        return ret
     }
     
 }

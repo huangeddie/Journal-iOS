@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iA1-Db-4ab">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iA1-Db-4ab">
                                 <rect key="frame" x="0.0" y="64" width="375" height="515"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" id="QBE-As-fMQ">
@@ -33,7 +33,7 @@
                                 </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="entry_cell" rowHeight="119" id="ulC-g8-zYq" customClass="EntryTableViewCell" customModule="Journal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="78" width="375" height="119"/>
+                                        <rect key="frame" x="0.0" y="105.5" width="375" height="119"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ulC-g8-zYq" id="AZX-G6-HrP">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="118.5"/>
@@ -115,7 +115,9 @@
                         <viewLayoutGuide key="safeArea" id="8nF-zm-yTH"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="3Nv-Vt-BqQ"/>
+                    <navigationItem key="navigationItem" id="3Nv-Vt-BqQ">
+                        <barButtonItem key="rightBarButtonItem" title="All" id="ceC-Ry-evr"/>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="QBE-As-fMQ" id="G6W-fn-6zx"/>

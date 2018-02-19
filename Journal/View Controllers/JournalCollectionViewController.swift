@@ -94,7 +94,7 @@ class JournalCollectionViewController: UIViewController {
     }
     
     @IBAction func downloadPressed(_ sender: Any) {
-        let urlLoader = UIAlertController(title: "Enter the URL of JSON file", message: nil, preferredStyle: .alert)
+        let urlLoader = UIAlertController(title: "Enter the URL of JSON file", message: "If you don't understand this. Don't worry. You can ignore this feature completely!", preferredStyle: .alert)
         urlLoader.addTextField { (textfield) in
             textfield.returnKeyType = .done
         }
