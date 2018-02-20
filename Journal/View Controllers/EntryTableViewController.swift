@@ -136,10 +136,6 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Delegate
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("hi")
-    }
-    
     // MARK: Data Source
     func numberOfSections(in tableView: UITableView) -> Int {
         return EntryHistorian.getNumberOfSections()

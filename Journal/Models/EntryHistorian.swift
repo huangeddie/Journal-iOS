@@ -60,7 +60,7 @@ class EntryHistorian {
     }
     
     static func getEntries(forSection section: Int, containingWords words: [String]? = nil) -> [Entry] {
-        if let entries = cache[section] {
+        if let entries = cache[section], words == nil {
             return entries
         }
         
@@ -87,8 +87,10 @@ class EntryHistorian {
         do {
             let entries = try context.fetch(fetchRequest)
             
-            // Set the cache
-            cache[section] = entries
+            if words == nil {
+                // Set the cache
+                cache[section] = entries
+            }
             
             return entries
         }
