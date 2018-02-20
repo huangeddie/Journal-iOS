@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        let titleFont = UIFont.systemFont(ofSize: 25, weight: .heavy)
 //        UINavigationBar.appearance().titleTextAttributes = [.font: titleFont]
+        UINavigationBar.appearance().barTintColor = UIColor.white
         
         // Cache stuff
         EntryHistorian.contextWatcher = EntryHistorian()
