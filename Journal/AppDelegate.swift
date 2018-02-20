@@ -21,13 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sharedApplication = UIApplication.shared
         sharedApplication.delegate?.window??.tintColor = .black
         
-//        let titleFont = UIFont.systemFont(ofSize: 25, weight: .heavy)
+
 //        UINavigationBar.appearance().titleTextAttributes = [.font: titleFont]
         UINavigationBar.appearance().barTintColor = UIColor.white
         UINavigationBar.appearance().shadowImage = UIImage()
         
         UIToolbar.appearance().barTintColor = UIColor.white
         UIToolbar.appearance().setShadowImage(UIImage(), forToolbarPosition: .any)
+        let titleFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        UIBarButtonItem.appearance().setTitleTextAttributes([.font: titleFont], for: .normal)
         
         // Cache stuff
         EntryHistorian.contextWatcher = EntryHistorian()
