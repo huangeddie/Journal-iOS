@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let titleFont = UIFont.systemFont(ofSize: 25, weight: .heavy)
 //        UINavigationBar.appearance().titleTextAttributes = [.font: titleFont]
         UINavigationBar.appearance().barTintColor = UIColor.white
+        UINavigationBar.appearance().shadowImage = UIImage()
+        
+        UIToolbar.appearance().barTintColor = UIColor.white
+        UIToolbar.appearance().setShadowImage(UIImage(), forToolbarPosition: .any)
         
         // Cache stuff
         EntryHistorian.contextWatcher = EntryHistorian()
