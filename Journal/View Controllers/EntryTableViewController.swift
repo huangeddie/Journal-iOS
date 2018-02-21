@@ -18,6 +18,7 @@ class EntryTableViewController: UIViewController {
     }
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var numberOfEntries: UIBarButtonItem!
     
     // MARK: UIViewController
     override func viewDidLoad() {
@@ -43,6 +44,10 @@ class EntryTableViewController: UIViewController {
         // Set title to current journal
         let currentJournal = JournalLibrarian.getCurrentJournal()
         navigationItem.title = currentJournal.name
+        
+        // Set the number of entries label
+        let numEntries = EntryHistorian.getAllEntries().count
+        numberOfEntries.title = "\(numEntries) Entries"
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,6 +123,9 @@ class EntryTableViewController: UIViewController {
     @objc
     private func receivedContextChangeNotification() {
         tableView.reloadData()
+        // Set the number of entries label
+        let numEntries = EntryHistorian.getAllEntries().count
+        numberOfEntries.title = "\(numEntries) Entries"
     }
 }
 
@@ -135,6 +143,7 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
     private static let cellIdentifier = "entry_cell"
     
     // MARK: Delegate
+    
     
     // MARK: Data Source
     func numberOfSections(in tableView: UITableView) -> Int {

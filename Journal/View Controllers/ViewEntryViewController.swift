@@ -10,9 +10,10 @@ import UIKit
 
 class ViewEntryViewController: UIViewController {
 
-    @IBOutlet weak var titleTextView: UITextView!
-    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var textLabel: UILabel!
+    
     
     var entryToView: Entry!
     
@@ -39,10 +40,10 @@ class ViewEntryViewController: UIViewController {
         
         navigationItem.title = entryToView.journal.name
         
-        titleTextView.text = entryToView.title
+        titleLabel.text = entryToView.title
         
         let text = entryToView.text
-        textView.text = text
+        textLabel.text = text
     }
 
     override func didReceiveMemoryWarning() {
