@@ -103,6 +103,7 @@
                         <outlet property="deleteButton" destination="3QM-mO-XMl" id="Jec-wT-2Pd"/>
                         <outlet property="textView" destination="Xo9-RD-g7K" id="cO3-zA-t3n"/>
                         <outlet property="titleTextView" destination="nV2-k1-KNl" id="KiA-4A-dF5"/>
+                        <outlet property="toolbar" destination="wwe-jf-fBA" id="brT-NR-XrQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7r-CM-NtE" userLabel="First Responder" sceneMemberID="firstResponder"/>

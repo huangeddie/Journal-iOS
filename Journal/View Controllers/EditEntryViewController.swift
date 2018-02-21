@@ -22,7 +22,7 @@ class EditEntryViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
-    
+    @IBOutlet weak var toolbar: UIToolbar!
     
     // MARK: UIViewController
     override func viewDidLoad() {
@@ -153,11 +153,7 @@ class EditEntryViewController: UIViewController {
         let kbSize = kbRect.size
         
         // TODO: Make this dynamic
-        guard let stackView = textView.superview as? UIStackView else {
-            fatalError("Expected Stack View")
-        }
-        
-        let textViewBottomOffset: CGFloat = stackView.frame.height - textView.frame.maxY - 10
+        let textViewBottomOffset: CGFloat = toolbar.frame.height
         
         let contentInsets = UIEdgeInsetsMake(defaultContentInsets.top, defaultContentInsets.left, kbSize.height - textViewBottomOffset, defaultContentInsets.right)
         textView.contentInset = contentInsets
