@@ -152,7 +152,6 @@ class EditEntryViewController: UIViewController {
         }
         let kbSize = kbRect.size
         
-        // TODO: Make this dynamic
         let textViewBottomOffset: CGFloat = toolbar.frame.height
         
         let contentInsets = UIEdgeInsetsMake(defaultContentInsets.top, defaultContentInsets.left, kbSize.height - textViewBottomOffset, defaultContentInsets.right)
