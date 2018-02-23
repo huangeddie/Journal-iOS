@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sharedApplication.delegate?.window??.tintColor = .black
         
         
-        let barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.7)
+        let barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.8)
         UINavigationBar.appearance().barTintColor = barTintColor
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .topAttached, barMetrics: .default)
         UINavigationBar.appearance().backgroundColor = barTintColor

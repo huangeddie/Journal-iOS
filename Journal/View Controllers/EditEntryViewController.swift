@@ -122,12 +122,7 @@ class EditEntryViewController: UIViewController {
         
         EntryHistorian.editEntry(entry: entryToEdit, title: newTitle, text: newText, date: newDate, journal: newJournal)
         
-        let mailVC = Exporter.getExportJournalMailComposerVC(delegate: self)
-        if let mailVC = mailVC {
-            present(mailVC, animated: true, completion: nil)
-        } else {
-            dismiss(animated: true, completion: nil)
-        }
+        dismiss(animated: true)
     }
     
     @IBAction func deleteEntry(_ sender: Any) {
