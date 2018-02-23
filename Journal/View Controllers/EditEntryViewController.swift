@@ -16,7 +16,7 @@ class EditEntryViewController: UIViewController {
     var entryToEdit: Entry!
     var newJournal: Journal!
     
-    private let defaultContentInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+    private var defaultScrollAndContentInsets: UIEdgeInsets!
     
     @IBOutlet weak var titleTextView: UITextView!
     @IBOutlet weak var textView: UITextView!
@@ -58,8 +58,11 @@ class EditEntryViewController: UIViewController {
         
         // Setup the new text
         textView.text = entryToEdit.text
-        // Add some margins to the text
-        textView.contentInset = defaultContentInsets
+        
+        // Content Insets
+        defaultScrollAndContentInsets = UIEdgeInsetsMake(0, 0, toolbar.frame.height, 0)
+        textView.contentInset = defaultScrollAndContentInsets
+        textView.scrollIndicatorInsets = defaultScrollAndContentInsets
         
         updateUI()
         
@@ -152,9 +155,9 @@ class EditEntryViewController: UIViewController {
         }
         let kbSize = kbRect.size
         
-        let textViewBottomOffset: CGFloat = toolbar.frame.height
+        let textViewBottomOffset: CGFloat = 0
         
-        let contentInsets = UIEdgeInsetsMake(defaultContentInsets.top, defaultContentInsets.left, kbSize.height - textViewBottomOffset, defaultContentInsets.right)
+        let contentInsets = UIEdgeInsetsMake(defaultScrollAndContentInsets.top, defaultScrollAndContentInsets.left, kbSize.height - textViewBottomOffset, defaultScrollAndContentInsets.right)
         textView.contentInset = contentInsets
         
         let scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, kbSize.height - textViewBottomOffset, 0)
@@ -167,8 +170,8 @@ class EditEntryViewController: UIViewController {
     @objc
     private func keyboardWillHide() {
         let zeroContentInsets = UIEdgeInsets.zero
-        textView.contentInset = defaultContentInsets
-        textView.scrollIndicatorInsets = zeroContentInsets
+        textView.contentInset = defaultScrollAndContentInsets
+        textView.scrollIndicatorInsets = defaultScrollAndContentInsets
     }
     
     private func deleteEntry() {

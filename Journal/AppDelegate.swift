@@ -21,11 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sharedApplication = UIApplication.shared
         sharedApplication.delegate?.window??.tintColor = .black
         
-        UINavigationBar.appearance().barTintColor = UIColor.white
+        
+        let barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.7)
+        UINavigationBar.appearance().barTintColor = barTintColor
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .topAttached, barMetrics: .default)
+        UINavigationBar.appearance().backgroundColor = barTintColor
         UINavigationBar.appearance().shadowImage = UIImage()
         
-        UIToolbar.appearance().barTintColor = UIColor.white
+        UIToolbar.appearance().barTintColor = barTintColor
         UIToolbar.appearance().setShadowImage(UIImage(), forToolbarPosition: .any)
+        UIToolbar.appearance().setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        UIToolbar.appearance().backgroundColor = barTintColor
         
         let normalTitleFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
         let disabledTitleFont = UIFont.systemFont(ofSize: 14, weight: .light)
