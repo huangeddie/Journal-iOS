@@ -13,14 +13,12 @@ class Exporter {
     static func getExportJournalMailComposerVC(delegate: MFMailComposeViewControllerDelegate) -> MFMailComposeViewController? {
         //Check to see the device can send email.
         if( MFMailComposeViewController.canSendMail() ) {
-            print("Can send email.")
             
             let mailComposer = MFMailComposeViewController()
             mailComposer.mailComposeDelegate = delegate
             
-            mailComposer.setToRecipients(["aigagror@gmail.com"])
-            mailComposer.setSubject("Journal")
-            mailComposer.setMessageBody("Here is your journal:", isHTML: false)
+            mailComposer.setSubject("Diunalis")
+            mailComposer.setMessageBody("Your voice in JSON format:", isHTML: false)
             
             // Create JSON object of current journals
             var json = [String: [[String: Any]]]()
@@ -55,7 +53,7 @@ class Exporter {
             }
             
             
-            mailComposer.addAttachmentData(jsonData, mimeType: "text/plain", fileName: "journalJSON")
+            mailComposer.addAttachmentData(jsonData, mimeType: "text/plain", fileName: "Diurnalis.JSON.txt")
             
             return mailComposer
         }

@@ -56,11 +56,10 @@ class JournalCollectionViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func actionPressed(_ sender: Any) {
-        
         let mailComposerVC = Exporter.getExportJournalMailComposerVC(delegate: self)
         if let mailComposerVC = mailComposerVC {
             present(mailComposerVC, animated: true, completion: nil)
-        }   
+        }
     }
     @IBAction func addJournalPressed(_ sender: Any) {
         let alertVC = UIAlertController(title: "New Journal", message: nil, preferredStyle: .alert)

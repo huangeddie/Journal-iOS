@@ -97,6 +97,7 @@
 		2CD4839E200466A100606D32 /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2CEB588920087285001EDEDC /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		2CEB5892200A7019001EDEDC /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
+		2CEB6048203F9ABC00742B9A /* Journal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Journal.entitlements; sourceTree = "<group>"; };
 		4F3746C0ABE2719D98BC3A84 /* Pods_Journal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Journal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C6ADAD74A68FB5FFACE9F0 /* Pods-JournalTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JournalTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JournalTests/Pods-JournalTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8E691FACDCD5FA6CD862F261 /* Pods_JournalTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JournalTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +179,7 @@
 		2C7FB7F22003147F00554B70 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
+				2CEB6048203F9ABC00742B9A /* Journal.entitlements */,
 				2C5E32ED201FF159002E584B /* JournalLongPressGestureRecognizer.swift */,
 				2C5E32EB201FE747002E584B /* UIStoryboard.swift */,
 				2C283F8D200D2ED100B8F52F /* UISearchBar.swift */,
@@ -320,6 +322,14 @@
 					2C7FB7EF2003147F00554B70 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
+							};
+						};
 					};
 					2C7FB8062003147F00554B70 = {
 						CreatedOnToolsVersion = 9.2;
@@ -667,13 +677,16 @@
 			baseConfigurationReference = 24462FA03F935B76BB640C8F /* Pods-Journal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FB436C8524;
+				DEVELOPMENT_TEAM = CNVS5VG567;
 				INFOPLIST_FILE = Journal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.aigagror.Journal;
+				PRODUCT_BUNDLE_IDENTIFIER = aigagror.Journal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -684,13 +697,16 @@
 			baseConfigurationReference = CCD7BB200682C4B68D9C7D7E /* Pods-Journal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FB436C8524;
+				DEVELOPMENT_TEAM = CNVS5VG567;
 				INFOPLIST_FILE = Journal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.aigagror.Journal;
+				PRODUCT_BUNDLE_IDENTIFIER = aigagror.Journal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

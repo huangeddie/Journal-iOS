@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -117,9 +118,7 @@
                         <viewLayoutGuide key="safeArea" id="8nF-zm-yTH"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="3Nv-Vt-BqQ">
-                        <barButtonItem key="rightBarButtonItem" title="All" id="ceC-Ry-evr"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="3Nv-Vt-BqQ"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="numberOfEntries" destination="nzo-Cs-bkT" id="cpR-zT-tym"/>
@@ -385,6 +384,18 @@
                                 <action selector="addJournalPressed:" destination="AeE-4B-TmU" id="MnW-le-Jze"/>
                             </connections>
                         </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="action" id="LVD-Yl-Yuw">
+                                <connections>
+                                    <action selector="actionPressed:" destination="AeE-4B-TmU" id="owJ-Zu-ICd"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Load" id="7aW-ZU-x3Q">
+                                <connections>
+                                    <action selector="downloadPressed:" destination="AeE-4B-TmU" id="Yjn-Id-3b6"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="okQ-lp-CW1" id="5lY-iz-1Qa"/>
