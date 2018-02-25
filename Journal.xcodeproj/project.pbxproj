@@ -39,6 +39,7 @@
 		2CD4839C2004640200606D32 /* EditEntryView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD4839B2004640200606D32 /* EditEntryView.storyboard */; };
 		2CD4839F200466A100606D32 /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839D200466A100606D32 /* Entry+CoreDataClass.swift */; };
 		2CD483A0200466A100606D32 /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839E200466A100606D32 /* Entry+CoreDataProperties.swift */; };
+		2CE1306D20437378001A6D3E /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1306C20437378001A6D3E /* ChartView.swift */; };
 		2CEB588A20087285001EDEDC /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB588920087285001EDEDC /* DateFormatter.swift */; };
 		2CEB5893200A7019001EDEDC /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB5892200A7019001EDEDC /* Exporter.swift */; };
 		44646266D425FBCA080CEBC7 /* Pods_JournalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E691FACDCD5FA6CD862F261 /* Pods_JournalTests.framework */; };
@@ -93,6 +94,7 @@
 		2CD4839B2004640200606D32 /* EditEntryView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditEntryView.storyboard; sourceTree = "<group>"; };
 		2CD4839D200466A100606D32 /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2CD4839E200466A100606D32 /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2CE1306C20437378001A6D3E /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		2CEB588920087285001EDEDC /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		2CEB5892200A7019001EDEDC /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
 		2CEB6048203F9ABC00742B9A /* Journal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Journal.entitlements; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		2CEB588D20087B22001EDEDC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2CE1306C20437378001A6D3E /* ChartView.swift */,
 				2C7FB7F72003147F00554B70 /* Main.storyboard */,
 				2CD4839B2004640200606D32 /* EditEntryView.storyboard */,
 				2C53E81E2016D1F100E3A02D /* Entry */,
@@ -538,6 +541,7 @@
 				2C53E82920192A7900E3A02D /* JournalCollectionViewLayout.swift in Sources */,
 				2C62522E2004827100D75065 /* JournalLibrarian.swift in Sources */,
 				2C62522C200480C200D75065 /* JournalCollectionViewController.swift in Sources */,
+				2CE1306D20437378001A6D3E /* ChartView.swift in Sources */,
 				2C283F8E200D2ED100B8F52F /* UISearchBar.swift in Sources */,
 				2C7FB817200315EE00554B70 /* EditEntryViewController.swift in Sources */,
 				2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */,
