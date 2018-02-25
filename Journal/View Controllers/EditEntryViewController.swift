@@ -43,13 +43,11 @@ class EditEntryViewController: UIViewController {
         
         // Setup the new date
         datePicker.date = entryToEdit.date
-        // We don't want the user to modify the date. If they really want, they can do that later by editing it
         if editingANewEntry {
-            datePicker.isUserInteractionEnabled = false
             // Disable the delete button
             deleteButton.isEnabled = false
         } else {
-            // Disable the delete button
+            // Enable the delete button
             deleteButton.isEnabled = true
         }
         
