@@ -10,5 +10,9 @@ import Foundation
 import UIKit
 
 class JournalLongPressGestureRecognizer: UILongPressGestureRecognizer {
-    var journalIndex = 0
+    var journalIndex: Int
+    init(index: Int, target: Any?, action: Selector?) {
+        journalIndex = index
+        super.init(target: target, action: action)
+    }
 }

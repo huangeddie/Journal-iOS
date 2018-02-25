@@ -183,9 +183,7 @@ extension JournalCollectionViewController: UICollectionViewDelegate, UICollectio
         
         cell.title?.text = journal.name
         
-        let longPress = JournalLongPressGestureRecognizer()
-        longPress.journalIndex = row
-        longPress.addTarget(self, action: #selector(journalLongPressed))
+        let longPress = JournalLongPressGestureRecognizer(index: row, target: self, action: #selector(journalLongPressed))
         cell.addGestureRecognizer(longPress)
         
         return cell

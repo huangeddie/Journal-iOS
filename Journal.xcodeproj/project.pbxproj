@@ -181,18 +181,13 @@
 			children = (
 				2CEB6048203F9ABC00742B9A /* Journal.entitlements */,
 				2C5E32ED201FF159002E584B /* JournalLongPressGestureRecognizer.swift */,
-				2C5E32EB201FE747002E584B /* UIStoryboard.swift */,
-				2C283F8D200D2ED100B8F52F /* UISearchBar.swift */,
-				2C283F8F200D335300B8F52F /* FirstResponder.swift */,
-				2CEB588920087285001EDEDC /* DateFormatter.swift */,
-				2C62A252203682D500A277D1 /* Date.swift */,
 				2CEB5892200A7019001EDEDC /* Exporter.swift */,
 				2C625232200672F300D75065 /* Downloader.swift */,
-				2C6252302005208800D75065 /* Notifications.swift */,
 				2C7FB7F32003147F00554B70 /* AppDelegate.swift */,
 				2CEB588D20087B22001EDEDC /* Views */,
 				2CD4839520042EA700606D32 /* View Controllers */,
 				2CD4839620042EBF00606D32 /* Models */,
+				2CE13069204368B8001A6D3E /* Extensions */,
 				2C7FB7F72003147F00554B70 /* Main.storyboard */,
 				2CD4839B2004640200606D32 /* EditEntryView.storyboard */,
 				2C7FB7FD2003147F00554B70 /* Assets.xcassets */,
@@ -233,6 +228,19 @@
 				2C62522F2005205200D75065 /* Core Data */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2CE13069204368B8001A6D3E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2C62A252203682D500A277D1 /* Date.swift */,
+				2C283F8F200D335300B8F52F /* FirstResponder.swift */,
+				2C5E32EB201FE747002E584B /* UIStoryboard.swift */,
+				2C283F8D200D2ED100B8F52F /* UISearchBar.swift */,
+				2CEB588920087285001EDEDC /* DateFormatter.swift */,
+				2C6252302005208800D75065 /* Notifications.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2CEB588D20087B22001EDEDC /* Views */ = {
