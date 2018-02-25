@@ -10,7 +10,6 @@
 		2C283F8E200D2ED100B8F52F /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C283F8D200D2ED100B8F52F /* UISearchBar.swift */; };
 		2C283F90200D335300B8F52F /* FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C283F8F200D335300B8F52F /* FirstResponder.swift */; };
 		2C3BC5A12024CD9E00EDE694 /* ChangeJournalTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3BC5A02024CD9E00EDE694 /* ChangeJournalTableViewController.swift */; };
-		2C4C89AF2016858600EFA2C3 /* NewEntryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C89AE2016858600EFA2C3 /* NewEntryButton.swift */; };
 		2C53E8242019259F00E3A02D /* JournalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E8232019259F00E3A02D /* JournalCollectionViewCell.swift */; };
 		2C53E826201927D500E3A02D /* JournalCollectionViewCellMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E825201927D500E3A02D /* JournalCollectionViewCellMainView.swift */; };
 		2C53E82920192A7900E3A02D /* JournalCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C53E82820192A7900E3A02D /* JournalCollectionViewLayout.swift */; };
@@ -61,7 +60,6 @@
 		2C283F8D200D2ED100B8F52F /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		2C283F8F200D335300B8F52F /* FirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponder.swift; sourceTree = "<group>"; };
 		2C3BC5A02024CD9E00EDE694 /* ChangeJournalTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeJournalTableViewController.swift; sourceTree = "<group>"; };
-		2C4C89AE2016858600EFA2C3 /* NewEntryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryButton.swift; sourceTree = "<group>"; };
 		2C53E8232019259F00E3A02D /* JournalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewCell.swift; sourceTree = "<group>"; };
 		2C53E825201927D500E3A02D /* JournalCollectionViewCellMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewCellMainView.swift; sourceTree = "<group>"; };
 		2C53E82820192A7900E3A02D /* JournalCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -179,19 +177,13 @@
 		2C7FB7F22003147F00554B70 /* Journal */ = {
 			isa = PBXGroup;
 			children = (
-				2CEB6048203F9ABC00742B9A /* Journal.entitlements */,
-				2C5E32ED201FF159002E584B /* JournalLongPressGestureRecognizer.swift */,
-				2CEB5892200A7019001EDEDC /* Exporter.swift */,
-				2C625232200672F300D75065 /* Downloader.swift */,
 				2C7FB7F32003147F00554B70 /* AppDelegate.swift */,
 				2CEB588D20087B22001EDEDC /* Views */,
-				2CD4839520042EA700606D32 /* View Controllers */,
+				2CD4839520042EA700606D32 /* Controllers */,
 				2CD4839620042EBF00606D32 /* Models */,
 				2CE13069204368B8001A6D3E /* Extensions */,
-				2C7FB7F72003147F00554B70 /* Main.storyboard */,
-				2CD4839B2004640200606D32 /* EditEntryView.storyboard */,
+				2CEB6048203F9ABC00742B9A /* Journal.entitlements */,
 				2C7FB7FD2003147F00554B70 /* Assets.xcassets */,
-				2C7FB7FF2003147F00554B70 /* LaunchScreen.storyboard */,
 				2C7FB8022003147F00554B70 /* Info.plist */,
 			);
 			path = Journal;
@@ -206,22 +198,20 @@
 			path = JournalTests;
 			sourceTree = "<group>";
 		};
-		2CD4839520042EA700606D32 /* View Controllers */ = {
+		2CD4839520042EA700606D32 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2C3BC5A02024CD9E00EDE694 /* ChangeJournalTableViewController.swift */,
-				2C62522B200480C200D75065 /* JournalCollectionViewController.swift */,
-				2CD4838F20042C3400606D32 /* EntryTableViewController.swift */,
-				2C7FB816200315EE00554B70 /* EditEntryViewController.swift */,
-				2CD4839720045EF700606D32 /* ViewEntryViewController.swift */,
-				2C5E32E9201FE68A002E584B /* EditJournalViewController.swift */,
+				2CEB5892200A7019001EDEDC /* Exporter.swift */,
+				2CE1306A20436BA2001A6D3E /* Journal */,
+				2CE1306B20436BAA001A6D3E /* Entries */,
 			);
-			path = "View Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		2CD4839620042EBF00606D32 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2C625232200672F300D75065 /* Downloader.swift */,
 				2CD4839120042D5300606D32 /* EntryHistorian.swift */,
 				2C62522D2004827100D75065 /* JournalLibrarian.swift */,
 				2CD4839320042E1900606D32 /* TimeFrame.swift */,
@@ -243,12 +233,35 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		2CE1306A20436BA2001A6D3E /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+				2C5E32ED201FF159002E584B /* JournalLongPressGestureRecognizer.swift */,
+				2C3BC5A02024CD9E00EDE694 /* ChangeJournalTableViewController.swift */,
+				2C62522B200480C200D75065 /* JournalCollectionViewController.swift */,
+				2C5E32E9201FE68A002E584B /* EditJournalViewController.swift */,
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		2CE1306B20436BAA001A6D3E /* Entries */ = {
+			isa = PBXGroup;
+			children = (
+				2CD4838F20042C3400606D32 /* EntryTableViewController.swift */,
+				2C7FB816200315EE00554B70 /* EditEntryViewController.swift */,
+				2CD4839720045EF700606D32 /* ViewEntryViewController.swift */,
+			);
+			path = Entries;
+			sourceTree = "<group>";
+		};
 		2CEB588D20087B22001EDEDC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2C4C89AE2016858600EFA2C3 /* NewEntryButton.swift */,
+				2C7FB7F72003147F00554B70 /* Main.storyboard */,
+				2CD4839B2004640200606D32 /* EditEntryView.storyboard */,
 				2C53E81E2016D1F100E3A02D /* Entry */,
 				2C53E8272019281E00E3A02D /* Journal */,
+				2C7FB7FF2003147F00554B70 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -527,7 +540,6 @@
 				2C62522C200480C200D75065 /* JournalCollectionViewController.swift in Sources */,
 				2C283F8E200D2ED100B8F52F /* UISearchBar.swift in Sources */,
 				2C7FB817200315EE00554B70 /* EditEntryViewController.swift in Sources */,
-				2C4C89AF2016858600EFA2C3 /* NewEntryButton.swift in Sources */,
 				2C6252282004715600D75065 /* Journal+CoreDataProperties.swift in Sources */,
 				2C53E826201927D500E3A02D /* JournalCollectionViewCellMainView.swift in Sources */,
 				2C283F90200D335300B8F52F /* FirstResponder.swift in Sources */,
