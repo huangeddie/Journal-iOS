@@ -194,45 +194,51 @@
             </objects>
             <point key="canvasLocation" x="717" y="362"/>
         </scene>
-        <!--View Controller-->
+        <!--Statistics View Controller-->
         <scene sceneID="nNt-cs-Rt8">
             <objects>
-                <viewController id="fTC-Pv-Xhl" sceneMemberID="viewController">
+                <viewController id="fTC-Pv-Xhl" customClass="StatisticsViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FMq-GS-TLy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Iwx-ij-ktL">
-                                <rect key="frame" x="15" y="90" width="345" height="215.5"/>
+                                <rect key="frame" x="15" y="307.5" width="345" height="215.5"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2AD-zm-CBZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="29"/>
-                                        <segments>
-                                            <segment title="7D"/>
-                                            <segment title="1M"/>
-                                            <segment title="3M"/>
-                                            <segment title="1Y"/>
-                                            <segment title="All"/>
-                                        </segments>
-                                    </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2V-yT-cdd" userLabel="Chart" customClass="ChartView" customModule="Journal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="43" width="345" height="172.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="172.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="U2V-yT-cdd" secondAttribute="height" multiplier="2:1" id="4ta-Jg-aux"/>
                                         </constraints>
                                     </view>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2AD-zm-CBZ">
+                                        <rect key="frame" x="0.0" y="187.5" width="345" height="29"/>
+                                        <segments>
+                                            <segment title="7D"/>
+                                            <segment title="1M"/>
+                                            <segment title="3M"/>
+                                            <segment title="1Y"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="timeFrameChanged:" destination="fTC-Pv-Xhl" eventType="valueChanged" id="b6l-xk-Vkr"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Iwx-ij-ktL" firstAttribute="top" secondItem="uSL-SQ-Kiq" secondAttribute="top" constant="26" id="Ate-bA-6IN"/>
+                            <constraint firstItem="uSL-SQ-Kiq" firstAttribute="bottom" secondItem="Iwx-ij-ktL" secondAttribute="bottom" constant="100" id="04k-IC-Bic"/>
                             <constraint firstItem="Iwx-ij-ktL" firstAttribute="leading" secondItem="uSL-SQ-Kiq" secondAttribute="leading" constant="15" id="Ly9-00-wux"/>
                             <constraint firstItem="uSL-SQ-Kiq" firstAttribute="trailing" secondItem="Iwx-ij-ktL" secondAttribute="trailing" constant="15" id="P7N-8z-mFm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uSL-SQ-Kiq"/>
                     </view>
+                    <connections>
+                        <outlet property="chart" destination="U2V-yT-cdd" id="uFk-CX-2YZ"/>
+                        <outlet property="timeFrame" destination="2AD-zm-CBZ" id="I16-RX-czG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxl-gG-jwU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

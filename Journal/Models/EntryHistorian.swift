@@ -163,6 +163,55 @@ class EntryHistorian {
         }
     }
     
+    static func getEntriesPast(date: Date) -> [Entry] {
+        let context = PersistentService.context
+        
+        let journal = JournalLibrarian.getCurrentJournal()
+        
+        let fetchRequest = NSFetchRequest<Entry>(entityName: Entry.description())
+        
+        var predicateString = "journal.id = \(journal.id) AND date >= %@"
+        let predicate = NSPredicate(format: predicateString, date as NSDate)
+        fetchRequest.predicate = predicate
+        
+        let dateSort = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [dateSort]
+        
+        do {
+            let entries = try context.fetch(fetchRequest)
+            
+            return entries
+        }
+        catch {
+            print("Error: \(error)")
+            fatalError("Error getting entries")
+        }
+    }
+    
+    static func partition(entries: [Entry], into n: Int, startDate: Date, endDate: Date) -> [Int] {
+        var ret: [Int] = []
+        
+        let interval = endDate.timeIntervalSince(startDate) / TimeInterval(n)
+        var aDate = startDate
+        var bDate = startDate.addingTimeInterval(interval)
+
+        for _ in 1...n {
+            let count = entries.reduce(0, { (currentCount, entry) -> Int in
+                if aDate <= entry.date && entry.date < bDate{
+                    return currentCount + 1
+                }
+                return currentCount
+            })
+            ret.append(count)
+            
+            aDate = bDate
+            bDate = bDate.addingTimeInterval(interval)
+        }
+        
+        assert(ret.count == n)
+        return ret
+    }
+    
     static func addEntry(title: String, text: String, date: Date? = nil) -> Entry {
         let context = PersistentService.context
         let currentJournal = JournalLibrarian.getCurrentJournal()

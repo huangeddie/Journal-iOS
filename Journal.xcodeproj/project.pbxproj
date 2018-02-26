@@ -32,6 +32,8 @@
 		2C7FB80C2003147F00554B70 /* JournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FB80B2003147F00554B70 /* JournalTests.swift */; };
 		2C7FB817200315EE00554B70 /* EditEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FB816200315EE00554B70 /* EditEntryViewController.swift */; };
 		2C7FB81B2003F47100554B70 /* PersistentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FB81A2003F47100554B70 /* PersistentService.swift */; };
+		2C8815012043968000ACF82A /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8815002043968000ACF82A /* StatisticsViewController.swift */; };
+		2C8815032043997600ACF82A /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8815022043997600ACF82A /* TimeInterval.swift */; };
 		2CD4839020042C3400606D32 /* EntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4838F20042C3400606D32 /* EntryTableViewController.swift */; };
 		2CD4839220042D5300606D32 /* EntryHistorian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839120042D5300606D32 /* EntryHistorian.swift */; };
 		2CD4839420042E1900606D32 /* TimeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839320042E1900606D32 /* TimeFrame.swift */; };
@@ -87,6 +89,8 @@
 		2C7FB80D2003147F00554B70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C7FB816200315EE00554B70 /* EditEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryViewController.swift; sourceTree = "<group>"; };
 		2C7FB81A2003F47100554B70 /* PersistentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentService.swift; sourceTree = "<group>"; };
+		2C8815002043968000ACF82A /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		2C8815022043997600ACF82A /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		2CD4838F20042C3400606D32 /* EntryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewController.swift; sourceTree = "<group>"; };
 		2CD4839120042D5300606D32 /* EntryHistorian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryHistorian.swift; sourceTree = "<group>"; };
 		2CD4839320042E1900606D32 /* TimeFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrame.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 				2CEB5892200A7019001EDEDC /* Exporter.swift */,
 				2CE1306A20436BA2001A6D3E /* Journal */,
 				2CE1306B20436BAA001A6D3E /* Entries */,
+				2C8815002043968000ACF82A /* StatisticsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				2C62A252203682D500A277D1 /* Date.swift */,
+				2C8815022043997600ACF82A /* TimeInterval.swift */,
 				2C283F8F200D335300B8F52F /* FirstResponder.swift */,
 				2C5E32EB201FE747002E584B /* UIStoryboard.swift */,
 				2C283F8D200D2ED100B8F52F /* UISearchBar.swift */,
@@ -519,6 +525,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C53E8242019259F00E3A02D /* JournalCollectionViewCell.swift in Sources */,
+				2C8815032043997600ACF82A /* TimeInterval.swift in Sources */,
 				2C62A253203682D500A277D1 /* Date.swift in Sources */,
 				2CEB588A20087285001EDEDC /* DateFormatter.swift in Sources */,
 				2CD4839220042D5300606D32 /* EntryHistorian.swift in Sources */,
@@ -527,6 +534,7 @@
 				2CD4839420042E1900606D32 /* TimeFrame.swift in Sources */,
 				2C5AAF6B2035474700CC4940 /* EntryTableViewCell.swift in Sources */,
 				2C6252272004715600D75065 /* Journal+CoreDataClass.swift in Sources */,
+				2C8815012043968000ACF82A /* StatisticsViewController.swift in Sources */,
 				2C5E32EA201FE68A002E584B /* EditJournalViewController.swift in Sources */,
 				2C7FB81B2003F47100554B70 /* PersistentService.swift in Sources */,
 				2CD483A0200466A100606D32 /* Entry+CoreDataProperties.swift in Sources */,

@@ -11,13 +11,21 @@ import UIKit
 @IBDesignable
 class ChartView: UIView {
     
-    var yValues: [Int] = [1,3,2,2,3,4,0] // There must be at least 2 elements
-    var bottomXLabels: [String] = ["19", "20", "21", "22", "23", "24", "25"] // There must be at least 2 elements
-    var topXLabels: [String] = ["Month"] // There must be at least 1 element and at most bottomXLabels.count elements
+    private var yValues: [Int] = [1,3,2,2,3,4,0] // There must be at least 2 elements
+    private var bottomXLabels: [String] = ["19", "20", "21", "22", "23", "24", "25"] // There must be at least 2 elements
+    private var topXLabels: [String] = ["Month"] // There must be at least 1 element and at most bottomXLabels.count elements
     
     private let bottomOffSet: CGFloat = 20
     private let topOffSet: CGFloat = 15
     private let yInterval: Int = 5
+    
+    func configure(yValues: [Int], bottomXLabels: [String], topXLabels: [String]) {
+        self.yValues = yValues
+        self.bottomXLabels = bottomXLabels
+        self.topXLabels = topXLabels
+        
+        setNeedsDisplay()
+    }
 
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
