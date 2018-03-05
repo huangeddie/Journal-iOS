@@ -44,17 +44,16 @@ class StatisticsViewController: UIViewController {
     // MARK: Private Functions
     private func updateChart() {
         let tf = TimeFrame(rawValue: timeFrame.selectedSegmentIndex)!
-        let numberOfDays = tf.estimatedNumberOfDays
-        let numberOfWeeks = tf.estimatedNumberOfWeeks
-        let now = Date()
-        let offSet = now.addingTimeInterval(-TimeInterval(numberOfDays) * TimeInterval.numberOfSecondsInADay)
-        let calendar = Calendar.current
-        let date = tf != .all ? calendar.startOfDay(for: offSet) : now
         
-        let entries = EntryHistorian.getEntriesPast(date: date)
-        let yValues = EntryHistorian.partition(entries: entries, into: tf == .week ? numberOfDays : numberOfWeeks, startDate: date, endDate: now)
+        let chartData: ChartData = EntryHistorian.getChartData(for: tf)
         
-        chart.configure(yValues: yValues, bottomXLabels: ["", ""], topXLabels: ["Month"])
+        // Bottom X labels
+        var bottomXLabels: [String] = []
+        
+        // Top X Labels
+        var topXLabels: [String] = []
+        
+        chart.configure(yValues: chartData.data, bottomXLabels: bottomXLabels, topXLabels: topXLabels)
     }
 
 }

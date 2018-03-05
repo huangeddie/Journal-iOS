@@ -219,6 +219,7 @@
                                             <segment title="1M"/>
                                             <segment title="3M"/>
                                             <segment title="1Y"/>
+                                            <segment title="All"/>
                                         </segments>
                                         <connections>
                                             <action selector="timeFrameChanged:" destination="fTC-Pv-Xhl" eventType="valueChanged" id="b6l-xk-Vkr"/>
@@ -253,28 +254,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOu-bR-OyL">
-                                <rect key="frame" x="0.0" y="64" width="0.0" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3d-Om-in0">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="70.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1ON-Hn-4OP">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="70.5"/>
+                                                <rect key="frame" x="15" y="0.0" width="345" height="70.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Jan 1, 2018 at 12:00pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ded-a1-LvV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="16"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THA-oa-JAM" userLabel="Title">
-                                                        <rect key="frame" x="0.0" y="21" width="0.0" height="24"/>
+                                                        <rect key="frame" x="0.0" y="21" width="345" height="24"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtR-7q-Uk9">
-                                                        <rect key="frame" x="0.0" y="50" width="0.0" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="50" width="345" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
