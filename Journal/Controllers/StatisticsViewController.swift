@@ -61,30 +61,50 @@ class StatisticsViewController: UIViewController {
         
         let calendar = Calendar.current
         let startDate = chartData.startDate.date!
-        let dataTimeFrame = chartData.dataCalendarComponent
+        let dataComponent = chartData.dataComponent
+        let df = DateFormatter()
         
         // Bottom X labels
         var bottomXLabels: [String] = []
-        if dataTimeFrame != .calendar {
+        if dataComponent != .calendar {
             var currentDate: Date
             for i in 0..<chartData.size {
-                currentDate = calendar.date(byAdding: dataTimeFrame, value: i, to: startDate)!
-                let componentValue = calendar.component(dataTimeFrame, from: currentDate)
-                bottomXLabels.append("\(componentValue)")
+                currentDate = calendar.date(byAdding: dataComponent, value: i, to: startDate)!
+                let componentValue = calendar.component(dataComponent, from: currentDate)
+                let s: String
+                switch dataComponent {
+                case .month:
+                    if calendarComponent == .year {
+                        s = df.shortMonthSymbols[componentValue - 1]
+                    } else {
+                        s = df.monthSymbols[componentValue - 1]
+                    }
+                case .weekday:
+                    s = df.shortWeekdaySymbols[componentValue - 1]
+                case .weekOfMonth:
+                    s = "W\(componentValue - 1)"
+                default:
+                    s = "\(componentValue)"
+                }
+                bottomXLabels.append(s)
             }
         }
         
         
         // Top X Label
-        let higherComponent: Calendar.Component = dataTimeFrame.higherComponent
+        let higherComponent: Calendar.Component = dataComponent.higherComponent
         let higherComponentValue = calendar.component(higherComponent, from: startDate)
-        let xLabel: String
-        let df = DateFormatter()
+        var xLabel: String
         switch higherComponent {
-        case .weekOfMonth:
-            xLabel = df.weekdaySymbols[higherComponentValue]
         case .month:
-            xLabel = df.standaloneMonthSymbols[higherComponentValue]
+            let startDay = calendar.component(.day, from: startDate)
+            let endDate = calendar.date(byAdding: dataComponent, value: chartData.size, to: startDate)!
+            let endDay = calendar.component(.day, from: endDate)
+            let endMonth = calendar.component(.month, from: endDate)
+            
+            let startMonthString = df.standaloneMonthSymbols[higherComponentValue]
+            let endMonthString = df.standaloneMonthSymbols[endMonth]
+            xLabel = "\(startMonthString) \(startDay) - \(endMonthString) \(endDay)"
         case .year:
             xLabel = "\(higherComponentValue)"
         case .calendar:

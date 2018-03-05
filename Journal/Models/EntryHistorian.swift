@@ -198,10 +198,10 @@ class EntryHistorian {
             dataComponent = .weekday
             size = 1
         case .weekOfYear, .weekOfMonth:
-            dataComponent = .day
+            dataComponent = .weekday
             size = 7
         case .month:
-            dataComponent = .weekOfYear
+            dataComponent = .weekOfMonth
             size = 5
         case .quarter:
             dataComponent = .month

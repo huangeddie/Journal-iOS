@@ -13,9 +13,7 @@ extension Calendar.Component {
         switch self {
         case .calendar:
             return .calendar
-        case .day, .weekday, .weekdayOrdinal:
-            return .weekOfMonth
-        case .weekOfMonth, .weekOfYear:
+        case .day, .weekday, .weekdayOrdinal, .weekOfMonth, .weekOfYear:
             return .month
         case .month, .quarter:
             return .year

@@ -10,7 +10,7 @@ import Foundation
 
 struct ChartData {
     let startDate: DateComponents
-    let dataCalendarComponent: Calendar.Component
+    let dataComponent: Calendar.Component
     var data: [Int]
     
     var size: Int {
@@ -19,7 +19,7 @@ struct ChartData {
     
     init(startDate: DateComponents, dataCalendarComponent: Calendar.Component, data: [Int]? = nil) {
         self.startDate = startDate
-        self.dataCalendarComponent = dataCalendarComponent
+        self.dataComponent = dataCalendarComponent
         self.data = data ?? []
     }
 }

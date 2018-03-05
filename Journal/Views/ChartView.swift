@@ -17,7 +17,7 @@ class ChartView: UIView {
     
     private let bottomOffSet: CGFloat = 20
     private let topOffSet: CGFloat = 15
-    private let yInterval: Int = 5
+    private let yInterval: Int = 10
     
     func configure(yValues: [Int]? = nil, bottomXLabels: [String]? = nil, topXLabel: String? = nil) {
         self.yValues = yValues ?? []
