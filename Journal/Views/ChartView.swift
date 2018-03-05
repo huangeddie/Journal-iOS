@@ -33,73 +33,71 @@ class ChartView: UIView {
             return max(localMax, y)
         }
         let yCapacity = ((maxY + yInterval) / yInterval) * yInterval
-        
-        // Draw the vertical section lines and labels
-        let sectionPath = UIBezierPath()
         let sectionWidth: CGFloat = frame.width / CGFloat(yValues.count)
-        for i in 0..<bottomXLabels.count {
-            let xPosition = sectionWidth * CGFloat(i)
-            let topPoint = CGPoint(x: xPosition, y: topOffSet)
-            let bottomPoint = CGPoint(x: xPosition, y: frame.height)
-            sectionPath.move(to: topPoint)
-            sectionPath.addLine(to: bottomPoint)
+        var graphPoints: [CGPoint] = [] // In case we want to fill in the graph with gradients and what not
+        
+        let drawBars = {
+            // Draw the bars
+            let graphPath = UIBezierPath()
             
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .center
-            let attributes = [NSAttributedStringKey.paragraphStyle  :  paragraphStyle,
-                              NSAttributedStringKey.font            :   UIFont.systemFont(ofSize: 12.0),
-                              NSAttributedStringKey.foregroundColor : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1),
-                              ]
+            let computeBarPoints = { (i: Int) -> (CGPoint, CGPoint) in
+                let y = self.yValues[i]
+                let proportionalHeight = CGFloat(y) / CGFloat(yCapacity)
+                let yPosition = self.frame.height - self.bottomOffSet - proportionalHeight * (self.frame.height - self.bottomOffSet - self.topOffSet)
+                let p1 = CGPoint(x: sectionWidth * CGFloat(i), y: yPosition)
+                let p2 = CGPoint(x: sectionWidth * CGFloat(i) + sectionWidth, y: yPosition)
+                return (p1, p2)
+            }
             
-            let text = bottomXLabels[i]
-            let attrString = NSAttributedString(string: text,
-                                                attributes: attributes)
-            let textHeight = attrString.size().height
             
-            let rt = CGRect(x: xPosition, y: frame.height - textHeight, width: sectionWidth, height: textHeight)
-            attrString.draw(in: rt)
+            for i in 0..<self.yValues.count {
+                let points = computeBarPoints(i)
+                
+                graphPath.move(to: points.0)
+                graphPath.addLine(to: points.1)
+                
+                graphPoints.append(points.0)
+                graphPoints.append(points.1)
+            }
+            
+            #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1).setStroke()
+            graphPath.stroke()
         }
+        drawBars()
         
-        #colorLiteral(red: 0.9372549057, green: 0.9372549057, blue: 0.9568627477, alpha: 1).setStroke()
-        sectionPath.lineWidth = 1
-        sectionPath.stroke()
-        
-        // Top x label
-        let drawTopXLabel = {
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .center
-            let attributes = [NSAttributedStringKey.paragraphStyle  :  paragraphStyle,
-                              NSAttributedStringKey.font            :   UIFont.systemFont(ofSize: 12.0),
-                              NSAttributedStringKey.foregroundColor : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1),
-                              ]
-            let attrString = NSAttributedString(string: self.topXLabel,
-                                                attributes: attributes)
-            let textHeight = attrString.size().height
-            let textWidth = attrString.size().width
+        // Draw the gradient
+        let drawGradient = {
+            // 1 - save the state of the context (commented out for now)
+            let context = UIGraphicsGetCurrentContext()
+            context?.saveGState()
             
-            let rt = CGRect(x: 5, y: self.topOffSet - textHeight, width: textWidth, height: textHeight)
-            attrString.draw(in: rt)
-        }
-        drawTopXLabel()
-        
-        
-        // Max value label
-        let drawMaxValue = {
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .center
-            let attributes = [NSAttributedStringKey.paragraphStyle  :  paragraphStyle,
-                              NSAttributedStringKey.font            :   UIFont.systemFont(ofSize: 12.0),
-                              NSAttributedStringKey.foregroundColor : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1),
-                              ]
-            let maxAttrString = NSAttributedString(string: "\(yCapacity)",
-                attributes: attributes)
-            let maxTextHeight = maxAttrString.size().height
-            let maxTextWidth = maxAttrString.size().width
+            // 2 - make a clipping path
+            let clippingPath = UIBezierPath()
+            clippingPath.move(to: CGPoint(x: 0, y: self.frame.height))
+            for point in graphPoints {
+                clippingPath.addLine(to: point)
+            }
+            clippingPath.addLine(to: CGPoint(x: self.frame.width, y: self.frame.height))
             
-            let rt = CGRect(x: self.frame.width - maxTextWidth - 5, y: self.topOffSet - maxTextHeight, width: maxTextWidth, height: maxTextHeight)
-            maxAttrString.draw(in: rt)
+            // 3 - close it
+            clippingPath.close()
+            
+            // 4 - add the clipping path to the context
+            clippingPath.addClip()
+            
+            // 5 - gradient
+            let colorSpace = CGColorSpaceCreateDeviceGray()
+            let colorLocations:[CGFloat] = [0.0, 1.0]
+            let colors = [#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).cgColor, #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1).cgColor]
+            let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: colorLocations)
+            
+            let startPoint = CGPoint(x: 0, y: self.topOffSet)
+            let endPoint = CGPoint(x: 0, y: self.frame.height - self.bottomOffSet)
+            
+            context?.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: CGGradientDrawingOptions(rawValue: 0))
+            context?.restoreGState()
         }
-        drawMaxValue()
+        drawGradient()
         
         let drawOutLines = {
             // Draw the outlines
@@ -132,34 +130,72 @@ class ChartView: UIView {
         }
         drawOutLines()
         
-        let drawBars = {
-            // Draw the bars
-            let graphPath = UIBezierPath()
-            var graphPoints: [CGPoint] = [] // In case we want to fill in the graph with gradients and what not
-            
-            let computeBarPoints = { (i: Int) -> (CGPoint, CGPoint) in
-                let y = self.yValues[i]
-                let proportionalHeight = CGFloat(y) / CGFloat(yCapacity)
-                let yPosition = self.frame.height - self.bottomOffSet - proportionalHeight * (self.frame.height - self.bottomOffSet - self.topOffSet)
-                let p1 = CGPoint(x: sectionWidth * CGFloat(i), y: yPosition)
-                let p2 = CGPoint(x: sectionWidth * CGFloat(i) + sectionWidth, y: yPosition)
-                return (p1, p2)
+        let drawVerticalLinesAndLabels = {
+            // Draw the vertical section lines and labels
+            let sectionPath = UIBezierPath()
+            for i in 0..<self.bottomXLabels.count {
+                let xPosition = sectionWidth * CGFloat(i)
+                let topPoint = CGPoint(x: xPosition, y: self.topOffSet)
+                let bottomPoint = CGPoint(x: xPosition, y: self.frame.height)
+                sectionPath.move(to: topPoint)
+                sectionPath.addLine(to: bottomPoint)
+                
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.alignment = .center
+                let attributes = [NSAttributedStringKey.paragraphStyle  :  paragraphStyle,
+                                  NSAttributedStringKey.font            :   UIFont.systemFont(ofSize: 12.0),
+                                  NSAttributedStringKey.foregroundColor : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1),
+                                  ]
+                
+                let text = self.bottomXLabels[i]
+                let attrString = NSAttributedString(string: text,
+                                                    attributes: attributes)
+                let textHeight = attrString.size().height
+                
+                let rt = CGRect(x: xPosition, y: self.frame.height - textHeight, width: sectionWidth, height: textHeight)
+                attrString.draw(in: rt)
             }
             
-            
-            for i in 0..<self.yValues.count {
-                let points = computeBarPoints(i)
-                
-                graphPath.move(to: points.0)
-                graphPath.addLine(to: points.1)
-                
-                graphPoints.append(points.0)
-                graphPoints.append(points.1)
-            }
-            
-            #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1).setStroke()
-            graphPath.stroke()
+            #colorLiteral(red: 0.9372549057, green: 0.9372549057, blue: 0.9568627477, alpha: 1).setStroke()
+            sectionPath.lineWidth = 1
+            sectionPath.stroke()
         }
-        drawBars()
+        drawVerticalLinesAndLabels()
+        
+        // Top x label
+        let drawTopXLabel = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+            let attributes = [NSAttributedStringKey.paragraphStyle  :  paragraphStyle,
+                              NSAttributedStringKey.font            :   UIFont.systemFont(ofSize: 12.0),
+                              NSAttributedStringKey.foregroundColor : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1),
+                              ]
+            let attrString = NSAttributedString(string: self.topXLabel,
+                                                attributes: attributes)
+            let textHeight = attrString.size().height
+            let textWidth = attrString.size().width
+            
+            let rt = CGRect(x: 5, y: self.topOffSet - textHeight, width: textWidth, height: textHeight)
+            attrString.draw(in: rt)
+        }
+        drawTopXLabel()
+        
+        // Max value label
+        let drawMaxValue = {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.alignment = .center
+            let attributes = [NSAttributedStringKey.paragraphStyle  :  paragraphStyle,
+                              NSAttributedStringKey.font            :   UIFont.systemFont(ofSize: 12.0),
+                              NSAttributedStringKey.foregroundColor : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1),
+                              ]
+            let maxAttrString = NSAttributedString(string: "\(yCapacity)",
+                attributes: attributes)
+            let maxTextHeight = maxAttrString.size().height
+            let maxTextWidth = maxAttrString.size().width
+            
+            let rt = CGRect(x: self.frame.width - maxTextWidth - 5, y: self.topOffSet - maxTextHeight, width: maxTextWidth, height: maxTextHeight)
+            maxAttrString.draw(in: rt)
+        }
+        drawMaxValue()
     }
 }
