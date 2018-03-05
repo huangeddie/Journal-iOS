@@ -9,7 +9,7 @@
 import Foundation
 
 enum TimeFrame: Int {
-    case week, month, quarter, year, all
+    case day, week, month, quarter, year, all
     var estimatedNumberOfDays: Int {
         switch self {
         case .week:
@@ -38,5 +38,9 @@ enum TimeFrame: Int {
         default:
             return Int.max
         }
+    }
+    
+    static func timeFrame(date: DateComponents) -> TimeFrame {
+        return .day
     }
 }

@@ -43,12 +43,31 @@ class StatisticsViewController: UIViewController {
     
     // MARK: Private Functions
     private func updateChart() {
-        let tf = TimeFrame(rawValue: timeFrame.selectedSegmentIndex)!
+        let tf = TimeFrame(rawValue: timeFrame.selectedSegmentIndex + 1)!
         
         let chartData: ChartData = EntryHistorian.getChartData(for: tf)
         
         // Bottom X labels
         var bottomXLabels: [String] = []
+        let startDate = chartData.startDate
+        let dataTimeFrame = chartData.dataTimeFrame
+        var currentDate = startDate
+        for i in 0..<chartData.size {
+            switch dataTimeFrame {
+            case .day:
+                currentDate.day! += 1
+            case .week:
+                currentDate.weekOfYear! += 1
+            case .month:
+                currentDate.month! += 1
+            case .quarter:
+                currentDate.month! += 3
+            case .year:
+                currentDate.year! += 1
+            default:
+                break
+            }
+        }
         
         // Top X Labels
         var topXLabels: [String] = []
