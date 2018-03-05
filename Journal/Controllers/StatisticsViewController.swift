@@ -59,25 +59,41 @@ class StatisticsViewController: UIViewController {
         
         let chartData: ChartData = EntryHistorian.getChartData(for: calendarComponent)
         
-        // Bottom X labels
-        var bottomXLabels: [String] = []
+        let calendar = Calendar.current
         let startDate = chartData.startDate.date!
         let dataTimeFrame = chartData.dataCalendarComponent
-        let calendar = Calendar.current
-        var currentDate: Date
-        for i in 0..<chartData.size {
-            currentDate = calendar.date(byAdding: dataTimeFrame, value: i, to: startDate)!
-            let component = calendar.component(dataTimeFrame, from: currentDate)
-            bottomXLabels.append("\(component)")
+        
+        // Bottom X labels
+        var bottomXLabels: [String] = []
+        if dataTimeFrame != .calendar {
+            var currentDate: Date
+            for i in 0..<chartData.size {
+                currentDate = calendar.date(byAdding: dataTimeFrame, value: i, to: startDate)!
+                let componentValue = calendar.component(dataTimeFrame, from: currentDate)
+                bottomXLabels.append("\(componentValue)")
+            }
         }
         
-        // Top X Labels
-        var topXLabels: [String] = []
-        let higherComponent: Calendar.Component = dataTimeFrame.higherComponent
-        let component = calendar.component(higherComponent, from: startDate)
-        topXLabels.append("\(component)")
         
-        chart.configure(yValues: chartData.data, bottomXLabels: bottomXLabels, topXLabels: topXLabels)
+        // Top X Label
+        let higherComponent: Calendar.Component = dataTimeFrame.higherComponent
+        let higherComponentValue = calendar.component(higherComponent, from: startDate)
+        let xLabel: String
+        let df = DateFormatter()
+        switch higherComponent {
+        case .weekOfMonth:
+            xLabel = df.weekdaySymbols[higherComponentValue]
+        case .month:
+            xLabel = df.standaloneMonthSymbols[higherComponentValue]
+        case .year:
+            xLabel = "\(higherComponentValue)"
+        case .calendar:
+            xLabel = "All"
+        default:
+            xLabel = ""
+        }
+        
+        chart.configure(yValues: chartData.data, bottomXLabels: bottomXLabels, topXLabel: xLabel)
     }
 
 }
