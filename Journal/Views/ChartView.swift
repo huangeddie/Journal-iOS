@@ -19,11 +19,10 @@ class ChartView: UIView {
     private let topOffSet: CGFloat = 15
     private let yInterval: Int = 5
     
-    func configure(yValues: [Int], bottomXLabels: [String], topXLabels: [String]) {
-        self.yValues = yValues
-        self.bottomXLabels = bottomXLabels
-        self.topXLabels = topXLabels
-        
+    func configure(yValues: [Int]? = nil, bottomXLabels: [String]? = nil, topXLabels: [String]? = nil) {
+        self.yValues = yValues ?? []
+        self.bottomXLabels = bottomXLabels ?? []
+        self.topXLabels = topXLabels ?? []
         setNeedsDisplay()
     }
 
