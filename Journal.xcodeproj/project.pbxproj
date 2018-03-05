@@ -35,9 +35,9 @@
 		2C8815012043968000ACF82A /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8815002043968000ACF82A /* StatisticsViewController.swift */; };
 		2C8815032043997600ACF82A /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8815022043997600ACF82A /* TimeInterval.swift */; };
 		2C8E96AB204CD03E007EAE06 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E96AA204CD03E007EAE06 /* ChartData.swift */; };
+		2C8E96AD204CE604007EAE06 /* CalendarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E96AC204CE604007EAE06 /* CalendarComponent.swift */; };
 		2CD4839020042C3400606D32 /* EntryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4838F20042C3400606D32 /* EntryTableViewController.swift */; };
 		2CD4839220042D5300606D32 /* EntryHistorian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839120042D5300606D32 /* EntryHistorian.swift */; };
-		2CD4839420042E1900606D32 /* TimeFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839320042E1900606D32 /* TimeFrame.swift */; };
 		2CD4839820045EF700606D32 /* ViewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839720045EF700606D32 /* ViewEntryViewController.swift */; };
 		2CD4839C2004640200606D32 /* EditEntryView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD4839B2004640200606D32 /* EditEntryView.storyboard */; };
 		2CD4839F200466A100606D32 /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4839D200466A100606D32 /* Entry+CoreDataClass.swift */; };
@@ -93,9 +93,9 @@
 		2C8815002043968000ACF82A /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		2C8815022043997600ACF82A /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		2C8E96AA204CD03E007EAE06 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		2C8E96AC204CE604007EAE06 /* CalendarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarComponent.swift; sourceTree = "<group>"; };
 		2CD4838F20042C3400606D32 /* EntryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewController.swift; sourceTree = "<group>"; };
 		2CD4839120042D5300606D32 /* EntryHistorian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryHistorian.swift; sourceTree = "<group>"; };
-		2CD4839320042E1900606D32 /* TimeFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFrame.swift; sourceTree = "<group>"; };
 		2CD4839720045EF700606D32 /* ViewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewEntryViewController.swift; sourceTree = "<group>"; };
 		2CD4839B2004640200606D32 /* EditEntryView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditEntryView.storyboard; sourceTree = "<group>"; };
 		2CD4839D200466A100606D32 /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -223,7 +223,6 @@
 				2C625232200672F300D75065 /* Downloader.swift */,
 				2CD4839120042D5300606D32 /* EntryHistorian.swift */,
 				2C62522D2004827100D75065 /* JournalLibrarian.swift */,
-				2CD4839320042E1900606D32 /* TimeFrame.swift */,
 				2C62522F2005205200D75065 /* Core Data */,
 				2C8E96AA204CD03E007EAE06 /* ChartData.swift */,
 			);
@@ -240,6 +239,7 @@
 				2C283F8D200D2ED100B8F52F /* UISearchBar.swift */,
 				2CEB588920087285001EDEDC /* DateFormatter.swift */,
 				2C6252302005208800D75065 /* Notifications.swift */,
+				2C8E96AC204CE604007EAE06 /* CalendarComponent.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -534,7 +534,6 @@
 				2CD4839220042D5300606D32 /* EntryHistorian.swift in Sources */,
 				2CEB5893200A7019001EDEDC /* Exporter.swift in Sources */,
 				2CD4839020042C3400606D32 /* EntryTableViewController.swift in Sources */,
-				2CD4839420042E1900606D32 /* TimeFrame.swift in Sources */,
 				2C5AAF6B2035474700CC4940 /* EntryTableViewCell.swift in Sources */,
 				2C6252272004715600D75065 /* Journal+CoreDataClass.swift in Sources */,
 				2C8815012043968000ACF82A /* StatisticsViewController.swift in Sources */,
@@ -549,6 +548,7 @@
 				2C7FB7FC2003147F00554B70 /* Journal.xcdatamodeld in Sources */,
 				2C625233200672F300D75065 /* Downloader.swift in Sources */,
 				2C5E32EC201FE747002E584B /* UIStoryboard.swift in Sources */,
+				2C8E96AD204CE604007EAE06 /* CalendarComponent.swift in Sources */,
 				2C53E82920192A7900E3A02D /* JournalCollectionViewLayout.swift in Sources */,
 				2C62522E2004827100D75065 /* JournalLibrarian.swift in Sources */,
 				2C62522C200480C200D75065 /* JournalCollectionViewController.swift in Sources */,

@@ -142,7 +142,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Journal Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7E9-Yf-nb0">
-                                <rect key="frame" x="96.5" y="326.5" width="183" height="34"/>
+                                <rect key="frame" x="96.5" y="304.5" width="183" height="34"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
@@ -159,6 +159,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem systemItem="flexibleSpace" id="e8n-Us-FE5"/>
+                                    <barButtonItem title="Back" id="7Oh-qn-Lna">
+                                        <connections>
+                                            <action selector="backPressed:" destination="EEc-bi-Xyc" id="FT0-9C-Viz"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -170,13 +175,7 @@
                         <viewLayoutGuide key="safeArea" id="uu8-ao-pQu"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="30O-0r-oqS">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="7Oh-qn-Lna">
-                            <connections>
-                                <action selector="backPressed:" destination="EEc-bi-Xyc" id="FT0-9C-Viz"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="30O-0r-oqS"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="journalTitle" destination="7E9-Yf-nb0" id="Stx-xO-OuB"/>
@@ -184,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jP4-Uq-k2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-444" y="1441"/>
+            <point key="canvasLocation" x="-443" y="770"/>
         </scene>
         <!--EditEntryView-->
         <scene sceneID="1yI-c0-AVb">
@@ -477,24 +476,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p6M-Y6-rnj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1410" y="-160"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="4m6-HH-3Gt">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jIv-d3-41m" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EHb-ST-MqH">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="EEc-bi-Xyc" kind="relationship" relationship="rootViewController" id="pox-fg-Khc"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8S7-CT-sbW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-443.19999999999999" y="649.47526236881561"/>
         </scene>
     </scenes>
     <resources>

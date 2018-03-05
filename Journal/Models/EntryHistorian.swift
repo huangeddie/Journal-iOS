@@ -18,7 +18,7 @@ class EntryHistorian {
     }
     
     // MARK: Properties
-    static var timeFrame: TimeFrame = .all
+    static var calendarComponent: Calendar.Component = .calendar
     
     // Speed things up
     static var cache = [Int:[Entry]]()
@@ -101,7 +101,7 @@ class EntryHistorian {
     }
     
     static func getNumberOfSections() -> Int {
-        if timeFrame == .all {
+        if calendarComponent == .calendar {
             return 1
         }
         
@@ -139,10 +139,10 @@ class EntryHistorian {
             
             let numberOfSecondsInADay: TimeInterval = 60 * 60 * 24
             
-            switch timeFrame {
-            case .all:
+            switch calendarComponent {
+            case .calendar:
                 return 1
-            case .week:
+            case .weekOfMonth, .weekOfYear:
                 let numberOfDays = timeDifference / numberOfSecondsInADay
                 let numberOfWeeks = numberOfDays / 7
                 return Int(numberOfWeeks.rounded(.up)) + 1
@@ -155,6 +155,8 @@ class EntryHistorian {
             case .year:
                 let numberOfYears = currentDateComp.year! - oldestDateComp.year!
                 return numberOfYears + 1
+            default:
+                return 1
             }
         }
         catch {
@@ -163,15 +165,15 @@ class EntryHistorian {
         }
     }
     
-    static func getEntriesPast(date: Date) -> [Entry] {
+    static func getEntries(since startDate: Date, upTo endDate: Date) -> [Entry] {
         let context = PersistentService.context
         
         let journal = JournalLibrarian.getCurrentJournal()
         
         let fetchRequest = NSFetchRequest<Entry>(entityName: Entry.description())
         
-        var predicateString = "journal.id = \(journal.id) AND date >= %@"
-        let predicate = NSPredicate(format: predicateString, date as NSDate)
+        let predicateString = "journal.id = \(journal.id) AND date >= %@ AND date < %@"
+        let predicate = NSPredicate(format: predicateString, startDate as NSDate, endDate as NSDate)
         fetchRequest.predicate = predicate
         
         let dateSort = NSSortDescriptor(key: "date", ascending: true)
@@ -186,6 +188,52 @@ class EntryHistorian {
             print("Error: \(error)")
             fatalError("Error getting entries")
         }
+    }
+    
+    static func getChartData(for chartCalendarComponent: Calendar.Component) -> ChartData {
+        let size: Int
+        let dataComponent: Calendar.Component
+        switch chartCalendarComponent {
+        case .day, .weekday:
+            dataComponent = .weekday
+            size = 1
+        case .weekOfYear, .weekOfMonth:
+            dataComponent = .day
+            size = 7
+        case .month:
+            dataComponent = .weekOfYear
+            size = 5
+        case .quarter:
+            dataComponent = .month
+            size = 3
+        case .year:
+            dataComponent = .month
+            size = 12
+        default:
+            dataComponent = .calendar
+            size = 1
+        }
+        
+        let calendar = Calendar.current
+        let now = Date()
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: now)!
+        let startOfTomorrow = calendar.startOfDay(for: tomorrow)
+        var data: [Int] = []
+        for i in 0..<size {
+            let start = calendar.date(byAdding: dataComponent, value: -(i + 1), to: startOfTomorrow)!
+            let end = calendar.date(byAdding: dataComponent, value: -(i), to: startOfTomorrow)!
+            let entries = EntryHistorian.getEntries(since: start, upTo: end)
+            
+            data.append(entries.count)
+        }
+        
+        data.reverse()
+        
+        let chartStartDate = calendar.date(byAdding: dataComponent, value: -size, to: startOfTomorrow)!
+        let startComponents = calendar.dateComponents(in: .current, from: chartStartDate)
+        
+        let chartData = ChartData(startDate: startComponents, dataCalendarComponent: dataComponent, data: data)
+        return chartData
     }
     
     
@@ -266,26 +314,8 @@ class EntryHistorian {
     }
     
     static func computeStartAndEndDate(forSection section: Int) -> (Date, Date) {
-        let currentDate = Date()
-        let calendar = Calendar.current
-        
-        switch timeFrame {
-        case .all:
-            return (Date.distantPast, Date())
-        case .week:
-            let numberOfSecondsInADay = 60 * 60 * 24
-            let numberOfSecondsInAWeek = numberOfSecondsInADay * 7
-            let offSetDate = Date().addingTimeInterval(TimeInterval(-numberOfSecondsInAWeek * section))
-            return (offSetDate.previous(.sunday, considerToday: true), offSetDate.next(.sunday))
-        case .month:
-            let currentMonth = calendar.component(.month, from: currentDate)
-        case .year:
-            break
-        case .quarter:
-            break
-        }
-        
-        return (Date(), Date())
+        let distantPast = Date.distantPast
+        return (distantPast, Date())
     }
     
     // MARK: Private functions

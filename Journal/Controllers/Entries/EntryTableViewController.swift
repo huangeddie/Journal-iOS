@@ -200,7 +200,7 @@ extension EntryTableViewController: UITableViewDelegate, UITableViewDataSource {
         df.dateStyle = .medium
         
         var ret: String?
-        if EntryHistorian.timeFrame == .all {
+        if EntryHistorian.calendarComponent == .calendar {
             ret = nil
         } else {
             ret = "\(df.string(from: startDate)) - \(df.string(from: endDate))"

@@ -43,34 +43,39 @@ class StatisticsViewController: UIViewController {
     
     // MARK: Private Functions
     private func updateChart() {
-        let tf = TimeFrame(rawValue: timeFrame.selectedSegmentIndex + 1)!
+        let calendarComponent: Calendar.Component
+        switch timeFrame.selectedSegmentIndex {
+        case 0:
+            calendarComponent = .weekOfMonth
+        case 1:
+            calendarComponent = .month
+        case 2:
+            calendarComponent = .quarter
+        case 3:
+            calendarComponent = .year
+        default:
+            calendarComponent = .calendar
+        }
         
-        let chartData: ChartData = EntryHistorian.getChartData(for: tf)
+        let chartData: ChartData = EntryHistorian.getChartData(for: calendarComponent)
         
         // Bottom X labels
         var bottomXLabels: [String] = []
-        let startDate = chartData.startDate
-        let dataTimeFrame = chartData.dataTimeFrame
-        var currentDate = startDate
+        let startDate = chartData.startDate.date!
+        let dataTimeFrame = chartData.dataCalendarComponent
+        let calendar = Calendar.current
+        var currentDate: Date
         for i in 0..<chartData.size {
-            switch dataTimeFrame {
-            case .day:
-                currentDate.day! += 1
-            case .week:
-                currentDate.weekOfYear! += 1
-            case .month:
-                currentDate.month! += 1
-            case .quarter:
-                currentDate.month! += 3
-            case .year:
-                currentDate.year! += 1
-            default:
-                break
-            }
+            currentDate = calendar.date(byAdding: dataTimeFrame, value: i, to: startDate)!
+            let component = calendar.component(dataTimeFrame, from: currentDate)
+            bottomXLabels.append("\(component)")
         }
         
         // Top X Labels
         var topXLabels: [String] = []
+        let higherComponent: Calendar.Component = dataTimeFrame.higherComponent
+        let component = calendar.component(higherComponent, from: startDate)
+        topXLabels.append("\(component)")
         
         chart.configure(yValues: chartData.data, bottomXLabels: bottomXLabels, topXLabels: topXLabels)
     }

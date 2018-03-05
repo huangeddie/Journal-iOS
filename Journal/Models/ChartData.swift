@@ -9,16 +9,17 @@
 import Foundation
 
 struct ChartData {
-    var startDate: DateComponents
-    var dataTimeFrame: TimeFrame
+    let startDate: DateComponents
+    let dataCalendarComponent: Calendar.Component
     var data: [Int]
     
     var size: Int {
-        return data.size
+        return data.count
     }
     
-    init(startDate: DateComponents, data: [Int]? = nil) {
+    init(startDate: DateComponents, dataCalendarComponent: Calendar.Component, data: [Int]? = nil) {
         self.startDate = startDate
+        self.dataCalendarComponent = dataCalendarComponent
         self.data = data ?? []
     }
 }

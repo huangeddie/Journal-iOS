@@ -162,7 +162,6 @@ class EditEntryViewController: UIViewController {
     
     @objc
     private func keyboardWillHide() {
-        let zeroContentInsets = UIEdgeInsets.zero
         textView.contentInset = defaultScrollAndContentInsets
         textView.scrollIndicatorInsets = defaultScrollAndContentInsets
     }
