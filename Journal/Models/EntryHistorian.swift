@@ -214,23 +214,33 @@ class EntryHistorian {
             size = 1
         }
         
-        let calendar = Calendar.current
-        let now = Date()
-        let tomorrow = calendar.date(byAdding: .day, value: 1, to: now)!
-        let startOfTomorrow = calendar.startOfDay(for: tomorrow)
         var data: [Int] = []
-        for i in 0..<size {
-            let start = calendar.date(byAdding: dataComponent, value: -(i + 1), to: startOfTomorrow)!
-            let end = calendar.date(byAdding: dataComponent, value: -(i), to: startOfTomorrow)!
-            let entries = EntryHistorian.getEntries(since: start, upTo: end)
+        let chartStartDate: Date
+        let startComponents: DateComponents
+        
+        let calendar = Calendar.current
+        if dataComponent != .calendar {
+            let now = Date()
+            let tomorrow = calendar.date(byAdding: .day, value: 1, to: now)!
+            let startOfTomorrow = calendar.startOfDay(for: tomorrow)
+            for i in 0..<size {
+                let start = calendar.date(byAdding: dataComponent, value: -(i + 1), to: startOfTomorrow)!
+                let end = calendar.date(byAdding: dataComponent, value: -(i), to: startOfTomorrow)!
+                let entries = EntryHistorian.getEntries(since: start, upTo: end)
+                
+                data.append(entries.count)
+            }
+            data.reverse()
             
-            data.append(entries.count)
+            chartStartDate = calendar.date(byAdding: dataComponent, value: -size, to: startOfTomorrow)!
+        } else {
+            let allEntries = EntryHistorian.getAllEntries()
+            data.append(allEntries.count)
+            
+            chartStartDate = Date.distantPast
         }
         
-        data.reverse()
-        
-        let chartStartDate = calendar.date(byAdding: dataComponent, value: -size, to: startOfTomorrow)!
-        let startComponents = calendar.dateComponents(in: .current, from: chartStartDate)
+        startComponents = calendar.dateComponents(in: .current, from: chartStartDate)
         
         let chartData = ChartData(startDate: startComponents, dataCalendarComponent: dataComponent, data: data)
         return chartData

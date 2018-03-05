@@ -36,7 +36,7 @@ class ChartView: UIView {
         
         // Draw the vertical section lines and labels
         let sectionPath = UIBezierPath()
-        let sectionWidth: CGFloat = frame.width / CGFloat(bottomXLabels.count - 1)
+        let sectionWidth: CGFloat = frame.width / CGFloat(bottomXLabels.count)
         for i in 0..<bottomXLabels.count {
             let xPosition = sectionWidth * CGFloat(i)
             let topPoint = CGPoint(x: xPosition, y: 0)
@@ -45,7 +45,7 @@ class ChartView: UIView {
             sectionPath.addLine(to: bottomPoint)
             
             let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = i < bottomXLabels.count - 1 ? .left : .right
+            paragraphStyle.alignment = .center
             let attributes = [NSAttributedStringKey.paragraphStyle  :  paragraphStyle,
                               NSAttributedStringKey.font            :   UIFont.systemFont(ofSize: 12.0),
                               NSAttributedStringKey.foregroundColor : #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1),
@@ -56,7 +56,7 @@ class ChartView: UIView {
                                                 attributes: attributes)
             let textHeight = attrString.size().height
             
-            let rt = CGRect(x: xPosition - (i < bottomXLabels.count - 1 ? CGFloat(0) : sectionWidth), y: frame.height - textHeight, width: sectionWidth, height: textHeight)
+            let rt = CGRect(x: xPosition, y: frame.height - textHeight, width: sectionWidth, height: textHeight)
             attrString.draw(in: rt)
             
             if i == bottomXLabels.count - 1 {
@@ -104,33 +104,32 @@ class ChartView: UIView {
         outlinePath.stroke()
         
         
-        // Draw the points
+        // Draw the bars
         let graphPath = UIBezierPath()
         var graphPoints: [CGPoint] = [] // In case we want to fill in the graph with gradients and what not
-        let distanceBetweenGraphPoints: CGFloat = frame.width / CGFloat(yValues.count - 1)
         
-        let computeGraphPoint = { (i: Int) -> CGPoint in
+        let computeBarPoints = { (i: Int) -> (CGPoint, CGPoint) in
             let y = self.yValues[i]
             let proportionalHeight = CGFloat(y) / CGFloat(yCapacity)
             let yPosition = self.frame.height - self.bottomOffSet - proportionalHeight * (self.frame.height - self.bottomOffSet - self.topOffSet)
-            let graphPoint = CGPoint(x: distanceBetweenGraphPoints * CGFloat(i), y: yPosition)
-            return graphPoint
+            let p1 = CGPoint(x: sectionWidth * CGFloat(i), y: yPosition)
+            let p2 = CGPoint(x: sectionWidth * CGFloat(i) + sectionWidth, y: yPosition)
+            return (p1, p2)
         }
         
-        var graphPoint = computeGraphPoint(0)
-        graphPath.move(to: graphPoint)
-        graphPoints.append(graphPoint)
-        for i in 1..<yValues.count {
-            graphPoint = computeGraphPoint(i)
+        
+        for i in 0..<yValues.count {
+            let points = computeBarPoints(i)
             
-            graphPath.addLine(to: graphPoint)
+            graphPath.move(to: points.0)
+            graphPath.addLine(to: points.1)
             
-            graphPoints.append(graphPoint)
+            graphPoints.append(points.0)
+            graphPoints.append(points.1)
         }
         
         #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1).setStroke()
         graphPath.stroke()
-        
     }
 
 }
