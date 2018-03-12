@@ -197,6 +197,10 @@ class EntryHistorian {
         
         let fetchRequest = NSFetchRequest<Entry>(entityName: Entry.description())
         
+        let predicateString = "journal.id = \(journal.id)"
+        let predicate = NSPredicate(format: predicateString)
+        fetchRequest.predicate = predicate
+        
         let dateSort = NSSortDescriptor(key: "date", ascending: true)
         fetchRequest.sortDescriptors = [dateSort]
         fetchRequest.fetchLimit = 1
