@@ -190,59 +190,51 @@ class EntryHistorian {
         }
     }
     
-    static func getChartData(for chartCalendarComponent: Calendar.Component) -> ChartData {
-        let size: Int
-        let dataComponent: Calendar.Component
-        switch chartCalendarComponent {
-        case .day, .weekday:
-            dataComponent = .weekday
-            size = 1
-        case .weekOfYear, .weekOfMonth:
-            dataComponent = .weekday
-            size = 7
-        case .month:
-            dataComponent = .weekOfMonth
-            size = 5
-        case .quarter:
-            dataComponent = .month
-            size = 3
-        case .year:
-            dataComponent = .month
-            size = 12
-        default:
-            dataComponent = .calendar
-            size = 1
+    static func getDateOfOldestEntry() -> Date? {
+        let context = PersistentService.context
+        
+        let journal = JournalLibrarian.getCurrentJournal()
+        
+        let fetchRequest = NSFetchRequest<Entry>(entityName: Entry.description())
+        
+        let dateSort = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [dateSort]
+        fetchRequest.fetchLimit = 1
+        do {
+            let entries = try context.fetch(fetchRequest)
+            
+            return entries.first?.date
         }
+        catch {
+            print("Error: \(error)")
+            fatalError("Error getting entries")
+        }
+    }
+    
+    static func getChartData(for chartCalendarComponent: Calendar.Component) -> ChartData {
+        let calendar = Calendar.current
+        let dataComponent = chartCalendarComponent.lowerComponent
+        let now = Date()
+        
+        let startOfYearOfOldestEntryDate = {
+            return calendar.dateInterval(of: .year, for: EntryHistorian.getDateOfOldestEntry() ?? Date())!.start
+        }
+        let dateInterval = calendar.dateInterval(of: chartCalendarComponent, for: now) ?? DateInterval(start: startOfYearOfOldestEntryDate(), end: now)
+        
+        let chartStartDate = dateInterval.start
         
         var data: [Int] = []
-        let chartStartDate: Date
-        let startComponents: DateComponents
-        
-        let calendar = Calendar.current
-        if dataComponent != .calendar {
-            let now = Date()
-            let tomorrow = calendar.date(byAdding: .day, value: 1, to: now)!
-            let startOfTomorrow = calendar.startOfDay(for: tomorrow)
-            for i in 0..<size {
-                let start = calendar.date(byAdding: dataComponent, value: -(i + 1), to: startOfTomorrow)!
-                let end = calendar.date(byAdding: dataComponent, value: -(i), to: startOfTomorrow)!
-                let entries = EntryHistorian.getEntries(since: start, upTo: end)
-                
-                data.append(entries.count)
-            }
-            data.reverse()
+        var currDate = chartStartDate
+        while currDate < dateInterval.end {
+            let end = calendar.date(byAdding: dataComponent, value: 1, to: currDate)!
+            let entries = EntryHistorian.getEntries(since: currDate, upTo: end)
             
-            chartStartDate = calendar.date(byAdding: dataComponent, value: -size, to: startOfTomorrow)!
-        } else {
-            let allEntries = EntryHistorian.getAllEntries()
-            data.append(allEntries.count)
-            
-            chartStartDate = Date.distantPast
+            data.append(entries.count)
+            currDate = end
         }
         
-        startComponents = calendar.dateComponents(in: .current, from: chartStartDate)
         
-        let chartData = ChartData(startDate: startComponents, dataCalendarComponent: dataComponent, data: data)
+        let chartData = ChartData(startDate: chartStartDate, dataComponent: dataComponent, data: data)
         return chartData
     }
     

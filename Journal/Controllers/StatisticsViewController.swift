@@ -60,7 +60,7 @@ class StatisticsViewController: UIViewController {
         let chartData: ChartData = EntryHistorian.getChartData(for: calendarComponent)
         
         let calendar = Calendar.current
-        let startDate = chartData.startDate.date!
+        let startDate = chartData.startDate
         let dataComponent = chartData.dataComponent
         let df = DateFormatter()
         
@@ -83,6 +83,9 @@ class StatisticsViewController: UIViewController {
                     s = df.shortWeekdaySymbols[componentValue - 1]
                 case .weekOfMonth:
                     s = "W\(componentValue - 1)"
+                case .weekOfYear:
+                    df.dateStyle = .short
+                    s = df.string(from: currentDate)
                 default:
                     s = "\(componentValue)"
                 }
@@ -102,8 +105,8 @@ class StatisticsViewController: UIViewController {
             let endDay = calendar.component(.day, from: endDate)
             let endMonth = calendar.component(.month, from: endDate)
             
-            let startMonthString = df.standaloneMonthSymbols[higherComponentValue]
-            let endMonthString = df.standaloneMonthSymbols[endMonth]
+            let startMonthString = df.standaloneMonthSymbols[higherComponentValue - 1]
+            let endMonthString = df.standaloneMonthSymbols[endMonth - 1]
             xLabel = "\(startMonthString) \(startDay) - \(endMonthString) \(endDay)"
         case .year:
             xLabel = "\(higherComponentValue)"

@@ -23,4 +23,19 @@ extension Calendar.Component {
             return .calendar
         }
     }
+    
+    var lowerComponent: Calendar.Component {
+        switch self {
+        case .calendar:
+            return .year
+        case .year, .quarter:
+            return .month
+        case .month:
+            return .weekOfYear
+        case .weekOfMonth, .weekOfYear:
+            return .weekday
+        default:
+            return self
+        }
+    }
 }
