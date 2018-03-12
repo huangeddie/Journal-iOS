@@ -45,7 +45,6 @@
 		2CE1306D20437378001A6D3E /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1306C20437378001A6D3E /* ChartView.swift */; };
 		2CEB588A20087285001EDEDC /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB588920087285001EDEDC /* DateFormatter.swift */; };
 		2CEB5893200A7019001EDEDC /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB5892200A7019001EDEDC /* Exporter.swift */; };
-		44646266D425FBCA080CEBC7 /* Pods_JournalTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E691FACDCD5FA6CD862F261 /* Pods_JournalTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,7 +121,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44646266D425FBCA080CEBC7 /* Pods_JournalTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,12 +318,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C7FB8132003147F00554B70 /* Build configuration list for PBXNativeTarget "JournalTests" */;
 			buildPhases = (
-				6BA60C06F70B1B6A3AC1D0B9 /* [CP] Check Pods Manifest.lock */,
 				2C7FB8032003147F00554B70 /* Sources */,
 				2C7FB8042003147F00554B70 /* Frameworks */,
 				2C7FB8052003147F00554B70 /* Resources */,
-				181C9A1F146F9574BD2BD77E /* [CP] Embed Pods Frameworks */,
-				7735482F61DC1EF68DD81FAD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -405,64 +400,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		181C9A1F146F9574BD2BD77E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-JournalTests/Pods-JournalTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
-				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JournalTests/Pods-JournalTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6BA60C06F70B1B6A3AC1D0B9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-JournalTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7735482F61DC1EF68DD81FAD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JournalTests/Pods-JournalTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2C7FB7EC2003147F00554B70 /* Sources */ = {
