@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatisticsViewController: UIViewController {
+class ActivityViewController: UIViewController {
 
     @IBOutlet weak var chart: ChartView!
     @IBOutlet weak var timeFrame: UISegmentedControl!

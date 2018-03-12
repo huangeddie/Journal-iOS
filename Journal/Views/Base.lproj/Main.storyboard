@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -193,26 +192,23 @@
             </objects>
             <point key="canvasLocation" x="717" y="362"/>
         </scene>
-        <!--Statistics View Controller-->
+        <!--Activity-->
         <scene sceneID="nNt-cs-Rt8">
             <objects>
-                <viewController id="fTC-Pv-Xhl" customClass="StatisticsViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Activity" id="fTC-Pv-Xhl" customClass="ActivityViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FMq-GS-TLy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Iwx-ij-ktL">
-                                <rect key="frame" x="15" y="307.5" width="345" height="215.5"/>
+                                <rect key="frame" x="15" y="164" width="345" height="359"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2V-yT-cdd" userLabel="Chart" customClass="ChartView" customModule="Journal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="172.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="345" height="316"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="U2V-yT-cdd" secondAttribute="height" multiplier="2:1" id="4ta-Jg-aux"/>
-                                        </constraints>
                                     </view>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2AD-zm-CBZ">
-                                        <rect key="frame" x="0.0" y="187.5" width="345" height="29"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2AD-zm-CBZ">
+                                        <rect key="frame" x="0.0" y="331" width="345" height="29"/>
                                         <segments>
                                             <segment title="7D"/>
                                             <segment title="1M"/>
@@ -232,6 +228,7 @@
                             <constraint firstItem="uSL-SQ-Kiq" firstAttribute="bottom" secondItem="Iwx-ij-ktL" secondAttribute="bottom" constant="100" id="04k-IC-Bic"/>
                             <constraint firstItem="Iwx-ij-ktL" firstAttribute="leading" secondItem="uSL-SQ-Kiq" secondAttribute="leading" constant="15" id="Ly9-00-wux"/>
                             <constraint firstItem="uSL-SQ-Kiq" firstAttribute="trailing" secondItem="Iwx-ij-ktL" secondAttribute="trailing" constant="15" id="P7N-8z-mFm"/>
+                            <constraint firstItem="Iwx-ij-ktL" firstAttribute="top" secondItem="uSL-SQ-Kiq" secondAttribute="top" constant="100" id="pO4-cw-WjQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uSL-SQ-Kiq"/>
                     </view>
@@ -253,28 +250,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOu-bR-OyL">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="0.0" height="559"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O3d-Om-in0">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="70.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1ON-Hn-4OP">
-                                                <rect key="frame" x="15" y="0.0" width="345" height="70.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="70.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Jan 1, 2018 at 12:00pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ded-a1-LvV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="345" height="16"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THA-oa-JAM" userLabel="Title">
-                                                        <rect key="frame" x="0.0" y="21" width="345" height="24"/>
+                                                        <rect key="frame" x="0.0" y="21" width="0.0" height="24"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtR-7q-Uk9">
-                                                        <rect key="frame" x="0.0" y="50" width="345" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="50" width="0.0" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
